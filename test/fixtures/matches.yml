@@ -1,0 +1,15 @@
+match_rus_ksa:
+  venue: venue_cosmos_arena
+  left_team: team_rus
+  right_team: team_ksa
+  phase: 'Group stage'
+  left_team_score: 3
+  right_team_score: 1
+  kickoff_at: <%= Time.new(2018, 6, 14, 15, 0, 0, 0) %>
+
+match_egy_uru:
+  venue: venue_cosmos_arena
+  left_team: team_egy
+  right_team: team_uru
+  phase: 'Group stage'
+  kickoff_at: <%= Time.new(2018, 6, 15, 12, 0, 0, 0) %>

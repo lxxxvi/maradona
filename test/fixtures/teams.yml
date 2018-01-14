@@ -1,0 +1,23 @@
+team_rus:
+  group: group_a
+  fifa_country_code: 'RUS'
+  name: 'Russia'
+  group_order: 1
+
+team_ksa:
+  group: group_a
+  fifa_country_code: 'KSA'
+  name: 'Saudi Arabia'
+  group_order: 2
+
+team_egy:
+  group: group_a
+  fifa_country_code: 'EGY'
+  name: 'Egypt'
+  group_order: 3
+
+team_uru:
+  group: group_a
+  fifa_country_code: 'URU'
+  name: 'Uruguay'
+  group_order: 4

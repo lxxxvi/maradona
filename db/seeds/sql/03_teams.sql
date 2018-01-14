@@ -4,7 +4,7 @@ INSERT INTO teams (
   , name
   , group_order
 )
-SELECT groups.id                      AS group_id
+SELECT groups.id                  AS group_id
      , teams.fifa_country_code    AS fifa_country_code
      , teams.name                 AS name
      , teams.group_order          AS group_order
