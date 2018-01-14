@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180114123629) do
     t.string "phase", null: false
     t.integer "left_team_score"
     t.integer "right_team_score"
-    t.time "kickoff_at", null: false
+    t.datetime "kickoff_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phase", "left_team_id", "right_team_id"], name: "index_matches_on_phase_and_left_team_id_and_right_team_id", unique: true

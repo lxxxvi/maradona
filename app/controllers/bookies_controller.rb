@@ -1,6 +1,6 @@
 class BookiesController < ApplicationController
   def index
-    @matches_with_predictions = Match.with_predictions_of_user(current_user).ordered_by_kickoff_at
+    @rows = BookiesService.new(current_user).rows
   end
 
   private

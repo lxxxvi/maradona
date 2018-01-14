@@ -1,0 +1,16 @@
+%h1 Bookies
+
+.matches_with_predictions
+  - @rows.each do |row|
+    %hr
+    .match_with_prediction
+      .match
+        = row.left_team.name
+        = row.match.left_team_score
+        \:
+        = row.match.right_team_score
+        = row.right_team.name
+        = row.match.kickoff_at
+      .prediction
+        = row.prediction.left_team_score
+        = row.prediction.right_team_score
