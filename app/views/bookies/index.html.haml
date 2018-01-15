@@ -5,12 +5,21 @@
     %hr
     .match_with_prediction
       .match
+        = inline_svg "flags/#{row.left_team.fifa_country_code.downcase}.svg", size: '30px*30px'
         = row.left_team.name
         = row.match.left_team_score
         \:
         = row.match.right_team_score
         = row.right_team.name
-        = row.match.kickoff_at
+        = inline_svg "flags/#{row.right_team.fifa_country_code.downcase}.svg", size: '30px*30px'
       .prediction
+        Your prediction:
         = row.prediction.left_team_score
+        \:
         = row.prediction.right_team_score
+
+      .date_time
+        .date
+          = row.match.kickoff_at.to_date
+        .time
+          = row.match.kickoff_at.to_datetime.to_s(:time)
