@@ -24,7 +24,6 @@ class Matches::PredictionsController < ApplicationController
     @prediction.left_team_score  ||= 0
     @prediction.right_team_score ||= 0
   end
-  end
 
   def find_match
     @match ||= Match.find(params[:match_id])

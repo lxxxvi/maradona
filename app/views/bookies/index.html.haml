@@ -1,29 +1,33 @@
 %h1 Bookies
 
-.matches_with_predictions
-  - @matches_with_predictions.each do |match_with_prediction|
-    %hr
-    = link_to 'Predict', new_match_prediction_path(match_with_prediction.match.id)
-    .match_with_prediction
-      .match
-        = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg", size: '30px*30px'
-        = match_with_prediction.left_team.name
-        = match_with_prediction.match.left_team_score
-        \:
-        = match_with_prediction.match.right_team_score
-        = match_with_prediction.right_team.name
-        = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg", size: '30px*30px'
-      .prediction
-        - if match_with_prediction.prediction.predicted?
-          Your prediction:
-          = match_with_prediction.prediction.left_team_score
-          \:
-          = match_with_prediction.prediction.right_team_score
-        - else
-          PREDICTION MISSING
 
-      .date_time
-        .date
-          = match_with_prediction.match.kickoff_at.to_date
-        .time
-          = match_with_prediction.match.kickoff_at.to_datetime.to_s(:time)
+%h2 Group stage
+
+.matches-with-predictions
+  - @matches_with_predictions.each do |match_with_prediction|
+    .card.match-with-prediction{ 'data-link': new_match_prediction_path(match_with_prediction.match.id)}
+      .card-body
+        .row
+          .col.text-center.fifa-country-code
+            = match_with_prediction.left_team.fifa_country_code
+          .col
+          .col.text-center.fifa-country-code
+            = match_with_prediction.right_team.fifa_country_code
+        .row
+          .col.text-center
+            = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+          .col.text-center.actual-result
+            = match_with_prediction.match.left_team_score
+            \:
+            = match_with_prediction.match.right_team_score
+          .col.text-center
+            = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+        .row
+          - if match_with_prediction.predicted?
+            .col.text-center.predicted-result.text-muted
+              = match_with_prediction.prediction.left_team_score
+              \:
+              = match_with_prediction.prediction.right_team_score
+          - else
+            .col.text-center.predicted-result.text-success
+              Predict now!
