@@ -1,4 +1,4 @@
-class BookiesService
+class MatchPredictionCollectionService
   attr_reader :user
 
   def initialize(user)
