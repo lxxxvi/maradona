@@ -1,0 +1,7 @@
+= form_for @prediction, url: match_prediction_path(@prediction.match), method: :post do |f|
+  Left:
+  = f.number_field :left_team_score, min: 0, max: 100
+  Right:
+  = f.number_field :right_team_score, min: 0, max: 100
+  = f.submit 'Submit'
+  = link_to 'Back', root_path

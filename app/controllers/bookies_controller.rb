@@ -1,5 +1,5 @@
 class BookiesController < ApplicationController
   def index
-    @rows = BookiesService.new(current_user).rows
+    @matches_with_predictions = BookiesService.new(current_user).matches_with_predictions
   end
 end

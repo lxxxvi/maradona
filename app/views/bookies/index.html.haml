@@ -1,25 +1,29 @@
 %h1 Bookies
 
 .matches_with_predictions
-  - @rows.each do |row|
+  - @matches_with_predictions.each do |match_with_prediction|
     %hr
+    = link_to 'Predict', new_match_prediction_path(match_with_prediction.match.id)
     .match_with_prediction
       .match
-        = inline_svg "flags/#{row.left_team.fifa_country_code.downcase}.svg", size: '30px*30px'
-        = row.left_team.name
-        = row.match.left_team_score
+        = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg", size: '30px*30px'
+        = match_with_prediction.left_team.name
+        = match_with_prediction.match.left_team_score
         \:
-        = row.match.right_team_score
-        = row.right_team.name
-        = inline_svg "flags/#{row.right_team.fifa_country_code.downcase}.svg", size: '30px*30px'
+        = match_with_prediction.match.right_team_score
+        = match_with_prediction.right_team.name
+        = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg", size: '30px*30px'
       .prediction
-        Your prediction:
-        = row.prediction.left_team_score
-        \:
-        = row.prediction.right_team_score
+        - if match_with_prediction.prediction.predicted?
+          Your prediction:
+          = match_with_prediction.prediction.left_team_score
+          \:
+          = match_with_prediction.prediction.right_team_score
+        - else
+          PREDICTION MISSING
 
       .date_time
         .date
-          = row.match.kickoff_at.to_date
+          = match_with_prediction.match.kickoff_at.to_date
         .time
-          = row.match.kickoff_at.to_datetime.to_s(:time)
+          = match_with_prediction.match.kickoff_at.to_datetime.to_s(:time)
