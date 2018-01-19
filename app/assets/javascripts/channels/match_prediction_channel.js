@@ -1,12 +1,9 @@
 App.matchPredictionChannel = App.cable.subscriptions.create("MatchPredictionChannel",{
   received(data) {
-    alert("That happened");
-    console.log("impossibru");
-    console.log("here's your data: ", data);
+    // received from MatchPredictionChannel
+    console.log(data);
   },
-  connected(data) {
-    console.log("CONNECTED!");
-  }
+  connected(data) {}
 });
 
 console.log('I was here');
