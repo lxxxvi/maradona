@@ -8,7 +8,6 @@ App.matchPredictionChannel = App.cable.subscriptions.create("MatchPredictionChan
 
 console.log('I was here');
 
-function sendMessage() {
-  console.log("Fu me");
-  App.matchPredictionChannel.send({ foo: "bar" });
+function sendScore(data) {
+  App.matchPredictionChannel.send(data);
 }

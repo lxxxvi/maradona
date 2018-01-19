@@ -1,4 +1,4 @@
-const queryParentsSelector = function(element, selector) {
+var queryParentsSelector = function(element, selector) {
   var parentElement = element.parentElement;
 
   if (parentElement == null) {
@@ -10,58 +10,38 @@ const queryParentsSelector = function(element, selector) {
   }
 }
 
-const getMatchPredictionElement = function(inputElement) {
+var getMatchPredictionElement = function(inputElement) {
   return queryParentsSelector(inputElement, '.match-with-prediction');
 }
 
-const getMatchPredictionObject = function(inputElement) {
+var getMatchPredictionObject = function(inputElement) {
   var matchElement = getMatchPredictionElement(inputElement);
   return {
-    match_id: matchElement.id.split("_")[1],
-    prediction_id: null,
-    matchElement: matchElement,
+    matchId: matchElement.id.split("_")[1],
+    predictionId: getPredictionId(matchElement),
     predictedScores: {
-      leftTeamScore: null,
-      rightTeamScore: null
+      leftTeamScore: getScoreFromInput('.left-team-score', matchElement),
+      rightTeamScore: getScoreFromInput('.right-team-score', matchElement)
     }
   };
 }
 
-// const predictedLeftTeamScoreSpan  = function(predictionId) {
-//   return document.querySelector("#predicted_left_team_score_span_" + predictionId);
-// }
-
-// const predictedLeftTeamScoreInput  = function(predictionId) {
-//   return document.querySelector("#predicted_left_team_score_input_" + predictionId);
-// };
-
-// const predictedRightTeamScoreSpan  = function(predictionId) {
-//   return document.querySelector("#predicted_right_team_score_span_" + predictionId);
-// }
-
-// const predictedRightTeamScoreInput  = function(predictionId) {
-//   return document.querySelector("#predicted_right_team_score_input_" + predictionId);
-// };
-
-const getScoreFromInput = function(targetClassName, matchPredictionObject) {
-  return matchPredictionObject
+var getScoreFromInput = function(targetClassName, matchPredictionElement) {
+  return matchPredictionElement
     .querySelector("input[type=number].score-controls" + targetClassName)
     .value;
 }
 
+var getPredictionId = function(matchPredictionElement) {
+  var predictionElement = matchPredictionElement.querySelector(".prediction")
+  return predictionElement.id.split("_")[1];
+}
+
 var updateScore = function(inputElement) {
   var matchPredictionObject = getMatchPredictionObject(inputElement);
-  // var matchPredictionObject = getPredictionId(matchPredictionObject);
-  // var matchPredictionObject = getPredictedScores(matchPredictionObject);
-
-  // var predictionId = ; ..
-  matchPredictionObject.predictedScores.leftTeamScore   = getScoreFromInput('.left-team-score', matchPredictionObject.matchElement);
-  matchPredictionObject.predictedScores.rightTeamScore  = getScoreFromInput('.right-team-score', matchPredictionObject.matchElement);
-
   console.log(matchPredictionObject);
-  // TODO
-  // predictedLeftTeamScoreSpan(predictionId).innerHTML  = predictedLeftTeamScoreInput(predictionId).value;
-  // predictedRightTeamScoreSpan(predictionId).innerHTML = predictedRightTeamScoreInput(predictionId).value;
+  sendScore(matchPredictionObject)
+  // TODO: send to channel
 }
 
 document.querySelectorAll("div[data-link]").forEach(function(item, _index, _list) {
