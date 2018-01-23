@@ -13,11 +13,15 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'inline_svg'
-# gem 'therubyracer', platforms: :ruby
 
+# gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'
-# gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
+
+group :production do
+  gem 'redis', '~> 3.0'
+end
+
 
 group :development, :test do
   gem 'byebug'
