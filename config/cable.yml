@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://h:p5b5ff13df52d1531a66bed6061bab2ef95381c2d6f40675fe34f5a3368f4c20e@ec2-35-169-191-180.compute-1.amazonaws.com:22009
   channel_prefix: maradona_production
