@@ -4,12 +4,10 @@ class MatchPredictionChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    puts data
-
-    match = Match.find(data['matchId'])
-    user = User.first
-    left_team_score = data['predictedScores']['leftTeamScore']
-    right_team_score = data['predictedScores']['rightTeamScore']
+    match             = Match.find(data['matchId'])
+    user              = User.first
+    left_team_score   = data['leftTeamScore']
+    right_team_score  = data['rightTeamScore']
 
     service = MatchPredictionUpdaterService.new(match, user)
     response = service.update(left_team_score, right_team_score)

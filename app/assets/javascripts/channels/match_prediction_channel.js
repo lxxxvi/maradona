@@ -6,13 +6,16 @@ App.matchPredictionChannel = App.cable.subscriptions.create("MatchPredictionChan
   connected(data) {}
 });
 
-var sendScore = function(data) {
+var updatePrediction = function(data) {
   App.matchPredictionChannel.send(data);
 }
 
-var processResponse = function(data) {
-  console.log("WAS I HERE?");
+var getMatchElementByMatchId = function(matchId) {
+  var matchIdSelector = "#match_" + matchId;
+  return document.querySelector(matchIdSelector);
+}
 
+var processResponse = function(data) {
   if (data.hasOwnProperty('matchPredictionUpdaterResponse') === true) {
     processMatchPredictionUpdaterResponse(data.matchPredictionUpdaterResponse);
   }
@@ -20,18 +23,36 @@ var processResponse = function(data) {
 
 var processMatchPredictionUpdaterResponse = function(response) {
   if (response.status == "ok") {
-    console.log("processMatchPredictionUpdaterResponse response", response);
-    displayNewPredictedScores(response.payload.matchId, response.payload.newScores);
-    console.log('TODO: SHOW OK');
+    displayNewPredictedScores(
+      response.payload.match_id,
+      response.payload.left_team_score,
+      response.payload.right_team_score
+    );
+    // TODO display success
   } else {
-    console.log('TODO: DISPLAY PROBLEM');
+    // TODO display error
   }
 };
 
-var displayNewPredictedScores = function(matchId, scores) {
-  var matchPredictionElement = getMatchPredictionElementByMatchId(matchId);
+var displayNewPredictedScores = function(matchId, leftTeamScore, rightTeamScore) {
+  var matchPredictionElement = getMatchElementByMatchId(matchId);
   var predictionLeftTeamScoreElement  = matchPredictionElement.querySelector('.prediction .left-team-score');
   var predictionRightTeamScoreElement = matchPredictionElement.querySelector('.prediction .right-team-score');
-  predictionLeftTeamScoreElement.innerHTML = scores[0];
-  predictionRightTeamScoreElement.innerHTML = scores[1];
+  predictionLeftTeamScoreElement.innerHTML  = leftTeamScore;
+  predictionRightTeamScoreElement.innerHTML = rightTeamScore;
 };
+
+var updateScore = function(matchId) {
+  var matchElement = getMatchElementByMatchId(matchId);
+  var leftTeamScore  = matchElement.querySelector(".score-controls .left-team-score").value;
+  var rightTeamScore = matchElement.querySelector(".score-controls .right-team-score").value;
+
+  var matchPrediction = {
+    matchId: matchId,
+    leftTeamScore: leftTeamScore,
+    rightTeamScore: rightTeamScore
+  };
+
+  updatePrediction(matchPrediction);
+}
+

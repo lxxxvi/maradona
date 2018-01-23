@@ -13,6 +13,8 @@ class MatchPredictionUpdaterServiceTest < ActiveSupport::TestCase
     response = response_for_scores(5, 9)
     assert_equal :ok, response.status
     assert_equal ['Updated successfully'], response.messages
+    assert_equal 5, response.payload[:left_team_score]
+    assert_equal 9, response.payload[:right_team_score]
   end
 
   test 'does not update match with wrong left team score values' do
