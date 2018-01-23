@@ -6,3 +6,19 @@ div[data-link]:hover {
 
 $enable-rounded: false;
 $enable-shadows: true;
+
+.score-controls {
+  font-size: 2rem;
+
+  input[type=number] {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    margin-top: 25px;
+  }
+}
+

@@ -2,6 +2,9 @@ class Prediction < ApplicationRecord
   belongs_to :user
   belongs_to :match
 
+  validates :left_team_score , numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :right_team_score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   scope :of_match, -> (match) { where(match: match) }
 
   def predicted?
