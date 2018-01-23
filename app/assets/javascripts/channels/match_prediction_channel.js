@@ -1,6 +1,5 @@
 App.matchPredictionChannel = App.cable.subscriptions.create("MatchPredictionChannel",{
   received(data) {
-    console.log("RECEIVED: ", data);
     processResponse(data);
   },
   connected(data) {}
