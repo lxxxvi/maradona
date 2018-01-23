@@ -14,11 +14,15 @@ var getMatchPredictionElement = function(inputElement) {
   return queryParentsSelector(inputElement, '.match-with-prediction');
 }
 
+var getMatchPredictionElementByMatchId = function(matchId) {
+  return document.querySelector("#match_" + matchId);
+}
+
 var getMatchPredictionObject = function(inputElement) {
   var matchElement = getMatchPredictionElement(inputElement);
   return {
     matchId: matchElement.id.split("_")[1],
-    predictionId: getPredictionId(matchElement),
+    // predictionId: getPredictionId(matchElement),
     predictedScores: {
       leftTeamScore: getScoreFromInput('.left-team-score', matchElement),
       rightTeamScore: getScoreFromInput('.right-team-score', matchElement)
@@ -44,12 +48,13 @@ var updateScore = function(inputElement) {
   // TODO: send to channel
 }
 
-document.querySelectorAll("div[data-link]").forEach(function(item, _index, _list) {
-  item.onclick = function() { window.location = item.dataset.link; };
-});
+// document.querySelectorAll("div[data-link]").forEach(function(item, _index, _list) {
+//   item.onclick = function() { window.location = item.dataset.link; };
+// });
 
-document.querySelectorAll("input[type=number].score-controls").forEach(function(item, _index, _list) {
-  item.oninput = function() {
+document.querySelectorAll("input[type=submit].score-controls").forEach(function(item, _index, _list) {
+  item.onclick = function() {
+    console.log(item);
     updateScore(item);
   };
 });
