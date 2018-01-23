@@ -11,13 +11,6 @@ class Prediction < ApplicationRecord
     created_at.present?
   end
 
-  def predicted_scores
-    [
-      left_team_score,
-      right_team_score
-    ]
-  end
-
   def predictable?
     match.kickoff_at > Time.zone.now
   end
