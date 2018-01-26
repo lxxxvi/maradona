@@ -2,8 +2,11 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def before_the_world_cup
+    Time.new(2018, 1, 1, 0, 0, 0, 0)
+  end
 end
+
+
