@@ -35,10 +35,18 @@ var processMatchPredictionUpdaterResponse = function(response) {
 
 var displayNewPredictedScores = function(matchId, leftTeamScore, rightTeamScore) {
   var matchPredictionElement = getMatchElementByMatchId(matchId);
+
+  // prediction
   var predictionLeftTeamScoreElement  = matchPredictionElement.querySelector('.prediction .left-team-score');
   var predictionRightTeamScoreElement = matchPredictionElement.querySelector('.prediction .right-team-score');
   predictionLeftTeamScoreElement.innerHTML  = leftTeamScore;
   predictionRightTeamScoreElement.innerHTML = rightTeamScore;
+
+  // input
+  var leftTeamScoreInput              = matchPredictionElement.querySelector(".score-controls .left-team-score");
+  var rightTeamScoreInput             = matchPredictionElement.querySelector(".score-controls .right-team-score");
+  leftTeamScoreInput.setAttribute('value', leftTeamScore);
+  rightTeamScoreInput.setAttribute('value', rightTeamScore);
 };
 
 var updateScore = function(matchId) {
