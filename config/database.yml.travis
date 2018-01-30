@@ -1,3 +1,4 @@
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: travis_ci_test
