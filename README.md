@@ -1,24 +1,12 @@
-# README
+[![Build Status](https://travis-ci.org/lxxxvi/maradona.svg?branch=master)](https://travis-ci.org/lxxxvi/maradona)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Maradona
 
-Things you may want to cover:
+An online betting game.
 
-* Ruby version
+Work in Progress: [https://tippkick.club](https://tippkick.club)
 
-* System dependencies
+## License
 
-* Configuration
+"Maradona" is released under the [MIT License](https://opensource.org/licenses/MIT)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
