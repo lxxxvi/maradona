@@ -4,6 +4,11 @@ development:
 test:
   adapter: async
 
+staging:
+  adapter: redis
+  url: <%= ENV['REDIS_URL'] %>
+  channel_prefix: maradona_staging
+
 production:
   adapter: redis
   url: <%= ENV['REDIS_URL'] %>
