@@ -7,8 +7,14 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
     assert_select '.match-with-prediction', { count: 3 }
   end
 
-  test 'first game shows all information' do
-    get root_path
-    assert_response :success
+  test 'match cannot be predicted anymore because kickoff is in past' do
+    match = matches(:match_rus_ksa)
+    travel_to match.kickoff_at do
+      get root_path
+      assert_response :success
+
+      first_game = css_select('.match-with-prediction').first
+      assert_not first_game.css('.score-controls').present?
+    end
   end
 end

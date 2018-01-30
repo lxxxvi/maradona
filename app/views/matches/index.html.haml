@@ -33,23 +33,24 @@
                   = match_with_prediction.prediction.right_team_score
 
       .card-body
-        .score-controls
-          .row
-            .col-6
-              = number_field_tag :left_team_score,
-                  match_with_prediction.prediction.left_team_score,
-                  min: 0,
-                  max: 100,
-                  class: "left-team-score"
-            .col-6
-              = number_field_tag :right_team_score,
-                  match_with_prediction.prediction.right_team_score,
-                  min: 0,
-                  max: 100,
-                  class: "right-team-score"
-          .row
-            .col-12
-              = submit_tag 'Submit prediction',
-                class: 'btn btn-success',
-                onClick: "updateScore(#{match_with_prediction.match.id});"
+        - if match_with_prediction.match.kickoff_at > Time.zone.now
+          .score-controls
+            .row
+              .col-6
+                = number_field_tag :left_team_score,
+                    match_with_prediction.prediction.left_team_score,
+                    min: 0,
+                    max: 100,
+                    class: "left-team-score"
+              .col-6
+                = number_field_tag :right_team_score,
+                    match_with_prediction.prediction.right_team_score,
+                    min: 0,
+                    max: 100,
+                    class: "right-team-score"
+            .row
+              .col-12
+                = submit_tag 'Submit prediction',
+                  class: 'btn btn-success',
+                  onClick: "updateScore(#{match_with_prediction.match.id});"
 
