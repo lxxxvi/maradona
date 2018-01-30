@@ -11,6 +11,12 @@ test:
   <<: *default
   database: maradona_test
 
+staging:
+  <<: *default
+  database: maradona_staging
+  username: maradona
+  password: <%= ENV['MARADONA_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
   database: maradona_production
