@@ -5,10 +5,17 @@ class PredictionEvaluationService
   NO_POINTS = 0
 
   attr_reader :prediction, :match
-  
+
   def initialize(prediction)
     @prediction = prediction
     @match = @prediction.match
+  end
+
+  def points_total
+    points_left_team_score +
+    points_right_team_score +
+    points_overall_outcome +
+    points_goal_difference
   end
 
   def points_overall_outcome
