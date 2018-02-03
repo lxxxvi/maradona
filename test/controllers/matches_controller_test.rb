@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BookiesControllerTest < ActionDispatch::IntegrationTest
+class MatchesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get root_path
     assert_response :success

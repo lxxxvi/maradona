@@ -1,18 +1,11 @@
-class BookiesService
+class MatchPredictionCollectionService
   attr_reader :user
-
-  Row         = Struct.new(:match, :left_team, :right_team, :prediction)
-  Match       = Struct.new(:id, :phase, :left_team_score, :right_team_score, :kickoff_at, :created_at, :updated_at)
-  LeftTeam    = Struct.new(:id, :fifa_country_code, :name)
-  RightTeam   = Struct.new(:id, :fifa_country_code, :name)
-  Prediction  = Struct.new(:id, :left_team_score, :right_team_score, :points_left_team_score, :points_right_team_score, :points_overall_outcome, :points_goal_difference, :created_at, :updated_at)
-
 
   def initialize(user)
     @user = user
   end
 
-  def rows
+  def matches_with_predictions
     @mapped_rows ||= map_rows
   end
 
@@ -20,15 +13,7 @@ class BookiesService
 
   def map_rows
     query_result.map do |row|
-      row_data = Row.new(Match.new, LeftTeam.new, RightTeam.new, Prediction.new)
-
-      row_data.members.each do |table_name|
-        row_data[table_name].members.each do |column_name|
-          selector_name = "#{table_name}_#{column_name}"
-          row_data[table_name][column_name] = row.fetch(selector_name)
-        end
-      end
-      row_data
+      ::MatchPrediction.new(row)
     end
   end
 

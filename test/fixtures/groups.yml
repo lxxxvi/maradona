@@ -1,2 +1,5 @@
 group_a:
   name: 'A'
+
+group_b:
+  name: 'B'

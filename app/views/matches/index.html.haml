@@ -1,0 +1,56 @@
+%h1 Matches
+
+%h2 Group stage
+
+.matches-with-predictions
+  - @matches_with_predictions.each do |match_with_prediction|
+    .card.match-with-prediction{ id: "match_#{match_with_prediction.match.id}"}
+      .card-body
+        .row
+          .col.text-center.fifa-country-code
+            = match_with_prediction.left_team.fifa_country_code
+          .col
+          .col.text-center.fifa-country-code
+            = match_with_prediction.right_team.fifa_country_code
+        .row
+          .col.text-center
+            = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+          .col.text-center.actual-result
+            = match_with_prediction.match.left_team_score
+            \:
+            = match_with_prediction.match.right_team_score
+          .col.text-center
+            = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+
+        .predicted-score
+          .row
+            .col.text-center.text-muted
+              .prediction
+                %span.left-team-score
+                  = match_with_prediction.prediction.left_team_score
+                \:
+                %span.right-team-score
+                  = match_with_prediction.prediction.right_team_score
+
+      .card-body
+        - if match_with_prediction.match.kickoff_at > Time.zone.now
+          .score-controls
+            .row
+              .col-6
+                = number_field_tag :left_team_score,
+                    match_with_prediction.prediction.left_team_score,
+                    min: 0,
+                    max: 100,
+                    class: "left-team-score"
+              .col-6
+                = number_field_tag :right_team_score,
+                    match_with_prediction.prediction.right_team_score,
+                    min: 0,
+                    max: 100,
+                    class: "right-team-score"
+            .row
+              .col-12
+                = submit_tag 'Submit prediction',
+                  class: 'btn btn-success',
+                  onClick: "updateScore(#{match_with_prediction.match.id});"
+
