@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114123629) do
+ActiveRecord::Schema.define(version: 20180203121519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "groups", force: :cascade do |t|
-    t.string "name", null: false
-    t.index ["name"], name: "index_groups_on_name", unique: true
-  end
 
   create_table "matches", force: :cascade do |t|
     t.bigint "venue_id"
@@ -51,12 +46,11 @@ ActiveRecord::Schema.define(version: 20180114123629) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.bigint "group_id"
     t.string "fifa_country_code", null: false
     t.string "name", null: false
     t.integer "group_order", null: false
+    t.string "group_letter", null: false
     t.index ["fifa_country_code"], name: "index_teams_on_fifa_country_code", unique: true
-    t.index ["group_id"], name: "index_teams_on_group_id"
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
@@ -83,5 +77,4 @@ ActiveRecord::Schema.define(version: 20180114123629) do
   add_foreign_key "matches", "venues"
   add_foreign_key "predictions", "matches"
   add_foreign_key "predictions", "users"
-  add_foreign_key "teams", "groups"
 end
