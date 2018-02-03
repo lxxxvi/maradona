@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203121519) do
+ActiveRecord::Schema.define(version: 20180203135216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180203121519) do
     t.integer "points_goal_difference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_total"
     t.index ["match_id"], name: "index_predictions_on_match_id"
     t.index ["user_id", "match_id"], name: "index_predictions_on_user_id_and_match_id"
     t.index ["user_id"], name: "index_predictions_on_user_id"
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180203121519) do
     t.string "nickname", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_total"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nickname"], name: "index_users_on_nickname", unique: true
   end
