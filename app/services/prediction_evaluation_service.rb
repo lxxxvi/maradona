@@ -4,11 +4,11 @@ class PredictionEvaluationService
   GOAL_DIFFERENCE_CORRECT_POINTS = 1
   NO_POINTS = 0
 
-  attr_reader :prediction, :match
+  attr_reader :predicted_scores, :actual_scores
 
-  def initialize(prediction)
-    @prediction = prediction
-    @match = @prediction.match
+  def initialize(actual_scores, predicted_scores)
+    @actual_scores = actual_scores
+    @predicted_scores = predicted_scores
   end
 
   def points_total
@@ -41,30 +41,28 @@ class PredictionEvaluationService
   private
 
   def overall_outcome_correct?
-    overall_outcome_for(prediction) == overall_outcome_for(match)
+    overall_outcome_for(predicted_scores) == overall_outcome_for(actual_scores)
   end
 
   def left_team_score_correct?
-    prediction.left_team_score == match.left_team_score
+    predicted_scores[:left_team_score] == actual_scores[:left_team_score]
   end
 
   def right_team_score_correct?
-    prediction.right_team_score == match.right_team_score
+    predicted_scores[:right_team_score] == actual_scores[:right_team_score]
   end
 
   def goal_difference_correct?
-    goal_difference_for(prediction) == goal_difference_for(match)
+    goal_difference_for(predicted_scores) == goal_difference_for(actual_scores)
   end
 
-  def overall_outcome_for(match_or_prediction)
-    left_team_score   = match_or_prediction.left_team_score
-    right_team_score  = match_or_prediction.right_team_score
-    return :left_wins   if left_team_score  > right_team_score
-    return :right_wins  if right_team_score > left_team_score
+  def overall_outcome_for(scores)
+    return :left_wins   if scores[:left_team_score]  > scores[:right_team_score]
+    return :right_wins  if scores[:right_team_score] > scores[:left_team_score]
     :draw
   end
 
-  def goal_difference_for(match_or_prediction)
-    match_or_prediction.left_team_score - match_or_prediction.right_team_score
+  def goal_difference_for(scores)
+    scores[:left_team_score] - scores[:right_team_score]
   end
 end

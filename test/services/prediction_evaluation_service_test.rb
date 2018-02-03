@@ -1,17 +1,15 @@
 require 'test_helper'
 
 class PredictionEvaluationServiceTest < ActiveSupport::TestCase
-  attr_reader :match_rus_ksa, :match_mar_irn, :user
+  attr_reader :winning_score
 
   setup do
-    @user = users(:diego)
-    @match_rus_ksa = matches(:match_rus_ksa) # rus: 4, ksa: 1
-    @match_mar_irn = matches(:match_mar_irn) # mar: 2, irn: 2
+    @winning_score = create_score(4, 1)
   end
 
   test 'overall outcome predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 1, 0)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(1, 0)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal 5, service.points_overall_outcome
     assert_equal 0, service.points_left_team_score
@@ -21,8 +19,8 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'left team score predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 4, 5)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(4, 5)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal 0, service.points_overall_outcome
     assert_equal 2, service.points_left_team_score
@@ -32,8 +30,8 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'right team score predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 0, 1)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(0, 1)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal 0, service.points_overall_outcome
     assert_equal 0, service.points_left_team_score
@@ -43,8 +41,8 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'goal difference predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 3, 0)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(3, 0)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal 5, service.points_overall_outcome
     assert_equal 0, service.points_left_team_score
@@ -54,8 +52,8 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'everything predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 4, 1)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(4, 1)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal  5, service.points_overall_outcome
     assert_equal  2, service.points_left_team_score
@@ -65,8 +63,8 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'nothing predicted correctly' do
-    prediction = prediction_for(user, match_rus_ksa, 0, 2)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(0, 2)
+    service = PredictionEvaluationService.new(winning_score, predicted_score)
 
     assert_equal 0, service.points_overall_outcome
     assert_equal 0, service.points_left_team_score
@@ -76,8 +74,9 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
   end
 
   test 'draw predicted correctly, wrong scores' do
-    prediction = prediction_for(user, match_mar_irn, 1, 1)
-    service = PredictionEvaluationService.new(prediction)
+    predicted_score = create_score(1, 1)
+    draw_score = create_score(2, 2)
+    service = PredictionEvaluationService.new(draw_score, predicted_score)
 
     assert_equal 5, service.points_overall_outcome
     assert_equal 0, service.points_left_team_score
@@ -88,11 +87,10 @@ class PredictionEvaluationServiceTest < ActiveSupport::TestCase
 
   private
 
-  def prediction_for(user, match, left_team_score, right_team_score)
-    user.predictions.new(
-      match: match,
+  def create_score(left_team_score, right_team_score)
+    {
       left_team_score: left_team_score,
       right_team_score: right_team_score
-    )
+    }
   end
 end
