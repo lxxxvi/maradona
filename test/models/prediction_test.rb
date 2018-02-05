@@ -13,7 +13,6 @@ class PredictionTest < ActiveSupport::TestCase
     match = @prediction.match
     match.left_team_score = 1
     match.right_team_score = 2
-    match.save
 
     assert_changes '@prediction.points_total', to: 6 do
       @prediction.collect_points!
