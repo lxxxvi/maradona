@@ -1,4 +1,8 @@
 diego:
-  email: 'diego@maradona.fifa'
+  email: 'diego@dev.tippkick.club'
   nickname: 'El Pibe de Oro'
   points_total: 20
+
+zinedine:
+  email: 'zinedine@dev.tippkick.club'
+  nickname: 'Zinedine'
