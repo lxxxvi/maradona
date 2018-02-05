@@ -36,3 +36,9 @@ prediction_zinedine_mar_irn:
   points_overall_outcome: 5
   points_goal_difference: 1
   points_total: 6
+
+prediction_zinedine_por_esp:
+  user: zinedine
+  match: match_por_esp
+  left_team_score: 3
+  right_team_score: 3
