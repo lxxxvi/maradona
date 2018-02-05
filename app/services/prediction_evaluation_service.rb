@@ -11,6 +11,16 @@ class PredictionEvaluationService
     @predicted_scores = predicted_scores
   end
 
+  def prediction_params
+    {
+      points_total: self.points_total,
+      points_left_team_score: self.points_left_team_score,
+      points_right_team_score: self.points_right_team_score,
+      points_overall_outcome: self.points_overall_outcome,
+      points_goal_difference: self.points_goal_difference
+    }
+  end
+
   def points_total
     points_left_team_score +
     points_right_team_score +
