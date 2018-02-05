@@ -22,3 +22,12 @@ match_mar_irn:
   left_team_score: 2
   right_team_score: 2
   kickoff_at: <%= DateTime.new(2018, 6, 15, 15, 0, 0, 0) %>
+
+match_por_esp:
+  venue: venue_cosmos_arena
+  left_team: team_por
+  right_team: team_esp
+  phase: 'Group stage'
+  left_team_score: 3
+  right_team_score: 3
+  kickoff_at: <%= DateTime.new(2018, 6, 15, 18, 0, 0, 0) %>

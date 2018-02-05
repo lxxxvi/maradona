@@ -15,3 +15,30 @@ prediction_diego_egy_uru:
   left_team_score: 0
   right_team_score: 1
 
+prediction_zinedine_rus_ksa:
+  user: zinedine
+  match: match_rus_ksa
+  left_team_score: 0
+  right_team_score: 1
+  points_left_team_score: 0
+  points_right_team_score: 2
+  points_overall_outcome: 0
+  points_goal_difference: 0
+  points_total: 2
+
+prediction_zinedine_mar_irn:
+  user: zinedine
+  match: match_mar_irn
+  left_team_score: 1
+  right_team_score: 1
+  points_left_team_score: 0
+  points_right_team_score: 0
+  points_overall_outcome: 5
+  points_goal_difference: 1
+  points_total: 6
+
+prediction_zinedine_por_esp:
+  user: zinedine
+  match: match_por_esp
+  left_team_score: 3
+  right_team_score: 3

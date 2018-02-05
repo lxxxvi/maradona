@@ -6,6 +6,10 @@ class Prediction < ApplicationRecord
   validates :right_team_score, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   scope :of_match, -> (match) { where(match: match) }
+  scope :evaluable, -> {
+    includes(:match)
+      .where.not(matches: { left_team_score: nil, right_team_score: nil } )
+  }
 
   def predicted?
     created_at.present?
