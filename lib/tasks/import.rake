@@ -19,13 +19,13 @@ namespace :import do
   task names: :environment do
     names_data_directory_path = Rails.root.join('db/data/names/')
 
-    name_file_names = [
+    names_file_names = [
       'first_names.sql',
       'last_names.sql'
     ]
 
-    name_file_names.each do |name_file_name|
-      sql_file_path = names_data_directory_path.join(name_file_name)
+    names_file_names.each do |names_file_name|
+      sql_file_path = names_data_directory_path.join(names_file_name)
       puts "loading #{sql_file_path}"
       ActiveRecord::Base.connection.execute(sql_file_path.read)
     end
