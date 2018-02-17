@@ -5,5 +5,6 @@ class NameTest < ActiveSupport::TestCase
     nickname = Name.random_nickname
 
     assert_match /[a-z]*\.[a-z]*/, nickname
+    assert_no_match /#/, nickname
   end
 end

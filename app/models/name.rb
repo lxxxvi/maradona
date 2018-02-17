@@ -10,8 +10,23 @@ class Name < ApplicationRecord
 
   def self.random_nickname
     [
-      Name.first_name.sampled.first,
-      Name.last_name.sampled.first
+      Name.random_first_name,
+      Name.random_last_name
     ].join('.')
+  end
+
+  private
+  def self.random_first_name
+    Name.first_name
+      .sampled
+      .first
+      .value
+  end
+
+  def self.random_last_name
+    Name.last_name
+      .sampled
+      .first
+      .value
   end
 end
