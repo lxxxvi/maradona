@@ -8,5 +8,12 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   %body
     .container
+      - if user_signed_in?
+        %div
+          Hello
+          = current_user.nickname
+          = link_to 'Sign out', destroy_user_session_path
+      .notice= notice
+      .alert= alert
       = yield
     = javascript_include_tag 'application'

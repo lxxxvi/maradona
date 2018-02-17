@@ -13,6 +13,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'inline_svg'
+gem 'devise'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'
