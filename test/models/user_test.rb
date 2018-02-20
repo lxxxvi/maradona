@@ -11,4 +11,11 @@ class UserTest < ActiveSupport::TestCase
       assert prediction.reload.evaluated?
     end
   end
+
+  test 'gets random nickname' do
+    user = User.new(email: 'foo@bar.dev', password: 'abcdef', password_confirmation: 'abcdef')
+    user.save!
+
+    assert_match /[a-z]+/, user.nickname
+  end
 end

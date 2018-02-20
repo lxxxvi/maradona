@@ -20,7 +20,6 @@ class User < ApplicationRecord
   end
 
   def assign_random_nickname
-    # TODO: assign real random nickname
-    self.nickname = SecureRandom.uuid
+    self.nickname ||= Name.random_nickname
   end
 end
