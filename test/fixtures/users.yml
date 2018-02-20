@@ -1,8 +1,13 @@
+DEFAULTS: &DEFAULTS
+  encrypted_password: <%= User.new.send(:password_digest, 'abcdef') %>
+
 diego:
+  <<: *DEFAULTS
   email: 'diego@dev.tippkick.club'
   nickname: 'El Pibe de Oro'
   points_total: 20
 
 zinedine:
+  <<: *DEFAULTS
   email: 'zinedine@dev.tippkick.club'
   nickname: 'Zinedine'
