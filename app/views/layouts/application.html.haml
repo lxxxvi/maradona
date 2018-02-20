@@ -7,6 +7,10 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   %body
+    - if user_signed_in?
+      = render 'layouts/navigation'
     .container
+      .notice= notice
+      .alert= alert
       = yield
     = javascript_include_tag 'application'

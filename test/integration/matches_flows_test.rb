@@ -2,12 +2,16 @@ require 'test_helper'
 
 class MatchesFlowsTest < ActionDispatch::IntegrationTest
   test 'landing page shows all games' do
+    sign_in users(:diego)
+
     get root_path
     assert_response :success
     assert_select '.match-with-prediction', { count: 4 }
   end
 
   test 'match cannot be predicted anymore because kickoff is in past' do
+    sign_in users(:diego)
+
     match = matches(:match_rus_ksa)
     travel_to match.kickoff_at do
       get root_path
