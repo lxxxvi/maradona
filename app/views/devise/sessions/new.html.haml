@@ -21,12 +21,13 @@
 
         .row
           .col
-            = f.submit 'Sign in',
-              class: 'btn btn-primary col-sm-12'
+            .form-group
+              = f.submit 'Sign in',
+                class: 'btn btn-primary col-sm-12'
 
         - if devise_mapping.rememberable?
           .row
-            .col
+            .col.text-left
               .form-group
                 = f.check_box :remember_me
                 = f.label :remember_me
