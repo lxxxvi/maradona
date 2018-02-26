@@ -5,5 +5,7 @@ end
 # Admin User
 User.find_or_initialize_by(nickname: 'diego.maradona').tap do |diego|
   diego.email = 'diego.maradona@tippkick.club'
+  diego.password = 'abcdef'
+  diego.password_confirmation = 'abcdef'
   diego.save!
 end
