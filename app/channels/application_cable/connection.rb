@@ -8,10 +8,7 @@ module ApplicationCable
 
     private
       def find_verified_user
-        # if verified_user = User.find_by(id: cookies.encrypted[:user_id])
-        # TODO
-        # https://stackoverflow.com/questions/35501931/send-auth-token-for-authentication-to-actioncable
-        if verified_user = User.first
+        if verified_user = User.find_by(id: cookies.signed[:user_id])
           verified_user
         else
           reject_unauthorized_connection
