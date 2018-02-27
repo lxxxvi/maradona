@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :predictions
 
+  scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
+
   before_create :assign_random_nickname
 
   def collect_points!

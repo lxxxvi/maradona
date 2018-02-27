@@ -1,0 +1,29 @@
+%h1 Ranking
+
+- if current_user.ranking_position.present?
+  .card.text-center.mb-4
+    .card-body
+      .card-subtitle.mb-2.text-muted
+        Your global ranking
+      .card-title.display-4
+        = "# #{current_user.ranking_position}"
+      .card-text.small.text-success
+        = "#{current_user.points_total} points"
+
+%h2 Global top 100
+
+.row.no-gutters.small.text-muted
+  .col
+    \#
+  .col-8
+    Player
+  .col.text-center
+    Pts
+- @top_100.each do |user|
+  .row.no-gutters
+    .col
+      = user.ranking_position
+    .col-8
+      = user.nickname
+    .col.text-center
+      = user.points_total || '-'
