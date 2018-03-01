@@ -70,12 +70,15 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'email-smtp.eu-west-1.amazonaws.com',
     user_name: Rails.application.secrets.smtp_user_name,
-    password: Rails.application.secrets.smtp_password
+    password: Rails.application.secrets.smtp_password,
+    authentication: :login,
+    enable_starttls_auto: true,
+    port: 587
   }
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_options = { from: 'referee@tippkick.club' }
+  config.action_mailer.default_options = { from: 'referee@staging.tippkick.club' }
   config.action_mailer.default_url_options = { host: 'staging.tippkick.club' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
