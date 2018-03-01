@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     resource :prediction, only: [:new, :create], module: :matches
   end
 
+  resources :squads
+
   get 'ranking/index', as: :ranking
 end
