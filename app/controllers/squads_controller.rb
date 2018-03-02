@@ -23,6 +23,6 @@ class SquadsController < ApplicationController
   end
 
   def find_squad
-    @squad = Squad.find(param[:id])
+    @squad = Squad.find(params[:id])
   end
 end

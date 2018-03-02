@@ -19,6 +19,6 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'The Golden Boys'
-    assert_select 'a.btn', 'Back'
+    assert_select 'a.btn-default', 'Back'
   end
 end
