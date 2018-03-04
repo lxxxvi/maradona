@@ -1,4 +1,9 @@
 %h1 Squads
 
-.btn.btn-primary
-  Create squad
+.card
+  .card-body
+    .card-title
+      %h2 Create squad
+    .card-text
+      = render 'form', squad: @new_squad
+

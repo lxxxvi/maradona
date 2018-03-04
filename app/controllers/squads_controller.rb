@@ -1,5 +1,6 @@
 class SquadsController < ApplicationController
   def index
+    @new_squad = Squad.new
   end
 
   def show
@@ -14,6 +15,10 @@ class SquadsController < ApplicationController
     else
       render :index
     end
+  end
+
+  def edit
+    @squad = find_squad
   end
 
   private
