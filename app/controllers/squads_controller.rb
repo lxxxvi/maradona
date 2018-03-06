@@ -30,9 +30,11 @@ class SquadsController < ApplicationController
   end
 
   def edit
+    authorize @squad, :edit?
   end
 
   def update
+    authorize @squad, :update?
     if @squad.update(squad_params)
       redirect_to @squad, notice: 'Squad updated'
     else
