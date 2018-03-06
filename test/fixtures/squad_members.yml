@@ -1,0 +1,9 @@
+DEFAULTS: &DEFAULTS
+  invitation_sent_at: "<%= Time.zone.now %>"
+
+diego_in_fifa_100:
+  <<: *DEFAULTS
+  squad: fifa_100
+  user: diego
+  invitation_accepted_at: "<%= Time.zone.now.to_s(:db) %>"
+  admin: true

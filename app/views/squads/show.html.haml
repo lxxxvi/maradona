@@ -3,3 +3,26 @@
 
 %h1= @squad.name
 
+%h2 Ranking
+
+- if @squad.ranking_position.present?
+  .card.text-center.mb-4
+    .card-body
+      .card-subtitle.mb-2.text-muted
+        Squad global ranking
+      .card-title.display-4
+        = "# #{@squad.ranking_position}"
+      .card-text.small.text-success
+        = "#{@squad.points_total} points"
+- else
+  No ranking yet...
+
+%h2 Members
+
+- @squad.squad_members.ordered.each do |squad_member|
+  .card
+    .card-body
+      .card-text
+        = squad_member.user.nickname
+      .card-text
+        =  squad_member.user.points_total

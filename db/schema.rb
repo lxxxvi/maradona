@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180228161256) do
   create_table "squads", force: :cascade do |t|
     t.string "name", null: false
     t.integer "points_total", default: 0, null: false
+    t.integer "ranking_position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "uk_squads_name", unique: true

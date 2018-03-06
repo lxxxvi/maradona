@@ -1,9 +1,11 @@
 %h1 Squads
 
-.card
-  .card-body
-    .card-title
-      %h2 Create squad
-    .card-text
-      = render 'form', squad: @new_squad
+= link_to 'Create Squad', new_squad_path, class: 'btn btn-primary'
 
+- @squads.each do |squad|
+  .card.mb-1.mt-1
+    .card-body
+      .card-text
+        = link_to squad.name, squad_path(squad)
+      .card-text
+        = 'Admin' if squad.admin_member.user == current_user

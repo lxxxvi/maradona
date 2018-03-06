@@ -8,10 +8,14 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
     get squads_path
     assert_response :success
+    assert_select 'a.btn-primary', 'Create Squad'
 
-    assert_select '.btn.btn-primary', 'Create squad'
-    assert_select 'form input[type=text] .squad_name'
-    assert_select 'form input[type=submit]'
+    get new_squad_path
+    assert_response :success
+
+    form_submit_button = css_find('form input[type=submit].btn.btn-primary')
+    assert_equal 'Create Squad', form_submit_button.attr('value')
+    assert_select 'form #squad_name'
     post squads_path, params: {
       squad: {
         name: 'The Golden Boys'
@@ -39,11 +43,13 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Edit Fifa 100'
-    assert_select 'form input[type=text] .squad_name'
-    assert_select 'a.btn-default', 'Cancel'
-    assert_select 'form input[type=submit]', 'Update'
+    assert_select 'form #squad_name'
+    assert_select 'a.btn-secondary', 'Cancel'
 
-    post squad_path(squad), params: {
+    form_submit_button = css_find('form input[type=submit].btn.btn-primary')
+    assert_equal 'Update Squad', form_submit_button.attr('value')
+
+    put squad_path(squad), params: {
       squad: {
         name: 'FIFA 100'
       }
@@ -53,5 +59,11 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'FIFA 100'
+  end
+
+  private
+
+  def css_find(selektor)
+    css_select(selektor)&.first
   end
 end
