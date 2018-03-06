@@ -9,4 +9,4 @@
         .card-text
           = link_to squad.name, squad_path(squad)
         .card-text
-          = 'Admin' if squad.admin_member.user == current_user
+          = 'Coach' if squad.coach_member.user == current_user

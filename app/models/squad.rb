@@ -1,6 +1,6 @@
 class Squad < ApplicationRecord
   has_many :squad_members
-  has_one :admin_member, -> { admins }, class_name: 'SquadMember'
+  has_one :coach_member, -> { coaches }, class_name: 'SquadMember'
   scope :ordered, -> { order(:name) }
   scope :of_user, -> (user) {
     includes(:squad_members)

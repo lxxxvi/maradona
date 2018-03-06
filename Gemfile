@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'inline_svg'
 gem 'devise'
 gem 'jquery-rails'
+gem 'pundit'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'

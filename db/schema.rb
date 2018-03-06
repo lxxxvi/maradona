@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180228161256) do
   create_table "squad_members", force: :cascade do |t|
     t.integer "squad_id", null: false
     t.integer "user_id", null: false
-    t.boolean "admin", default: false, null: false
+    t.boolean "coach", default: false, null: false
     t.datetime "invitation_sent_at", null: false
     t.datetime "invitation_accepted_at"
     t.integer "ranking_position"

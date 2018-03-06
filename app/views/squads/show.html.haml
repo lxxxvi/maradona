@@ -1,5 +1,7 @@
 = link_to 'Back', squads_path, class: 'btn btn-default'
-= link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-secondary'
+
+- if policy(@squad).edit?
+  = link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-secondary'
 
 %h1= @squad.name
 
@@ -17,12 +19,13 @@
 - else
   No ranking yet...
 
-%h2 Members
+- if policy(@squad).show_members?
+  %h2 Members
 
-- @squad.squad_members.ordered.each do |squad_member|
-  .card
-    .card-body
-      .card-text
-        = squad_member.user.nickname
-      .card-text
-        =  squad_member.user.points_total
+  - @squad.squad_members.ordered.each do |squad_member|
+    .card
+      .card-body
+        .card-text
+          = squad_member.user.nickname
+        .card-text
+          =  squad_member.user.points_total

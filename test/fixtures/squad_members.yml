@@ -6,7 +6,7 @@ diego_in_fifa_100:
   squad: fifa_100
   user: diego
   invitation_accepted_at: "<%= Time.zone.now.to_s(:db) %>"
-  admin: true
+  coach: true
 
 zinedine_in_fifa_100:
   <<: *DEFAULTS
@@ -19,4 +19,4 @@ zinedine_in_les_bleues:
   squad: les_bleues
   user: zinedine
   invitation_accepted_at: <%= Time.zone.now %>
-  admin: true
+  coach: true

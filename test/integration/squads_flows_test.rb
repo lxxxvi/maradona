@@ -19,7 +19,27 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 2, squads_cards.size
   end
 
-  test 'user creates a squad' do
+  test 'diego visits squad where zinedine is the coach and he is not member' do
+    sign_in users(:diego)
+    les_bleues = squads(:les_bleues)
+    get squad_path(les_bleues)
+    assert_response :success
+
+    assert_select 'h1', 'Les Bleues'
+    assert_select 'a.btn', { text: 'Edit', count: 0 }, 'Diego should not see edit button for a foreign squad'
+  end
+
+  test 'zinedine visits squad where diego is the coach and he is member' do
+    sign_in users(:zinedine)
+    fifa_100 = squads(:fifa_100)
+    get squad_path(fifa_100)
+    assert_response :success
+
+    assert_select 'h1', 'Fifa 100'
+    assert_select 'a.btn', { text: 'Edit', count: 0 }, 'Zinedine should not see edit button because he is not the coach'
+  end
+
+  test 'diego creates new a squad' do
     sign_in users(:diego)
     get root_path
     assert_select 'nav a', 'Squads'
@@ -46,7 +66,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'a.btn-default', 'Back'
   end
 
-  test 'squad admin edits a squad' do
+  test 'squad coach edits a squad' do
     sign_in users(:diego)
 
     squad = squads(:fifa_100)

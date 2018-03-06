@@ -2,7 +2,7 @@ class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update]
 
   def index
-    @squads = Squad.of_user(current_user).ordered
+    @squads = policy_scope(Squad)
   end
 
   def new
@@ -10,6 +10,7 @@ class SquadsController < ApplicationController
   end
 
   def show
+    authorize @squad, :show?
   end
 
   def create
@@ -18,7 +19,7 @@ class SquadsController < ApplicationController
       user: current_user,
       invitation_sent_at: Time.zone.now,
       invitation_accepted_at: Time.zone.now,
-      admin: true
+      coach: true
     )
 
     if @squad.save
