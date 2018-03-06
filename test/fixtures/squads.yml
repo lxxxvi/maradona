@@ -1,9 +1,11 @@
 fifa_100:
   name: 'Fifa 100'
+  parameterized_name: 'fifa-100'
   ranking_position: 5
   points_total: 20
 
 les_bleues:
   name: 'Les Bleues'
+  parameterized_name: 'les-bleues'
   ranking_position: 2
   points_total: 300

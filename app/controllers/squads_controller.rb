@@ -46,6 +46,6 @@ class SquadsController < ApplicationController
   end
 
   def set_squad
-    @squad = Squad.find(params[:id])
+    @squad = Squad.find_by(parameterized_name: params[:parameterized_name])
   end
 end
