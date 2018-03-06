@@ -1,13 +1,22 @@
 require 'test_helper'
 
 class SquadsFlowsTest < ActionDispatch::IntegrationTest
-  test 'user visits squads pages' do
+  test 'diego visits squads pages' do
     sign_in users(:diego)
     get squads_path
     assert_response :success
 
     squads_cards = css_select '.squads .card'
     assert_equal 1, squads_cards.size
+  end
+
+  test 'zinedine visits squads pages' do
+    sign_in users(:zinedine)
+    get squads_path
+    assert_response :success
+
+    squads_cards = css_select '.squads .card'
+    assert_equal 2, squads_cards.size
   end
 
   test 'user creates a squad' do
