@@ -25,6 +25,7 @@ class SquadsController < ApplicationController
     if @squad.save
       redirect_to @squad, notice: 'Squad created'
     else
+      move_parameterized_name_errors
       render :new
     end
   end
@@ -50,5 +51,14 @@ class SquadsController < ApplicationController
 
   def set_squad
     @squad = Squad.find_by(parameterized_name: params[:parameterized_name])
+  end
+
+  def move_parameterized_name_errors
+    return unless @squad.errors&.has_key?(:parameterized_name)
+    raise :fix_me
+    @squad.errors.details[:parameterized_name].each do |error|
+      @squad.errors.add(:name, error)
+    end
+    @squad.errors.delete(:parameterized_name)
   end
 end

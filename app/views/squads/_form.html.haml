@@ -2,10 +2,10 @@
   .form-group
     = form.text_field :name,
       class: "form-control #{bs_invalid_class(form.object)}"
-    - if form.object.errors.any?
-      .invalid-feedback
-        - raise "improve message"
-        has already been taken
+    - if form.object.errors.has_key?(:name)
+      - form.object.errors.uniq.full_messages_for(:name).each do |full_message|
+        .text-danger
+          = full_message
 
   = form.submit nil, class: 'btn btn-primary'
   = link_to 'Cancel', squads_path, class: 'btn btn-secondary'
