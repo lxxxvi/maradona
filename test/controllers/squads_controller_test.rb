@@ -43,11 +43,9 @@ class SquadsControllerTest < ActionDispatch::IntegrationTest
 
   test 'diego tries to create new squad with an existing name' do
     assert_no_difference 'Squad.count' do
-      post squads_path, params: { squad: { name: 'FIFA-100' } }
+      post squads_path, params: { squad: { name: 'FIFA 100' } }
       assert_response :success
     end
-
-    assert false
   end
 
   test 'diego sees edit form for own squads' do

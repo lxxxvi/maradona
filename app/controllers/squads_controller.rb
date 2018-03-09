@@ -55,9 +55,9 @@ class SquadsController < ApplicationController
 
   def move_parameterized_name_errors
     return unless @squad.errors&.has_key?(:parameterized_name)
-    raise :fix_me
     @squad.errors.details[:parameterized_name].each do |error|
-      @squad.errors.add(:name, error)
+      next if @squad.errors.added?(:name, error.values.first)
+      @squad.errors.add(:name, error.values.first)
     end
     @squad.errors.delete(:parameterized_name)
   end
