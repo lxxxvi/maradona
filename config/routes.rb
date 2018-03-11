@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resource :prediction, only: [:new, :create], module: :matches
   end
 
-  resources :squads, param: :parameterized_name
+  resources :squads, param: :parameterized_name do
+    resource :member_invitation, only: [:new, :create], module: :squads
+  end
 
   get 'ranking/index', as: :ranking
 end

@@ -2,6 +2,9 @@
 
 - if policy(@squad).edit?
   = link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-secondary'
+  = link_to 'Invite friend to squad',
+    new_squad_member_invitation_path(@squad),
+    class: 'btn btn-primary'
 
 %h1= @squad.name
 
