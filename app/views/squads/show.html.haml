@@ -25,10 +25,11 @@
 - if policy(@squad).show_members?
   %h2 Members
 
-  - @squad.squad_members.ordered.each do |squad_member|
-    .card
-      .card-body
-        .card-text
-          = squad_member.user.nickname
-        .card-text
-          =  squad_member.user.points_total
+  .squad_members
+    - @squad.squad_members.ordered.each do |squad_member|
+      .card
+        .card-body
+          .card-text
+            = squad_member.user.nickname
+          .card-text
+            =  squad_member.user.points_total

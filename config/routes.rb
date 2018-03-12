@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :squads, param: :parameterized_name do
-    resource :member_invitation, only: [:new, :create], module: :squads
+    resources :member_invitations, only: [:new, :create], module: :squads
   end
 
   get 'ranking/index', as: :ranking

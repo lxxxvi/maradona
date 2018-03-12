@@ -13,18 +13,18 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     form_submit_button = css_select('form input[type=submit].btn-primary').first
     assert_select 'h1', "Invite friend to Fifa 100"
     assert_select 'a.btn-default', 'Cancel'
-    assert_select 'Send invitation', form_submit_button.attr('value').value
-    assert_select 'form input[type=text][name=nickname]'
+    assert_equal 'Invite friend', form_submit_button.attr('value')
+    assert_select 'form #squad_member_invitation_nickname'
 
-    post squad_member_invitation_path(squad), params: {
-      user: {
+    post squad_member_invitations_path(squad), params: {
+      squad_member_invitation: {
         nickname: 'pele'
       }
     }
     follow_redirect!
     assert_response :success
 
-    assert false
+    assert_select '.squad_members .card-text', 'pele'
   end
 
   test 'cannot invite user that has accepted already' do
