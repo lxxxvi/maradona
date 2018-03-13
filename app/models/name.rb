@@ -8,14 +8,27 @@ class Name < ApplicationRecord
     offset(random)
   }
 
-  def self.random_nickname
-    [
-      Name.random_first_name,
-      Name.random_last_name
-    ].join('.')
+  def self.unique_random_nickname
+    random_number = nil
+
+    3.times do
+      nickname = Name.random_nickname(random_number)
+      return nickname unless User.find_by(nickname: nickname).present?
+
+      random_number = SecureRandom.rand(10_000..99_999)
+    end
+
+    raise 'Could not generate an unique random nickname after 3 attempts'
   end
 
-  private
+  def self.random_nickname(number = nil)
+    [
+      Name.random_first_name,
+      Name.random_last_name,
+      number
+    ].compact.join('.')
+  end
+
   def self.random_first_name
     Name.first_name
       .sampled

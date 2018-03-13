@@ -24,6 +24,6 @@ class User < ApplicationRecord
   end
 
   def assign_random_nickname
-    self.nickname ||= Name.random_nickname
+    self.nickname ||= Name.unique_random_nickname
   end
 end
