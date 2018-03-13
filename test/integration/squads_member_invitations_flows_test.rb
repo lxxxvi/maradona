@@ -26,12 +26,4 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select '.squad_members .card-text', 'pele'
   end
-
-  test 'cannot invite user that has accepted already' do
-    assert false
-  end
-
-  test 'cannot invite user that has rejected' do
-    assert false
-  end
 end
