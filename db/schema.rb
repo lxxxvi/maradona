@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227094933) do
+ActiveRecord::Schema.define(version: 20180228161256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,31 @@ ActiveRecord::Schema.define(version: 20180227094933) do
     t.index ["match_id"], name: "index_predictions_on_match_id"
     t.index ["user_id", "match_id"], name: "index_predictions_on_user_id_and_match_id"
     t.index ["user_id"], name: "index_predictions_on_user_id"
+  end
+
+  create_table "squad_members", force: :cascade do |t|
+    t.integer "squad_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "coach", default: false, null: false
+    t.datetime "invitation_sent_at", null: false
+    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_rejected_at"
+    t.datetime "invitation_canceled_at"
+    t.integer "ranking_position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["squad_id", "user_id"], name: "index_squad_members_on_squad_id_and_user_id", unique: true
+  end
+
+  create_table "squads", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "parameterized_name", null: false
+    t.integer "points_total", default: 0, null: false
+    t.integer "ranking_position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "uk_squads_name", unique: true
+    t.index ["parameterized_name"], name: "uk_squads_parameterized_name", unique: true
   end
 
   create_table "teams", force: :cascade do |t|

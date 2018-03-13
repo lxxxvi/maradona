@@ -1,0 +1,32 @@
+DEFAULTS: &DEFAULTS
+  invitation_sent_at: "<%= Time.zone.now %>"
+
+diego_in_fifa_100:
+  <<: *DEFAULTS
+  squad: fifa_100
+  user: diego
+  invitation_accepted_at: "<%= Time.zone.now.to_s(:db) %>"
+  coach: true
+
+zinedine_in_fifa_100:
+  <<: *DEFAULTS
+  squad: fifa_100
+  user: zinedine
+  invitation_accepted_at: <%= Time.zone.now %>
+
+zinedine_in_les_bleues:
+  <<: *DEFAULTS
+  squad: les_bleues
+  user: zinedine
+  invitation_accepted_at: <%= Time.zone.now %>
+  coach: true
+
+pele_in_les_bleues_invited:
+  <<: *DEFAULTS
+  squad: les_bleues
+  user: pele
+
+juergen_in_fifa_100_invited:
+  <<: *DEFAULTS
+  squad: fifa_100
+  user: juergen

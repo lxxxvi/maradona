@@ -1,0 +1,12 @@
+= form_for squad, html: { class: 'form' } do |form|
+  .form-group
+    = form.text_field :name,
+      class: "form-control #{bs_invalid_class(form.object)}",
+      placeholder: 'Name'
+    - if form.object.errors.has_key?(:name)
+      - form.object.errors.full_messages_for(:name).each do |full_message|
+        .text-danger
+          = full_message
+
+  = form.submit nil, class: 'btn btn-primary'
+  = link_to 'Cancel', squads_path, class: 'btn btn-secondary'

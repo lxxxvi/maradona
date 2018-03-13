@@ -1,0 +1,35 @@
+= link_to 'Back', squads_path, class: 'btn btn-default'
+
+- if policy(@squad).edit?
+  = link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-secondary'
+  = link_to 'Invite friend to squad',
+    new_squad_member_invitation_path(@squad),
+    class: 'btn btn-primary'
+
+%h1= @squad.name
+
+%h2 Ranking
+
+- if @squad.ranking_position.present?
+  .card.text-center.mb-4
+    .card-body
+      .card-subtitle.mb-2.text-muted
+        Squad global ranking
+      .card-title.display-4
+        = "# #{@squad.ranking_position}"
+      .card-text.small.text-success
+        = "#{@squad.points_total} points"
+- else
+  No ranking yet...
+
+- if policy(@squad).show_members?
+  %h2 Members
+
+  .squad_members
+    - @squad.squad_members.ordered.each do |squad_member|
+      .card
+        .card-body
+          .card-text
+            = squad_member.user.nickname
+          .card-text
+            =  squad_member.user.points_total

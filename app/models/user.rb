@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :predictions
 
+  has_many :squad_members
+
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
 
   before_create :assign_random_nickname
@@ -22,6 +24,6 @@ class User < ApplicationRecord
   end
 
   def assign_random_nickname
-    self.nickname ||= Name.random_nickname
+    self.nickname ||= Name.unique_random_nickname
   end
 end
