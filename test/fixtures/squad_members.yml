@@ -25,3 +25,8 @@ pele_in_les_bleues_invited:
   <<: *DEFAULTS
   squad: les_bleues
   user: pele
+
+juergen_in_fifa_100_invited:
+  <<: *DEFAULTS
+  squad: fifa_100
+  user: juergen

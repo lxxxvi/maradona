@@ -2,10 +2,12 @@ class Squads::MemberInvitationsController < ApplicationController
   before_action :set_squad, only: [:new, :create]
 
   def new
+    authorize @squad, :invite_member?
     @member_invitation_form = Squad::MemberInvitationForm.new(@squad)
   end
 
   def create
+    authorize @squad, :invite_member?
     @member_invitation_form = Squad::MemberInvitationForm.new(@squad, squad_member_invitation_params)
 
     if @member_invitation_form.valid?

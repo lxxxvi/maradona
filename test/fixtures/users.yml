@@ -16,3 +16,8 @@ pele:
   <<: *DEFAULTS
   email: 'pele@dev.tippkick.club'
   nickname: 'pele'
+
+juergen:
+  <<: *DEFAULTS
+  email: 'juergen@dev.tippkick.club'
+  nickname: 'juergen.klinsmann'

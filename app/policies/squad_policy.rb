@@ -7,6 +7,10 @@ class SquadPolicy < ApplicationPolicy
     member?
   end
 
+  def invite_member?
+    coach?
+  end
+
   def edit?
     update?
   end
