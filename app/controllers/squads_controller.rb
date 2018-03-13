@@ -2,7 +2,8 @@ class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update]
 
   def index
-    @squads = policy_scope(Squad)
+    @accepted_squads = Squad.accepted_of_user(current_user).ordered
+    @invited_squads  = Squad.invited_of_user(current_user).ordered
   end
 
   def new

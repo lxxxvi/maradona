@@ -6,6 +6,8 @@ class CreateSquadMember < ActiveRecord::Migration[5.1]
       t.column :coach                 , :boolean  , null: false, default: false
       t.column :invitation_sent_at    , :datetime , null: false
       t.column :invitation_accepted_at, :datetime , null: true
+      t.column :invitation_rejected_at, :datetime , null: true
+      t.column :invitation_canceled_at, :datetime , null: true
       t.column :ranking_position      , :integer  , null: true
 
       t.timestamps

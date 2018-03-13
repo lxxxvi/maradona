@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20180228161256) do
     t.boolean "coach", default: false, null: false
     t.datetime "invitation_sent_at", null: false
     t.datetime "invitation_accepted_at"
+    t.datetime "invitation_rejected_at"
+    t.datetime "invitation_canceled_at"
     t.integer "ranking_position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

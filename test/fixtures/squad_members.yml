@@ -20,3 +20,8 @@ zinedine_in_les_bleues:
   user: zinedine
   invitation_accepted_at: <%= Time.zone.now %>
   coach: true
+
+pele_in_les_bleues_invited:
+  <<: *DEFAULTS
+  squad: les_bleues
+  user: pele

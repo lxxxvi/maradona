@@ -22,10 +22,4 @@ class SquadPolicy < ApplicationPolicy
   def member?
     record.squad_members.pluck(:user_id).include?(user.id)
   end
-
-  class Scope < Scope
-    def resolve
-      scope.of_user(user).ordered
-    end
-  end
 end

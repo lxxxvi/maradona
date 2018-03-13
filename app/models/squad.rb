@@ -1,10 +1,16 @@
 class Squad < ApplicationRecord
   has_many :squad_members
-  has_one :coach_member, -> { coaches }, class_name: 'SquadMember'
+  has_one  :coach_member          , -> { coaches } , class_name: 'SquadMember'
   scope :ordered, -> { order(:name) }
-  scope :of_user, -> (user) {
-    includes(:squad_members)
-      .where(squad_members: { user: user })
+
+  scope :accepted_of_user, -> (user) {
+    squad_ids = SquadMember.of_user(user).accepted.pluck(:squad_id)
+    where(id: squad_ids)
+  }
+
+  scope :invited_of_user, -> (user) {
+    squad_ids = SquadMember.of_user(user).invited.pluck(:squad_id)
+    where(id: squad_ids)
   }
 
   before_validation :set_parameterized_name
