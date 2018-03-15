@@ -1,0 +1,11 @@
+%h1= @user.nickname
+
+- if @user.ranking_position.present?
+  .card.text-center.mb-4
+    .card-body
+      .card-subtitle.mb-2.text-muted
+        Global ranking
+      .card-title.display-4
+        = "# #{current_user.ranking_position}"
+      .card-text.small.text-success
+        = "#{current_user.points_total} points"

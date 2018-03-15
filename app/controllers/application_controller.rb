@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     return unless current_user.present?
     @invitation_count = current_user.squad_members.invited.count
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

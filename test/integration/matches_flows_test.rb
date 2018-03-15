@@ -4,7 +4,7 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
   test 'landing page shows all games' do
     sign_in users(:diego)
 
-    get root_path
+    get prediction_center_path
     assert_response :success
     assert_select '.match-with-prediction', { count: 4 }
   end
@@ -14,7 +14,7 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
 
     match = matches(:match_rus_ksa)
     travel_to match.kickoff_at do
-      get root_path
+      get prediction_center_path
       assert_response :success
 
       first_game = css_select('.match-with-prediction').first
