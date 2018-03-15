@@ -16,7 +16,12 @@ class User < ApplicationRecord
     update(points_total: predictions.sum(:points_total))
   end
 
+  def to_param
+    self.nickname
+  end
+
   private
+
   def evaluate_predictions!
     predictions.evaluable.each do |prediction|
       prediction.collect_points!

@@ -1,17 +1,8 @@
 Rails.application.routes.draw do
   mount ActionCable.server, at: '/cable'
 
-  # devise
+  resources :users, only: [:show], param: :nickname
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
-  # after_sign_out_path_for to: :login
-  # after_sign_in_path_for to: 'matches#index' ???
-  #
-  root to: 'matches#index'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :matches, only: [:index] do
-    resource :prediction, only: [:new, :create], module: :matches
-  end
 
   resources :squads, param: :parameterized_name do
     resources :member_invitations, only: [:new, :create], module: :squads
@@ -19,5 +10,7 @@ Rails.application.routes.draw do
     resources :reject_invitations, only: [:create]      , module: :squads
   end
 
-  get 'ranking/index', as: :ranking
+  get 'global_ranking'    , to: 'ranking#index', as: :ranking
+  get 'prediction_center' , to: 'matches#index', as: :prediction_center
+  root to: 'users#show'
 end

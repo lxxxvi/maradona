@@ -18,13 +18,13 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
 
     post squad_member_invitations_path(squad), params: {
       squad_member_invitation: {
-        nickname: 'pele'
+        nickname: 'pele-nascimento-33333'
       }
     }
     follow_redirect!
     assert_response :success
 
-    assert_select '.squad_members .card-text', 'pele'
+    assert_select '.squad_members .card-text', 'pele-nascimento-33333'
   end
 
   test 'pele accepts an invitation' do
