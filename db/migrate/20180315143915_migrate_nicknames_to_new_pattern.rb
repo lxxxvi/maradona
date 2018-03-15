@@ -39,7 +39,7 @@ class MigrateNicknamesToNewPattern < ActiveRecord::Migration[5.1]
   def to_new_pattern(nickname)
     nickname
       .split('.')
-      .push(SecureRandom.rand(10_000..99_999))
+      .push(rand(10_000..99_999))
       .join('-')
   end
 
