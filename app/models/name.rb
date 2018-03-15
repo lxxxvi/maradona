@@ -9,24 +9,20 @@ class Name < ApplicationRecord
   }
 
   def self.unique_random_nickname
-    random_number = nil
-
     3.times do
-      nickname = Name.random_nickname(random_number)
+      nickname = Name.random_nickname
       return nickname unless User.find_by(nickname: nickname).present?
-
-      random_number = SecureRandom.rand(10_000..99_999)
     end
 
     raise 'Could not generate an unique random nickname after 3 attempts'
   end
 
-  def self.random_nickname(number = nil)
+  def self.random_nickname
     [
       Name.random_first_name,
       Name.random_last_name,
-      number
-    ].compact.join('.')
+      SecureRandom.rand(10_000..99_999)
+    ].join('-')
   end
 
   def self.random_first_name
