@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :predictions
 
-  has_many :squad_members
+  has_many :squad_accepts     , -> { accepted }, class_name: 'SquadMember'
+  has_many :squad_invitations , -> { invited } , class_name: 'SquadMember'
+  has_many :squads, through: :squad_accepts
 
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
 

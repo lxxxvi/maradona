@@ -5,7 +5,7 @@ class Squads::RejectInvitationsController < ApplicationController
   def create
     authorize @squad_member, :reject_invitation?
     @squad_member.reject_invitation!
-    redirect_to squads_path
+    redirect_to root_path
   end
 
   private

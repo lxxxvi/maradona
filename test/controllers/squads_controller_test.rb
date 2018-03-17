@@ -6,11 +6,6 @@ class SquadsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:diego)
   end
 
-  test 'diego sees squads index' do
-    get squads_path
-    assert_response :success
-  end
-
   test 'diego sees squad show of own' do
     get squad_path(squads(:fifa_100))
     assert_response :success
@@ -76,12 +71,6 @@ class SquadsControllerTest < ActionDispatch::IntegrationTest
         put squad_path(squad), params: { squad: { name: 'Los Argentinos Azules' } }
       }
     end
-  end
-
-  test 'anonymuous sees none' do
-    sign_out users(:diego)
-    get squads_path
-    assert_sign_in_required
   end
 
   private

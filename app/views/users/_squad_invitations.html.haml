@@ -1,0 +1,19 @@
+- if squad_invitations.any?
+  .squad_invitations
+    - squad_invitations.each do |squad_invitation|
+      .card.mb-1.mt-1
+        .card-body
+          .card-text You have an invitation from
+          .card-title.display-4
+            = squad_invitation.squad.name
+          .card-text
+            Coach
+            = squad_invitation.squad.coach_member.user.nickname
+          .card-text
+            .row
+              .col-6
+                = form_for :accept_invitation, url: squad_accept_invitations_path(squad_invitation.squad) do |f|
+                  = f.submit 'Accept', class: 'btn btn-success col accept_invitation'
+              .col-6
+                = form_for :reject_invitation, url: squad_reject_invitations_path(squad_invitation.squad) do |f|
+                  = f.submit 'Reject', class: 'btn btn-default col reject_invitation'

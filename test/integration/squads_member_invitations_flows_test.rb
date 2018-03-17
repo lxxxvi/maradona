@@ -32,9 +32,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     sign_in users(:pele)
     get root_path
 
-    assert_select 'nav span.badge.badge-success', '1', 'Pele should see an invitation'
-    get squads_path
-    assert_response :success
+    assert_select 'nav span.badge.badge-success', '1', 'Pele should see an invitation in the navigation'
 
     assert_invitation_is_shown
 
@@ -44,7 +42,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select 'h1', 'Squads'
+    assert_select 'h1', 'Your locker'
     squads_card_count_after = css_select('.squads .card').count
     assert_equal squads_card_count_before + 1, squads_card_count_after, 'There should be one more (accepted) squads'
     assert_select '.squad_invitations .card', { count: 0 }, 'There should not be any invitions anymore'
@@ -54,7 +52,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     squad = squads(:les_bleues)
     sign_in users(:pele)
 
-    get squads_path
+    get root_path
     assert_response :success
 
     assert_invitation_is_shown
@@ -65,7 +63,6 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select 'h1', 'Squads'
     squads_card_count_after = css_select('.squads .card').count
     assert_select '.squad_invitations .card', { count: 0 }, 'There should not be any invitions anymore'
     assert_equal squads_card_count_before, squads_card_count_after, 'The number of (accepted) squads should not have changed'
@@ -74,6 +71,8 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
   private
 
   def assert_invitation_is_shown
+    h2_title = css_select('h2.squad_invitations_header').text.gsub(/\n/, ' ').strip
+    assert_equal 'You have 1 invitation', h2_title
     assert_select '.squad_invitations .card'
     assert_select '.squad_invitations .card .card-title', 'Les Bleues'
     accept_invitation_form_button = css_select('.squad_invitations .accept_invitation').first

@@ -1,18 +1,18 @@
 require 'test_helper'
 
 class SquadsFlowsTest < ActionDispatch::IntegrationTest
-  test 'diego visits squads pages' do
+  test 'diego visits root page and sees his squads' do
     sign_in users(:diego)
-    get squads_path
+    get root_path
     assert_response :success
 
     squads_cards = css_select '.squads .card'
     assert_equal 1, squads_cards.size
   end
 
-  test 'zinedine visits squads pages' do
+  test 'zinedine visits root page and sees his squads ' do
     sign_in users(:zinedine)
-    get squads_path
+    get root_path
     assert_response :success
 
     squads_cards = css_select '.squads .card'
@@ -42,11 +42,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
   test 'diego creates new a squad' do
     sign_in users(:diego)
     get root_path
-    assert_select 'nav a', 'Squads'
-
-    get squads_path
     assert_response :success
-    assert_select 'a.btn-primary', 'Create Squad'
+    assert_select 'a.btn-primary', 'Create new squad'
 
     get new_squad_path
     assert_response :success

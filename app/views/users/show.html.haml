@@ -1,4 +1,6 @@
-%h1= @user.nickname
+%h1 Your locker
+
+%small= @user.nickname
 
 - if @user.ranking_position.present?
   .card.text-center.mb-4
@@ -9,3 +11,20 @@
         = "# #{current_user.ranking_position}"
       .card-text.small.text-success
         = "#{current_user.points_total} points"
+
+- if current_user.squad_invitations.any?
+  %h2.squad_invitations_header
+    You have
+    %span.badge.badge-success= current_user.squad_invitations.count
+    = "invitation".pluralize(current_user.squad_invitations.count)
+  = render 'squad_invitations', squad_invitations: current_user.squad_invitations
+
+- if current_user.squads.any?
+  %h2 Your squads
+  = render 'squads', squads: current_user.squads
+
+.row
+  .col
+    = link_to 'Create new squad',
+      new_squad_path,
+      class: 'btn btn-primary col-12'
