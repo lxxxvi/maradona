@@ -1,11 +1,6 @@
 class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update]
 
-  def index
-    @accepted_squads = Squad.accepted_of_user(current_user).ordered
-    @invited_squads  = Squad.invited_of_user(current_user).ordered
-  end
-
   def new
     @squad = Squad.new
   end

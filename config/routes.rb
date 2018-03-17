@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show], param: :nickname
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
 
-  resources :squads, param: :parameterized_name do
+  resources :squads, except: [:index], param: :parameterized_name do
     resources :member_invitations, only: [:new, :create], module: :squads
     resources :accept_invitations, only: [:create]      , module: :squads
     resources :reject_invitations, only: [:create]      , module: :squads
