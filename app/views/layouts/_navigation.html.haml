@@ -12,7 +12,6 @@
           - if current_user.squad_invitations.any?
             %span.badge.badge-success= current_user.squad_invitations.count
 
-
       %li.nav-item
         = link_to "Prediction Center",
           prediction_center_path,
@@ -21,10 +20,4 @@
       %li.nav-item
         = link_to 'Global Ranking',
           ranking_path,
-          class: 'nav-link'
-
-      %li.nav-item
-        = link_to '[→ Sign out',
-          destroy_user_session_path,
-          method: :delete,
           class: 'nav-link'
