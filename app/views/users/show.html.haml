@@ -2,15 +2,30 @@
 
 %small= @user.nickname
 
+- unpredicted_matches_count = @user.unpredicted_matches.count
+- if unpredicted_matches_count.positive?
+  .unpredicted_matches
+    .card.text-center.mb-4
+      .card-body
+        .card-subtitle.mb-2.text-muted
+          Hurry!
+        .card-title
+          = "You have #{unpredicted_matches_count} unpredicted #{'match'.pluralize(unpredicted_matches_count)}"
+        .card-text
+          = link_to 'Predict them now!',
+            prediction_center_path,
+            class: 'btn btn-success col-12'
+
 - if @user.ranking_position.present?
-  .card.text-center.mb-4
-    .card-body
-      .card-subtitle.mb-2.text-muted
-        Global ranking
-      .card-title.display-4
-        = "# #{current_user.ranking_position}"
-      .card-text.small.text-success
-        = "#{current_user.points_total} points"
+  .ranking
+    .card.text-center.mb-4
+      .card-body
+        .card-subtitle.mb-2.text-muted
+          Global ranking
+        .card-title.display-4
+          = "# #{current_user.ranking_position}"
+        .card-text.small.text-success
+          = "#{current_user.points_total} points"
 
 - if current_user.squad_invitations.any?
   %h2.squad_invitations_header
