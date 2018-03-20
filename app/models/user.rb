@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :predictions
+  has_many :predicted_matches, through: :predictions, source: :match
 
   has_many :squad_accepts     , -> { accepted }, class_name: 'SquadMember'
   has_many :squad_invitations , -> { invited } , class_name: 'SquadMember'
@@ -20,6 +21,10 @@ class User < ApplicationRecord
 
   def to_param
     self.nickname
+  end
+
+  def unpredicted_matches
+    Match.where.not(id: self.predictions.pluck(:match_id))
   end
 
   private
