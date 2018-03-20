@@ -68,7 +68,8 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'email-smtp.eu-west-1.amazonaws.com',
+    address: 'smtp.gmail.com',
+    domain: 'tippkick.club',
     user_name: Rails.application.secrets.smtp_user_name,
     password: Rails.application.secrets.smtp_password,
     authentication: :login,

@@ -4,6 +4,6 @@ class SandboxEmailInterceptor
   end
 end
 
-if Rails.env.staging?
+unless Rails.env.production?
   ActionMailer::Base.register_interceptor(SandboxEmailInterceptor)
 end
