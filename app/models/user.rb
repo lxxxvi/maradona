@@ -6,13 +6,17 @@ class User < ApplicationRecord
   has_many :predictions
   has_many :predicted_matches, through: :predictions, source: :match
 
+  has_many :squad_members
   has_many :squad_accepts     , -> { accepted }, class_name: 'SquadMember'
   has_many :squad_invitations , -> { invited } , class_name: 'SquadMember'
   has_many :squads, through: :squad_accepts
 
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
+  scope :active, -> { where(deactivated_at: nil) }
+  scope :inactive, -> { where.not(deactivated_at: nil) }
 
   before_create :assign_random_player_id
+  before_create :assign_new_deactivation_token
 
   def collect_points!
     evaluate_predictions!
@@ -27,6 +31,12 @@ class User < ApplicationRecord
     Match.where.not(id: self.predictions.pluck(:match_id))
   end
 
+  def deactivate!
+    self.deactivated_at = Time.zone.now
+    assign_new_deactivation_token
+    save!
+  end
+
   private
 
   def evaluate_predictions!
@@ -37,5 +47,9 @@ class User < ApplicationRecord
 
   def assign_random_player_id
     self.player_id ||= Name.unique_random_player_id
+  end
+
+  def assign_new_deactivation_token
+    self.deactivation_token = SecureRandom.alphanumeric(64)
   end
 end

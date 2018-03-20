@@ -6,18 +6,28 @@ diego:
   email: 'diego@dev.tippkick.club'
   player_id: 'diego-maradona-11111'
   points_total: 20
+  deactivation_token: 'diego_deactivation_token'
 
 zinedine:
   <<: *DEFAULTS
   email: 'zinedine@dev.tippkick.club'
   player_id: 'zinedine-zidane-22222'
+  deactivation_token: 'zinedine_deactivation_token'
 
 pele:
   <<: *DEFAULTS
   email: 'pele@dev.tippkick.club'
   player_id: 'pele-nascimento-33333'
+  deactivation_token: 'pele_deactivation_token'
 
 juergen:
   <<: *DEFAULTS
   email: 'juergen@dev.tippkick.club'
   player_id: 'juergen-klinsmann-44444'
+  deactivation_token: 'juergen_deactivation_token'
+
+jordan:
+  <<: *DEFAULTS
+  email: 'jordan@dev.tippkick.club'
+  player_id: 'michael-jordan-55555'
+  deactivation_token: 'jordan_deactivation_token'

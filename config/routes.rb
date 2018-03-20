@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     resources :reject_invitations, only: [:create]      , module: :squads
   end
 
-  get 'global_ranking'    , to: 'ranking#index', as: :ranking
-  get 'prediction_center' , to: 'matches#index', as: :prediction_center
+  get 'global_ranking'      , to: 'ranking#index'     , as: :ranking
+  get 'prediction_center'   , to: 'matches#index'     , as: :prediction_center
+  get 'deactivate/:token'   , to: 'deactivations#new' , as: :deactivate
   root to: 'users#show'
 end

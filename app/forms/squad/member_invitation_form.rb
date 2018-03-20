@@ -34,6 +34,6 @@ class Squad::MemberInvitationForm
   end
 
   def find_user
-    @user ||= User.find_by(player_id: player_id)
+    @user ||= User.active.find_by(player_id: player_id)
   end
 end

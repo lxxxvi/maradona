@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320075905) do
+ActiveRecord::Schema.define(version: 20180320095822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,9 @@ ActiveRecord::Schema.define(version: 20180320075905) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.integer "ranking_position", default: 0, null: false
+    t.string "deactivation_token", null: false
+    t.datetime "deactivated_at"
+    t.index ["deactivation_token"], name: "uk_users_deactivation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["player_id"], name: "index_users_on_player_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
