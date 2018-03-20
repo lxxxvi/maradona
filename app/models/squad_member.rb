@@ -3,7 +3,7 @@ class SquadMember < ApplicationRecord
   belongs_to :user
 
   scope :of_user      , -> (user) { where(user: user) }
-  scope :ordered      , -> { includes(:user).order('users.nickname ASC') }
+  scope :ordered      , -> { includes(:user).order('users.player_id ASC') }
   scope :coaches      , -> { where(coach: true) }
   scope :accepted     , -> { where.not(invitation_accepted_at: nil) }
   scope :not_accepted , -> { where(invitation_accepted_at: nil) }

@@ -12,10 +12,10 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test 'gets random nickname' do
+  test 'gets random player_id' do
     user = User.new(email: 'foo@bar.dev', password: 'abcdef', password_confirmation: 'abcdef')
     user.save!
 
-    assert_match /[a-z]+/, user.nickname
+    assert_match /[a-z]+/, user.player_id
   end
 end

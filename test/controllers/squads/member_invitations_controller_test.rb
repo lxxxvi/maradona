@@ -8,7 +8,7 @@ class Squads::MemberInvitationsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'squad.squad_members.count' do
       post squad_member_invitations_path(squad), params: {
         squad_member_invitation: {
-          nickname: 'zinedine.zidane'
+          player_id: 'zinedine.zidane'
         }
       }
       assert_response :success
@@ -32,7 +32,7 @@ class Squads::MemberInvitationsControllerTest < ActionDispatch::IntegrationTest
       assert_raises(Pundit::NotAuthorizedError) {
         post squad_member_invitations_path(squad), params: {
           squad_member_invitation: {
-            nickname: 'juergen.klinsmann'
+            player_id: 'juergen.klinsmann'
           }
         }
       }

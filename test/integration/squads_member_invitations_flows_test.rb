@@ -14,11 +14,11 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', "Invite friend to Fifa 100"
     assert_select 'a.btn-default', 'Cancel'
     assert_equal 'Invite friend', form_submit_button.attr('value')
-    assert_select 'form #squad_member_invitation_nickname'
+    assert_select 'form #squad_member_invitation_player_id'
 
     post squad_member_invitations_path(squad), params: {
       squad_member_invitation: {
-        nickname: 'pele-nascimento-33333'
+        player_id: 'pele-nascimento-33333'
       }
     }
     follow_redirect!

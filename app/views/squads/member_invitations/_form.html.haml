@@ -1,5 +1,5 @@
 = form_for member_invitation_form do |f|
-  = f.text_field :nickname
+  = f.text_field :player_id
   = f.submit 'Invite friend', class: 'btn btn-primary'
   = link_to 'Cancel',
     squad_path(member_invitation_form.squad),

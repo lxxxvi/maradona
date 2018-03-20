@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    if params[:nickname].present?
-      @user ||= User.find_by(nickname: params[:nickname])
+    if params[:player_id].present?
+      @user ||= User.find_by(player_id: params[:player_id])
     else
       @user = current_user
     end

@@ -1,14 +1,14 @@
 class Squad::MemberInvitationForm
   include ActiveModel::Model
-  attr_reader :squad, :nickname
+  attr_reader :squad, :player_id
 
-  validates_presence_of :nickname
-  validate :user_with_nickname_exists
+  validates_presence_of :player_id
+  validate :user_with_player_id_exists
   validate :user_not_member_of_squad_already
 
   def initialize(squad, params = {})
     @squad = squad
-    @nickname = params.values_at(:nickname)
+    @player_id = params.values_at(:player_id)
   end
 
   def squad_member
@@ -23,17 +23,17 @@ class Squad::MemberInvitationForm
 
   def user_not_member_of_squad_already
     if squad.squad_members.find_by(user: find_user).present?
-      errors.add(:nickname, 'already member of squad')
+      errors.add(:player_id, 'already member of squad')
     end
   end
 
-  def user_with_nickname_exists
+  def user_with_player_id_exists
     unless find_user.present?
-      errors.add(:nickname, 'does not exist')
+      errors.add(:player_id, 'does not exist')
     end
   end
 
   def find_user
-    @user ||= User.find_by(nickname: nickname)
+    @user ||= User.find_by(player_id: player_id)
   end
 end
