@@ -16,6 +16,7 @@ gem 'inline_svg'
 gem 'devise'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'bugsnag', '~> 6.6'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'
