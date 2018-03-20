@@ -41,25 +41,39 @@ var displayNewPredictedScores = function(matchId, leftTeamScore, rightTeamScore)
   var predictionRightTeamScoreElement = matchPredictionElement.querySelector('.prediction .right-team-score');
   predictionLeftTeamScoreElement.innerHTML  = leftTeamScore;
   predictionRightTeamScoreElement.innerHTML = rightTeamScore;
-
-  // input
-  var leftTeamScoreInput              = matchPredictionElement.querySelector(".score-controls .left-team-score");
-  var rightTeamScoreInput             = matchPredictionElement.querySelector(".score-controls .right-team-score");
-  leftTeamScoreInput.setAttribute('value', leftTeamScore);
-  rightTeamScoreInput.setAttribute('value', rightTeamScore);
 };
 
-var updateScore = function(matchId) {
-  var matchElement = getMatchElementByMatchId(matchId);
-  var leftTeamScore  = matchElement.querySelector(".score-controls .left-team-score").value;
-  var rightTeamScore = matchElement.querySelector(".score-controls .right-team-score").value;
+var doMath = function(number, plusOrMinus) {
+  var newNumber = number;
+  if (plusOrMinus == "plus") {
+    newNumber += 1;
+  }
+  else if (plusOrMinus == "minus" && newNumber > 0) {
+    newNumber -= 1;
+  }
+  return newNumber;
+}
+
+var updateScore = function(side, plusOrMinus, matchId) {
+  var matchElement = document.querySelector('#match_' + matchId);
+  var predictedLeftScore  = Number(matchElement.querySelector('.predicted-score span.left-team-score').innerText);
+  var predictedRightScore = Number(matchElement.querySelector('.predicted-score span.right-team-score').innerText);
+
+  var newPredictedLeftScore  = predictedLeftScore;
+  var newPredictedRightScore = predictedRightScore;
+
+  if(side == "left") {
+    newPredictedLeftScore = doMath(predictedLeftScore, plusOrMinus);
+  }
+  else if (side == "right") {
+    newPredictedRightScore = doMath(predictedRightScore, plusOrMinus);
+  }
 
   var matchPrediction = {
     matchId: matchId,
-    leftTeamScore: leftTeamScore,
-    rightTeamScore: rightTeamScore
+    leftTeamScore: newPredictedLeftScore,
+    rightTeamScore: newPredictedRightScore
   };
 
   updatePrediction(matchPrediction);
 }
-
