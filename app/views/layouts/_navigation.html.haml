@@ -1,23 +1,25 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  .text-warning
+.row
+  %nav.navbar.navbar-expand-lg
     TippKick
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
 
-  #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item
-        = link_to root_path, class: 'nav-link' do
-          Your locker
-          - if current_user.squad_invitations.any?
-            %span.badge.badge-success= current_user.squad_invitations.count
+    - if user_signed_in?
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
 
-      %li.nav-item
-        = link_to "Prediction Center",
-          prediction_center_path,
-          class: 'nav-link'
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item
+            = link_to root_path, class: 'nav-link' do
+              Your locker
+              - if current_user.squad_invitations.any?
+                %span.badge.badge-success= current_user.squad_invitations.count
 
-      %li.nav-item
-        = link_to 'Global Ranking',
-          ranking_path,
-          class: 'nav-link'
+          %li.nav-item
+            = link_to "Prediction Center",
+              prediction_center_path,
+              class: 'nav-link'
+
+          %li.nav-item
+            = link_to 'Global Ranking',
+              ranking_path,
+              class: 'nav-link'

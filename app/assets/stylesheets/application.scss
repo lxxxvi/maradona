@@ -1,7 +1,10 @@
 /*
  *= require_self
  */
+@import "variables";
 
-@import "main";
 @import "bootstrap";
-@import "matches_with_predictions";
+@import "main";
+@import "modules/*";
+
+
