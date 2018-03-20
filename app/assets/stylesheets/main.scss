@@ -1,7 +1,3 @@
-div[data-link]:hover {
-  cursor: pointer;
-}
-
 html {
   height: 100%;
 }
@@ -9,46 +5,4 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-rows: 1fr auto;
-}
-.footer {
-  margin: 24px 0;
-
-  grid-row-start: 3;
-  grid-row-end: 4;
-  text-align: center;
-
-  a {
-    font-size: 0.6rem;
-  }
-}
-
-// Boostrap Variables
-
-$enable-rounded: false;
-$enable-shadows: true;
-
-.score-controls {
-  font-size: 2rem;
-
-  input[type=number] {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-  }
-
-  input[type=submit] {
-    width: 100%;
-    margin-top: 25px;
-  }
-}
-
-.login,
-.registration,
-.forgot-password,
-.change-password h2 {
-  text-align: center;
-}
-
-.navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 512%22%3E%3Cpath fill=%22white%22 d=%22M32 224c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zM0 136c0 17.7 14.3 32 32 32s32-14.3 32-32-14.3-32-32-32-32 14.3-32 32zm0 240c0 17.7 14.3 32 32 32s32-14.3 32-32-14.3-32-32-32-32 14.3-32 32z%22/%3E%3C/svg%3E") !important;
 }
