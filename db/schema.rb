@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315143915) do
+ActiveRecord::Schema.define(version: 20180320075905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20180315143915) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "nickname", null: false
+    t.string "player_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "points_total"
@@ -102,8 +102,9 @@ ActiveRecord::Schema.define(version: 20180315143915) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.integer "ranking_position", default: 0, null: false
+    t.string "real_name"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["nickname"], name: "index_users_on_nickname", unique: true
+    t.index ["player_id"], name: "index_users_on_player_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

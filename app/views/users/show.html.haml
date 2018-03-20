@@ -1,6 +1,6 @@
 %h1 Your locker
 
-%small= @user.nickname
+%small= @user.player_id
 
 - unpredicted_matches_count = @user.unpredicted_matches.count
 - if unpredicted_matches_count.positive?

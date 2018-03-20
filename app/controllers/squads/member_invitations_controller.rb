@@ -22,7 +22,7 @@ class Squads::MemberInvitationsController < ApplicationController
   private
 
   def squad_member_invitation_params
-    params.require(:squad_member_invitation).permit(:nickname)
+    params.require(:squad_member_invitation).permit(:player_id)
   end
 
   def set_squad

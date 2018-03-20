@@ -8,16 +8,16 @@ class Name < ApplicationRecord
     offset(random)
   }
 
-  def self.unique_random_nickname
+  def self.unique_random_player_id
     3.times do
-      nickname = Name.random_nickname
-      return nickname unless User.find_by(nickname: nickname).present?
+      player_id = Name.random_player_id
+      return player_id unless User.find_by(player_id: player_id).present?
     end
 
-    raise 'Could not generate an unique random nickname after 3 attempts'
+    raise 'Could not generate an unique random player_id after 3 attempts'
   end
 
-  def self.random_nickname
+  def self.random_player_id
     [
       Name.random_first_name,
       Name.random_last_name,

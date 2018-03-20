@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
 
-  before_create :assign_random_nickname
+  before_create :assign_random_player_id
 
   def collect_points!
     evaluate_predictions!
@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def to_param
-    self.nickname
+    self.player_id
   end
 
   def unpredicted_matches
@@ -35,7 +35,7 @@ class User < ApplicationRecord
     end
   end
 
-  def assign_random_nickname
-    self.nickname ||= Name.unique_random_nickname
+  def assign_random_player_id
+    self.player_id ||= Name.unique_random_player_id
   end
 end

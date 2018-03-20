@@ -4,20 +4,20 @@ DEFAULTS: &DEFAULTS
 diego:
   <<: *DEFAULTS
   email: 'diego@dev.tippkick.club'
-  nickname: 'diego-maradona-11111'
+  player_id: 'diego-maradona-11111'
   points_total: 20
 
 zinedine:
   <<: *DEFAULTS
   email: 'zinedine@dev.tippkick.club'
-  nickname: 'zinedine-zidane-22222'
+  player_id: 'zinedine-zidane-22222'
 
 pele:
   <<: *DEFAULTS
   email: 'pele@dev.tippkick.club'
-  nickname: 'pele-nascimento-33333'
+  player_id: 'pele-nascimento-33333'
 
 juergen:
   <<: *DEFAULTS
   email: 'juergen@dev.tippkick.club'
-  nickname: 'juergen-klinsmann-44444'
+  player_id: 'juergen-klinsmann-44444'
