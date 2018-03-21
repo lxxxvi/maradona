@@ -21,7 +21,7 @@ class Name < ApplicationRecord
     [
       Name.random_first_name,
       Name.random_last_name,
-      SecureRandom.rand(10_000..99_999)
+      rand(10_000..99_999)
     ].join('-')
   end
 
