@@ -2,16 +2,18 @@ class SquadMember < ApplicationRecord
   belongs_to :squad
   belongs_to :user
 
-  scope :of_user      , -> (user) { where(user: user) }
-  scope :ordered      , -> { includes(:user).order('users.player_id ASC') }
-  scope :coaches      , -> { where(coach: true) }
-  scope :accepted     , -> { where.not(invitation_accepted_at: nil) }
-  scope :not_accepted , -> { where(invitation_accepted_at: nil) }
-  scope :rejected     , -> { where.not(invitation_rejected_at: nil) }
-  scope :not_rejected , -> { where(invitation_rejected_at: nil) }
-  scope :canceled     , -> { where.not(invitation_canceled_at: nil) }
-  scope :not_canceled , -> { where(invitation_canceled_at: nil) }
-  scope :invited      , -> { not_accepted.not_rejected.not_canceled }
+  scope :active           , -> { where(deactivated_at: nil) }
+  scope :inactive         , -> { where.not(deactivated_at: nil) }
+  scope :of_user          , -> (user) { active.where(user: user) }
+  scope :ordered          , -> { includes(:user).order('users.player_id ASC') }
+  scope :coaches          , -> { active.where(coach: true) }
+  scope :accepted         , -> { active.where.not(invitation_accepted_at: nil) }
+  scope :not_accepted     , -> { active.where(invitation_accepted_at: nil) }
+  scope :rejected         , -> { active.where.not(invitation_rejected_at: nil) }
+  scope :not_rejected     , -> { active.where(invitation_rejected_at: nil) }
+  scope :canceled         , -> { active.where.not(invitation_canceled_at: nil) }
+  scope :not_canceled     , -> { active.where(invitation_canceled_at: nil) }
+  scope :invited          , -> { active.not_accepted.not_rejected.not_canceled }
 
   def accept_invitation!
     update({
@@ -25,5 +27,9 @@ class SquadMember < ApplicationRecord
       invitation_accepted_at: nil,
       invitation_rejected_at: Time.zone.now
     })
+  end
+
+  def deactivate!
+    update(deactivated_at: Time.zone.now)
   end
 end

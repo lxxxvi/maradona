@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320095822) do
+ActiveRecord::Schema.define(version: 20180321145612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180320095822) do
     t.integer "ranking_position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deactivated_at"
     t.index ["squad_id", "user_id"], name: "index_squad_members_on_squad_id_and_user_id", unique: true
   end
 
