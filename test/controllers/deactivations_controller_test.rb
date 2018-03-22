@@ -6,9 +6,11 @@ class DeactivationsControllerTest < ActionDispatch::IntegrationTest
 
     assert_changes 'user.deactivation_token' do
       assert_difference 'User.inactive.count' do
-        get deactivate_url(user.deactivation_token)
-        assert_response :success
-        user.reload
+        assert_difference 'SquadMember.inactive.count' do
+          get deactivate_url(user.deactivation_token)
+          assert_response :success
+          user.reload
+        end
       end
     end
   end

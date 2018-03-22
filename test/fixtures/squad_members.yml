@@ -30,3 +30,8 @@ juergen_in_fifa_100_invited:
   <<: *DEFAULTS
   squad: fifa_100
   user: juergen
+
+jordan_in_chicago_bulls:
+  <<: *DEFAULTS
+  squad: chicago_bulls
+  user: jordan

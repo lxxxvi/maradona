@@ -32,9 +32,14 @@ class User < ApplicationRecord
   end
 
   def deactivate!
-    self.deactivated_at = Time.zone.now
-    assign_new_deactivation_token
-    save!
+    self.transaction do
+      self.deactivated_at = Time.zone.now
+      assign_new_deactivation_token
+      self.squad_members.each do |squad_member|
+        squad_member.deactivate!
+      end
+      save!
+    end
   end
 
   private

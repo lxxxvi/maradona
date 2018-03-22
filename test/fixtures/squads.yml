@@ -9,3 +9,9 @@ les_bleues:
   parameterized_name: 'les-bleues'
   ranking_position: 2
   points_total: 300
+
+chicago_bulls:
+  name: 'Chicago Bulls'
+  parameterized_name: 'chicago-bulls'
+  ranking_position: 9
+  points_total: 3
