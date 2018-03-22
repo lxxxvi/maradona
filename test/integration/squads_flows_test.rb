@@ -19,6 +19,10 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 2, squads_cards.size
   end
 
+  test 'zinedine visits les_bleues and sees members by status' do
+    assert false
+  end
+
   test 'diego visits squad where zinedine is the coach and he is not member' do
     sign_in users(:diego)
     les_bleues = squads(:les_bleues)

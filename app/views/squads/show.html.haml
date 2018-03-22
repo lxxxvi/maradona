@@ -25,11 +25,19 @@
 - if policy(@squad).show_members?
   %h2 Members
 
-  .squad_members
-    - @squad.squad_members.ordered.each do |squad_member|
-      .card
-        .card-body
-          .card-text
-            = squad_member.user.player_id
-          .card-text
-            =  squad_member.user.points_total
+  .squad_members_status
+    .btn-group
+      %button.btn.btn-primary{ onclick: 'showAcceptedMembers();' } Accepted
+      %button.btn.btn-primary{ onclick: 'showInvitedMembers();' } Invited
+      %button.btn.btn-primary{ onclick: 'showRejectedMembers();' } Rejected
+
+
+  .squad_members_lists
+    .active_squad_members
+      - @squad.squad_members.ordered.each do |squad_member|
+        .card
+          .card-body
+            .card-text
+              = squad_member.user.player_id
+            .card-text
+              =  squad_member.user.points_total
