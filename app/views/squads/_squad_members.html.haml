@@ -1,0 +1,9 @@
+- squad_members.each do |squad_member|
+  .card
+    .card-body
+      .card-text
+        = squad_member.user.player_id
+      .card-text
+        =  squad_member.user.points_total
+      - if squad_member.invited?
+        %small.card-text.text-muted (Invited)

@@ -20,7 +20,18 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'zinedine visits les_bleues and sees members by status' do
-    assert false
+    squad = squads(:les_bleues)
+    sign_in users(:zinedine)
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select '.squad-members-statuses button', 'Accepted'
+    assert_select '.squad-members-statuses button', 'Invited'
+    assert_select '.squad-members-statuses button', 'Rejected'
+
+    assert_select '.accepted.squad-members-list .card', { count: 1 }
+    assert_select '.invited.squad-members-list .card' , { count: 1 }
+    assert_select '.rejected.squad-members-list .card', { count: 0 }
   end
 
   test 'diego visits squad where zinedine is the coach and he is not member' do

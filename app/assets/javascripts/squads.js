@@ -1,11 +1,11 @@
-var showAcceptedMembers = function() {
-  console.log("showAcceptedMembers");
+const hideAllSquadMembersLists = function() {
+  document.querySelectorAll('.squad-members-lists .squad-members-list').forEach(function(element) {
+    element.classList.add('d-none');
+  });
 };
 
-var showInvitedMembers = function() {
-  console.log("showInvitedMembers");
+const showSquadMembersList = function(status) {
+  hideAllSquadMembersLists();
+  document.querySelector('.squad-members-lists .squad-members-list.' + status).classList.remove('d-none');
 };
 
-var showRejectedMembers = function() {
-  console.log("showRejectedMembers");
-};

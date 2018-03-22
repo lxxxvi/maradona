@@ -3,6 +3,10 @@ require 'test_helper'
 class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
   test 'diego invites a new member to squad' do
     sign_in users(:diego)
+
+    invitation = squad_members(:juergen_in_fifa_100_invited)
+    invitation.reject_invitation!
+
     squad = squads(:fifa_100)
     get squad_path(squad)
     assert_response :success
@@ -16,6 +20,8 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 'Invite friend', form_submit_button.attr('value')
     assert_select 'form #squad_member_invitation_player_id'
 
+    assert_select '.invited.squad-members-list .card-text', { count: 0 }
+
     post squad_member_invitations_path(squad), params: {
       squad_member_invitation: {
         player_id: 'pele-nascimento-33333'
@@ -24,8 +30,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select '.squad_members_statuses .invited', '1 invited'
-    assert_select '.invited_squad_members .card-text', 'pele-nascimento-33333'
+    assert_select '.invited.squad-members-list .card-text', 'pele-nascimento-33333'
   end
 
   test 'pele accepts an invitation' do
