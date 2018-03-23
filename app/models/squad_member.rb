@@ -15,6 +15,26 @@ class SquadMember < ApplicationRecord
   scope :not_canceled     , -> { active.where(invitation_canceled_at: nil) }
   scope :invited          , -> { active.not_accepted.not_rejected.not_canceled }
 
+  def active?
+    deactivated_at.nil?
+  end
+
+  def accepted?
+    active? && invitation_accepted_at.present?
+  end
+
+  def canceled?
+    active? && invitation_canceled_at.present?
+  end
+
+  def rejected?
+    active? && invitation_rejected_at.present?
+  end
+
+  def invited?
+    active? && !accepted? && !rejected? && !canceled?
+  end
+
   def accept_invitation!
     update({
       invitation_accepted_at: Time.zone.now,
