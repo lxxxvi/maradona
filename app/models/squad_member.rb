@@ -15,6 +15,8 @@ class SquadMember < ApplicationRecord
   scope :not_canceled     , -> { active.where(invitation_canceled_at: nil) }
   scope :invited          , -> { active.not_accepted.not_rejected.not_canceled }
 
+  scope :invited_or_accepted, -> { invited.or(SquadMember.accepted) }
+
   def active?
     deactivated_at.nil?
   end

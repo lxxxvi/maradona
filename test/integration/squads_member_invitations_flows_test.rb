@@ -30,7 +30,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select '.invited.squad-members-list .card-text', 'pele-nascimento-33333'
+    assert_select '.squad-members-list .card-text', 'pele-nascimento-33333'
   end
 
   test 'pele accepts an invitation' do
