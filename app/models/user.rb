@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :squad_invitations , -> { invited } , class_name: 'SquadMember'
   has_many :squads, through: :squad_accepts
 
+  scope :ordered, -> { order(player_id: :asc) }
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
   scope :active, -> { where(deactivated_at: nil) }
   scope :inactive, -> { where.not(deactivated_at: nil) }

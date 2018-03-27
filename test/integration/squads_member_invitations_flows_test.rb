@@ -16,8 +16,9 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     get new_squad_member_invitation_path(squad)
     form_submit_button = css_select('form input[type=submit].btn-primary').first
     assert_select 'h1', "Invite friend to Fifa 100"
-    assert_select 'a.btn-default', 'Cancel'
+    assert_select 'a', 'Cancel'
     assert_equal 'Invite friend', form_submit_button.attr('value')
+    assert_select '#squad_member_search_input'
     assert_select 'form #squad_member_invitation_player_id'
 
     assert_select '.invited.squad-members-list .card-text', { count: 0 }
