@@ -1,5 +1,5 @@
 = form_for squad, html: { class: 'form' } do |form|
-  .form-group
+  .form-group.mb-5.mt-4
     = form.text_field :name,
       class: "form-control #{bs_invalid_class(form.object)}",
       placeholder: 'Name'
@@ -8,5 +8,12 @@
         .text-danger
           = full_message
 
-  = form.submit nil, class: 'btn btn-primary'
-  = link_to 'Cancel', squads_path, class: 'btn btn-secondary'
+  .row
+    .col.text-right
+      .btn-tk
+        = form.submit nil,
+          class: 'btn btn-primary'
+        .bottom-border
+  .row
+    .col.text-right
+      = link_to 'Cancel', root_path

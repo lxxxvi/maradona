@@ -1,0 +1,22 @@
+.navbar-toggler {
+  border-color: $purple-base !important;
+  padding: 0.05rem 0.1rem;
+  position: relative;
+}
+
+.navbar-toggler:before {
+  content: ' ';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -3px;
+  right: -3px;
+  bottom: -8px;
+  border-color: $purple-base;
+  border-width: 0 3px 3px 3px;
+  border-style: solid;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(70, 45, 129, 1)' stroke-width='3' stroke-linecap='butt' stroke-miterlimit='10' d='M4 8h22M4 14h22M4 20h22'/%3E%3C/svg%3E") !important;
+}

@@ -1,20 +1,17 @@
 %h1 Your locker
 
-%small= @user.player_id
+.row
+  .col.text-right
+    .row.text-right
+      .col
+        %small
+          Your Player ID
+    .row.mb-3
+      .col
+        %small
+          %strong= @user.player_id
 
-- unpredicted_matches_count = @user.unpredicted_matches.count
-- if unpredicted_matches_count.positive?
-  .unpredicted_matches
-    .card.text-center.mb-4
-      .card-body
-        .card-subtitle.mb-2.text-muted
-          Hurry!
-        .card-title
-          = "You have #{unpredicted_matches_count} unpredicted #{'match'.pluralize(unpredicted_matches_count)}"
-        .card-text
-          = link_to 'Predict them now!',
-            prediction_center_path,
-            class: 'btn btn-success col-12'
+= render 'unpredicted_matches_box', user: @user
 
 - if @user.ranking_position.present?
   .ranking
@@ -38,8 +35,10 @@
   %h2 Your squads
   = render 'squads', squads: current_user.squads
 
-.row
+.row.text-center
   .col
-    = link_to 'Create new squad',
-      new_squad_path,
-      class: 'btn btn-primary col-12'
+    .btn-tk
+      = link_to 'Create new squad',
+        new_squad_path,
+        class: 'btn btn-primary'
+      .bottom-border
