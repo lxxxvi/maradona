@@ -1,25 +1,27 @@
-
 .btn-tk {
   position: relative;
   display: inline-block;
-}
 
-.btn-tk input[type=submit] {
-  position: relative;
-  background-color: #fff;
-  border-radius: 40px;
-  background-color: $transparent;
-  color: $purple-base;
-  border-color: $purple-base;
-  padding-left: 20px;
-  padding-right: 20px;
-}
+  input[type=submit] {
+    position: relative;
+    background-color: #fff;
+    border-radius: 40px;
+    background-color: $transparent;
+    color: $purple-base;
+    border-color: $purple-base;
+    padding-left: 20px;
+    padding-right: 20px;
 
-.btn-tk input[type=submit]:hover {
-  top: 5px;
-}
+    &:hover {
+      top: 5px;
+    }
 
-.btn-tk .bottom-border {
+    &:focus {
+      top: 7px;
+    }
+  }
+
+  .bottom-border {
     border-radius: 0 0 20px 20px;
     z-index: -1;
     position: relative;
@@ -28,4 +30,5 @@
     border-color: $purple-base;
     top: -20px;
     height: 30px;
+  }
 }
