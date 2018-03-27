@@ -19,21 +19,6 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_equal 2, squads_cards.size
   end
 
-  test 'zinedine visits les_bleues and sees members by status' do
-    squad = squads(:les_bleues)
-    sign_in users(:zinedine)
-    get squad_path(squad)
-    assert_response :success
-
-    assert_select '.squad-members-statuses button', 'Accepted'
-    assert_select '.squad-members-statuses button', 'Invited'
-    assert_select '.squad-members-statuses button', 'Rejected'
-
-    assert_select '.accepted.squad-members-list .card', { count: 1 }
-    assert_select '.invited.squad-members-list .card' , { count: 1 }
-    assert_select '.rejected.squad-members-list .card', { count: 0 }
-  end
-
   test 'diego visits squad where zinedine is the coach and he is not member' do
     sign_in users(:diego)
     les_bleues = squads(:les_bleues)
@@ -75,7 +60,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'The Golden Boys'
-    assert_select 'a.btn-default', 'Back'
+    assert_select 'a', 'Back'
   end
 
   test 'squad coach edits a squad' do
@@ -87,7 +72,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Fifa 100'
-    assert_select 'a.btn-secondary', 'Edit'
+    assert_select 'a', 'Edit'
 
     get edit_squad_path(squad)
     assert_response :success

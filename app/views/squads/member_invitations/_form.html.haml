@@ -1,6 +1,24 @@
+.row.mb-3.mt-3
+  .col
+    = link_to 'Cancel',
+      squad_path(member_invitation_form.squad)
+
+.row
+  .col
+    .form-group
+      = text_field_tag :squad_member_search_input,
+        nil,
+        placeholder: 'Search player ID',
+        class: 'form-control'
+
+#search_result
+
 = form_for member_invitation_form do |f|
-  = f.text_field :player_id
-  = f.submit 'Invite friend', class: 'btn btn-primary'
-  = link_to 'Cancel',
-    squad_path(member_invitation_form.squad),
-    class: 'btn btn-default'
+  .row.mt-5
+    .col.text-right
+      = f.hidden_field :player_id
+      = hidden_field_tag :squad_parameterized_name, f.object.squad.parameterized_name
+      .btn-tk.d-none
+        = f.submit 'Invite friend',
+          class: 'btn btn-primary'
+        .bottom-border

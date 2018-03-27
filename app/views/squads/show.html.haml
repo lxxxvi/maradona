@@ -1,12 +1,9 @@
-= link_to 'Back', root_path, class: 'btn btn-default'
-
-- if policy(@squad).edit?
-  = link_to 'Edit', edit_squad_path(@squad), class: 'btn btn-secondary'
-  = link_to 'Invite friend to squad',
-    new_squad_member_invitation_path(@squad),
-    class: 'btn btn-primary'
+= link_to 'Back', root_path
 
 %h1= @squad.name
+- if policy(@squad).edit?
+  = link_to 'Edit', edit_squad_path(@squad)
+
 
 %h2 Ranking
 
@@ -25,16 +22,15 @@
 - if policy(@squad).show_members?
   %h2 Members
 
-  .squad-members-statuses.mb-2
-    .btn-group.btn-group-sm
-      %button.btn.btn-primary{ onclick: "showSquadMembersList('accepted');" } Accepted
-      %button.btn.btn-primary{ onclick: "showSquadMembersList('invited');" } Invited
-      %button.btn.btn-primary{ onclick: "showSquadMembersList('rejected');" } Rejected
-
   .squad-members-lists
-    .accepted.squad-members-list
-      = render 'squad_members', squad_members: @squad.accepted_squad_members.ordered
-    .invited.squad-members-list.d-none
-      = render 'squad_members', squad_members: @squad.invited_squad_members.ordered
-    .rejected.squad-members-list.d-none
-      = render 'squad_members', squad_members: @squad.rejected_squad_members.ordered
+    .squad-members-list
+      = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
+
+  - if policy(@squad).edit?
+    .row.mb-3.mt-3
+      .col.text-right
+        .btn-tk
+          = link_to 'Invite friend to squad',
+            new_squad_member_invitation_path(@squad),
+            class: 'btn btn-primary'
+          .bottom-border
