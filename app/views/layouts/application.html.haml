@@ -10,7 +10,8 @@
     .container-fluid{ role: :main }
       = render 'layouts/navigation'
       .notice= notice
-      .alert= alert
+      - if alert.present?
+        .alert= alert
       = yield
     - if user_signed_in?
       = render 'layouts/footer'

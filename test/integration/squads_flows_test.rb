@@ -94,7 +94,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', 'Edit Fifa 100'
     assert_select 'form #squad_name'
-    assert_select 'a.btn-secondary', 'Cancel'
+    assert_select 'a', 'Cancel'
 
     form_submit_button = css_find('form input[type=submit].btn.btn-primary')
     assert_equal 'Update Squad', form_submit_button.attr('value')

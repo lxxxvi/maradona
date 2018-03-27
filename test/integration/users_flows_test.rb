@@ -23,7 +23,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     assert_select '.unpredicted_matches .card' do
       assert_select '.card-subtitle', 'Hurry!'
       assert_select '.card-title', 'You have 2 unpredicted matches'
-      assert_select '.card-text a.btn.btn-success', 'Predict them now!'
+      assert_select '.card-text a.btn.btn-primary', 'Predict them now!'
     end
   end
 end

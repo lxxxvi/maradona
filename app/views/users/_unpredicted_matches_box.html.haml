@@ -1,0 +1,15 @@
+- unpredicted_matches_count = user.unpredicted_matches.count
+- if unpredicted_matches_count.positive?
+  .unpredicted_matches
+    .card.text-center
+      .card-body
+        .card-subtitle.mb-2.text-muted
+          Hurry!
+        .card-title.mb-4
+          = "You have #{unpredicted_matches_count} unpredicted #{'match'.pluralize(unpredicted_matches_count)}"
+        .card-text
+          .btn-tk
+            = link_to 'Predict them now!',
+              prediction_center_path,
+              class: 'btn btn-primary'
+            .bottom-border
