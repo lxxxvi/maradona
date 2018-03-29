@@ -8,7 +8,6 @@ An online betting game.
 
 Work in Progress: [https://tippkick.club](https://tippkick.club)
 
-
 ## Setup
 
 Project requires Postgres to be running. Then do:

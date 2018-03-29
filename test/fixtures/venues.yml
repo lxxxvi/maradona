@@ -3,3 +3,9 @@ venue_cosmos_arena:
   name: 'Cosmos Arena'
   city: 'Samara'
   timezone: '+0400'
+
+venue_kazan_arena:
+  what3words: 'recover.news.deeply'
+  name: 'Kazan Arena'
+  city: 'Kazan'
+  timezone: '+0300'

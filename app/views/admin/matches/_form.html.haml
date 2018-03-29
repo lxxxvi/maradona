@@ -1,0 +1,79 @@
+- if match.errors.any?
+  .card.border-danger.mb-3.mt-2
+    .card-body
+      .card-title.text-danger Oh no..
+      .card-text
+        %ul.text-danger
+          - match.errors.full_messages.each do |full_message|
+            %li= full_message
+
+= form_for [:admin, match] do |f|
+  .row
+    .col= f.label :phase
+  .row
+    .col
+      .form-group
+        = f.select("phase", "phase", { include_blank: 'Select...' }, { class: 'form-control'} ) do
+          - Match.phases.each do |phase|
+            = content_tag(:option, phase.last, value: phase.first)
+
+  .row
+    .col= f.label :left_team_id
+  .row
+    .col
+      .form-group
+        = f.collection_select :left_team_id,
+          Team.ordered,
+          :id,
+          :name_with_code,
+          { include_blank: 'Select...' },
+          { class: 'form-control' }
+
+  .row
+    .col= f.label :right_team_id
+  .row
+    .col
+      .form-group
+        = f.collection_select :right_team_id,
+          Team.ordered,
+          :id,
+          :name_with_code,
+          { include_blank: 'Select...' },
+          { class: 'form-control' }
+
+  .row
+    .col= f.label :venue_id
+  .row
+    .col
+      .form-group
+        = f.collection_select :venue_id,
+          Venue.ordered,
+          :id,
+          :name_with_city,
+          { include_blank: 'Select...' },
+          { class: 'form-control' }
+
+  .row
+    .col= f.label :kickoff_at
+  .row
+    .col
+      .form-group
+        = f.datetime_select :kickoff_at
+
+  .row
+    .col= f.label :left_team_score
+  .row
+    .col
+      .form-group
+        = f.text_field :left_team_score, class: 'form-control'
+
+  .row
+    .col= f.label :right_team_score
+  .row
+    .col
+      .form-group
+        = f.text_field :right_team_score, class: 'form-control'
+
+  .mb-5.mt-3
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to 'Back', :back

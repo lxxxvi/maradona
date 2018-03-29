@@ -37,8 +37,8 @@ var displayNewPredictedScores = function(matchId, leftTeamScore, rightTeamScore)
   var matchPredictionElement = getMatchElementByMatchId(matchId);
 
   // prediction
-  var predictionLeftTeamScoreElement  = matchPredictionElement.querySelector('.prediction .left-team-score');
-  var predictionRightTeamScoreElement = matchPredictionElement.querySelector('.prediction .right-team-score');
+  var predictionLeftTeamScoreElement  = matchPredictionElement.querySelector('.predicted-score.left-team-score');
+  var predictionRightTeamScoreElement = matchPredictionElement.querySelector('.predicted-score.right-team-score');
   predictionLeftTeamScoreElement.innerHTML  = leftTeamScore;
   predictionRightTeamScoreElement.innerHTML = rightTeamScore;
 };
@@ -56,8 +56,8 @@ var doMath = function(number, plusOrMinus) {
 
 var updateScore = function(side, plusOrMinus, matchId) {
   var matchElement = document.querySelector('#match_' + matchId);
-  var predictedLeftScore  = Number(matchElement.querySelector('.predicted-score span.left-team-score').innerText);
-  var predictedRightScore = Number(matchElement.querySelector('.predicted-score span.right-team-score').innerText);
+  var predictedLeftScore  = Number(matchElement.querySelector('.predicted-score.left-team-score').innerText);
+  var predictedRightScore = Number(matchElement.querySelector('.predicted-score.right-team-score').innerText);
 
   var newPredictedLeftScore  = predictedLeftScore;
   var newPredictedRightScore = predictedRightScore;

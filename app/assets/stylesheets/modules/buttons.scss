@@ -2,7 +2,22 @@
   position: relative;
   display: inline-block;
 
-  input[type=submit], a {
+  .btn-group-vertical {
+    .btn {
+      border-radius: 40px;
+    }
+
+    .btn:first-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .btn:last-child {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  input[type=submit], a, button {
     z-index: +1;
     display: inline-block;
     position: relative;
@@ -26,7 +41,6 @@
   .bottom-border {
     display: block;
     border-radius: 0 0 20px 20px;
-    // z-index: -1;
     position: relative;
     border-width: 0 3px 3px 3px;
     border-style: solid;
