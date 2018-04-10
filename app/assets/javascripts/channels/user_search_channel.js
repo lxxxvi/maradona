@@ -109,4 +109,6 @@ const processSearchResponse = function(response) {
   buildSearchResultList(response.playerIds);
 };
 
-searchInput().addEventListener('input', performSearch);
+if (searchInput() != null) {
+  searchInput().addEventListener('input', performSearch);
+}

@@ -8,7 +8,8 @@
           Your Player ID
     .row.mb-3
       .col
-        %small
+        %small#player-id
+          %span.text-muted Copy
           %strong= @user.player_id
 
 = render 'unpredicted_matches_box', user: @user
