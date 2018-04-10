@@ -1,4 +1,4 @@
-ruby '2.5.0'
+ruby '2.5.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -18,6 +18,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'pundit'
 gem 'bugsnag', '~> 6.6'
+gem 'bootsnap'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'
