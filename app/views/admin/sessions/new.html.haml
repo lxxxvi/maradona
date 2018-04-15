@@ -1,0 +1,11 @@
+%h1 Admin sign in
+
+= form_for :session, url: admin_sessions_path do |f|
+  .row
+    .col
+      .form-group
+        = f.password_field :password,
+          placeholder: 'Password'
+  .row
+    .col
+      = f.submit 'Sign in', class: 'btn btn-primary'
