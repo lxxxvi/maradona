@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :sessions
-    resources :matches
+    resources :matches do
+      resources :final_scores, only: [:new, :create], module: :matches
+    end
     get 'sign_in', to: 'sessions#new', as: :sign_in
     root to: 'matches#index'
   end

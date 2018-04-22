@@ -7,6 +7,7 @@ class Admin::MatchesControllerTest < ActionDispatch::IntegrationTest
     @ksa = teams(:team_ksa)
     @kazan_arena = venues(:venue_kazan_arena)
   end
+
   test 'cannot get admin matches if not signed in' do
     get admin_matches_path
     follow_redirect!
@@ -55,8 +56,6 @@ class Admin::MatchesControllerTest < ActionDispatch::IntegrationTest
         "kickoff_at(3i)" => '3',
         "kickoff_at(4i)" => '3',
         "kickoff_at(5i)" => '3',
-        left_team_score: '8',
-        right_team_score: '9'
       }
     }
     follow_redirect!
@@ -64,8 +63,6 @@ class Admin::MatchesControllerTest < ActionDispatch::IntegrationTest
 
     @group_stage_rus_ksa.reload
     assert_equal 'Kazan Arena', @group_stage_rus_ksa.venue.name
-    assert_equal 8, @group_stage_rus_ksa.left_team_score
-    assert_equal 9, @group_stage_rus_ksa.right_team_score
     assert_equal DateTime.new(2018, 3, 3, 3, 3, 0, 0), @group_stage_rus_ksa.kickoff_at
   end
 
@@ -87,8 +84,6 @@ class Admin::MatchesControllerTest < ActionDispatch::IntegrationTest
           "kickoff_at(3i)" => '4',
           "kickoff_at(4i)" => '4',
           "kickoff_at(5i)" => '4',
-          left_team_score: '',
-          right_team_score: ''
         }
       }
     end

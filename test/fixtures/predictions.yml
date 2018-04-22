@@ -42,3 +42,9 @@ prediction_zinedine_por_esp:
   match: match_por_esp
   left_team_score: 3
   right_team_score: 3
+
+prediction_rooney_rus_ksa:
+  user: rooney
+  match: match_rus_ksa
+  left_team_score: 8
+  right_team_score: 9

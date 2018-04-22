@@ -1,0 +1,31 @@
+.row.mb-3
+  .col= link_to '< Back', :back
+
+.row
+  .col= @match.phase_before_type_cast
+
+%h1 Final score
+
+- if @match.errors.any?
+  .card.border-danger.mb-3.mt-2
+    .card-body
+      .card-title.text-danger Oh no..
+      .card-text
+        %ul.text-danger
+          - @match.errors.full_messages.each do |full_message|
+            %li= full_message
+
+
+= form_for @match, url: admin_match_final_scores_path(@match) do |f|
+  .row
+    .col-5= @match.left_team.fifa_country_code
+    .col-2
+    .col-5= @match.right_team.fifa_country_code
+
+  .row.mb-4
+    .col-5= f.text_field :left_team_score, class: 'form-control'
+    .col-2.text-center vs
+    .col-5= f.text_field :right_team_score, class: 'form-control'
+
+  .row.mb-3
+    .col.text-right= f.submit 'Set score', class: 'btn btn-primary'

@@ -37,3 +37,10 @@ ballack:
   email: 'ballack@dev.tippkick.club'
   player_id: 'michael-ballack-66666'
   deactivation_token: 'ballack_deactivation_token'
+
+rooney:
+  <<: *DEFAULTS
+  email: 'rooney@dev.tippkick.club'
+  player_id: 'wayne-rooney-77777'
+  deactivation_token: 'rooney_deactivation_token'
+

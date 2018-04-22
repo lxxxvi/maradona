@@ -1,33 +1,31 @@
 %h1 Matches
 
-= link_to 'Add match',
-  new_admin_match_path,
-  class: 'btn btn-primary'
+.row.mb-3
+  .col
+    = link_to 'Add match',
+      new_admin_match_path,
+      class: 'btn btn-primary'
 
-.row.font-weight-bold
-  .col-12.order-md-1 Stage
-  .col-12.order-md-2 Kickoff time
-  .col-12.order-md-3 Venue
-  .col-6.col-md-5.order-md-4 Left team
-  .col-6.col-md-1.order-md-5 Score
-  .col-6.col-md-5.order-md-7 Right team
-  .col-6.col-md-1.order-md-6 Score
-
-- @matches.each do |match|
-  .row.pt-2.pb-2.mb-2.mt-2{ data: { href: admin_match_path(match) }}
-    .col-12.order-md-1.text-muted= match.phase_before_type_cast
-    .col-12.order-md-2.text-muted= match.kickoff_at
-    .col-12.order-md-3.text-muted= match.venue.name
-    .col-6.col-md-5.order-md-4
-      = match.left_team.name
-      %small.text-muted= "(#{match.left_team.fifa_country_code})"
-    .col-6.col-md-1.order-md-5= match.left_team_score
-    .col-6.col-md-5.order-md-7
-      = match.right_team.name
-      %small.text-muted= "(#{match.right_team.fifa_country_code})"
-    .col-6.col-md-1.order-md-6= match.right_team_score
-
-
-
-
-
+.row
+  - @matches.each do |match|
+    .col-lg-3.col-md-4.col-12.mb-3
+      .card{ data: { href: admin_match_path(match) }}
+        .card-body
+          .card-title
+            .row
+              .col-5.col-lg-4.font-weight-bold
+                = match.left_team.fifa_country_code
+              .col-2.col-lg-4.text-center
+                vs
+              .col-5.col-lg-4.text-right.font-weight-bold
+                = match.right_team.fifa_country_code
+          .card-text.mb-3
+            .row.display-4
+              .col-5.col-lg-4
+                = match.left_team_score || ""
+              .col-2.col-lg-4.text-center
+                \:
+              .col-5.col-lg-4.text-right
+                = match.right_team_score
+          .card-text.text-muted
+            = match.phase_before_type_cast
