@@ -1,4 +1,4 @@
-class UpdateUsersPointsTotalService
+class UpdateUsersPointsService
   def run!
     ActiveRecord::Base.connection.execute(update_users_points_total_service_sql)
   end

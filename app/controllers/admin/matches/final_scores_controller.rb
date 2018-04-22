@@ -38,7 +38,7 @@ class Admin::Matches::FinalScoresController < Admin::BaseController
       service = PredictionEvaluationService.new(actual_scores, predicted_scores)
       prediction.update(service.prediction_params)
     end
-    UpdateUsersPointsTotalService.new.run!
+    UpdateUsersPointsService.new.run!
     RankService.new.run!
   end
 end
