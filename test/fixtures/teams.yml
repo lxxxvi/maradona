@@ -45,3 +45,15 @@ team_irn:
   fifa_country_code: 'IRN'
   name: 'Iran'
   group_order: 4
+
+team_bra:
+  group_letter: 'E'
+  fifa_country_code: 'BRA'
+  name: 'Brasil'
+  group_order: 1
+
+team_sui:
+  group_letter: 'E'
+  fifa_country_code: 'SUI'
+  name: 'Switzerland'
+  group_order: 2
