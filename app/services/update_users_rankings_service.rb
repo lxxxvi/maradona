@@ -1,4 +1,4 @@
-class UpdateRankingsService
+class UpdateUsersRankingsService
   def run!
     ActiveRecord::Base.connection.execute(rank_users_sql)
   end

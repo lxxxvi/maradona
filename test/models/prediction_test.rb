@@ -9,16 +9,6 @@ class PredictionTest < ActiveSupport::TestCase
     assert_equal expected_score, @prediction.score
   end
 
-  test 'collect and persist points' do
-    match = @prediction.match
-    match.left_team_score = 1
-    match.right_team_score = 2
-
-    assert_changes '@prediction.points_total', to: 6 do
-      @prediction.collect_points!
-    end
-  end
-
   def expected_score
     {
       left_team_score: 0,

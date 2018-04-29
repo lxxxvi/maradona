@@ -19,24 +19,10 @@ class Prediction < ApplicationRecord
     match.kickoff_at > Time.zone.now
   end
 
-  def evaluated?
-    self.points_total.present?
-  end
-
-  def evaluable?
-    match.finished?
-  end
-
   def score
     {
       left_team_score: self.left_team_score,
       right_team_score: self.right_team_score
     }
-  end
-
-  def collect_points!
-    return unless evaluable?
-    service = PredictionEvaluationService.new(match.score, self.score)
-    self.update(service.prediction_params)
   end
 end
