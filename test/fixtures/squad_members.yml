@@ -35,3 +35,19 @@ jordan_in_chicago_bulls:
   <<: *DEFAULTS
   squad: chicago_bulls
   user: jordan
+
+koebi_in_ch_stars:
+  <<: *DEFAULTS
+  squad: ch_stars
+  user: koebi
+  coach: True
+
+alain_in_ch_stars:
+  <<: *DEFAULTS
+  squad: ch_stars
+  user: alain
+
+chappi_in_ch_stars:
+  <<: *DEFAULTS
+  squad: ch_stars
+  user: chappi

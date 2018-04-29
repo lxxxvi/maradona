@@ -15,3 +15,7 @@ chicago_bulls:
   parameterized_name: 'chicago-bulls'
   ranking_position: 9
   points_total: 3
+
+ch_stars:
+  name: 'CH Stars'
+  parameterized_name: 'ch-stars'

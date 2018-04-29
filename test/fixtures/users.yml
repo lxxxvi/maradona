@@ -44,3 +44,23 @@ rooney:
   player_id: 'wayne-rooney-77777'
   deactivation_token: 'rooney_deactivation_token'
 
+koebi:
+  <<: *DEFAULTS
+  email: 'koebi@dev.tippkick.club'
+  player_id: 'koebi-kuhn-88880'
+  deactivation_token: 'koebi_deactivation_token'
+  points_total: 10
+
+alain:
+  <<: *DEFAULTS
+  email: 'alain@dev.tippkick.club'
+  player_id: 'alain-suter-88881'
+  deactivation_token: 'alain_deactivation_token'
+  points_total: 6
+
+chappi:
+  <<: *DEFAULTS
+  email: 'chappi@dev.tippkick.club'
+  player_id: 'stephane-chapuisat-88882'
+  deactivation_token: 'chappi_deactivation_token'
+  points_total: 2
