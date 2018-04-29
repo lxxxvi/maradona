@@ -10,6 +10,8 @@ class UpdatePointsAndRankingsService
       UpdatePredictionsPointsService.new(match).run!
       UpdateUsersPointsService.new.run!
       UpdateUsersRankingsService.new.run!
+      UpdateSquadsPointsService.new.run!
+      UpdateSquadsRankingsService.new.run!
     end
   end
 end
