@@ -3,18 +3,21 @@ fifa_100:
   parameterized_name: 'fifa-100'
   ranking_position: 5
   points_total: 20
+  points_average: 15
 
 les_bleues:
   name: 'Les Bleues'
   parameterized_name: 'les-bleues'
   ranking_position: 2
   points_total: 300
+  points_average: 20
 
 chicago_bulls:
   name: 'Chicago Bulls'
   parameterized_name: 'chicago-bulls'
   ranking_position: 9
   points_total: 3
+  points_average: 15
 
 ch_stars:
   name: 'CH Stars'
