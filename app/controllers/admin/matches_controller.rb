@@ -38,7 +38,7 @@ class Admin::MatchesController < Admin::BaseController
   private
 
   def match_params
-    params.require(:match).permit(:phase, :left_team_id, :right_team_id, :venue_id, :kickoff_at, :left_team_score, :right_team_score)
+    params.require(:match).permit(:phase, :left_team_id, :right_team_id, :venue_id, :kickoff_at)
   end
 
   def set_match

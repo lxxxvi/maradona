@@ -60,20 +60,6 @@
       .form-group
         = f.datetime_select :kickoff_at
 
-  .row
-    .col= f.label :left_team_score
-  .row
-    .col
-      .form-group
-        = f.text_field :left_team_score, class: 'form-control'
-
-  .row
-    .col= f.label :right_team_score
-  .row
-    .col
-      .form-group
-        = f.text_field :right_team_score, class: 'form-control'
-
   .mb-5.mt-3
     = f.submit nil, class: 'btn btn-primary'
     = link_to 'Back', :back

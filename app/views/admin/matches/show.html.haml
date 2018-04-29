@@ -1,43 +1,23 @@
+
+.row.mb-3
+  .col
+    = link_to '< All matches',
+      admin_matches_path
+.row
+  .col Match
+
 .row
   .col
-    = link_to 'Edit',
-      edit_admin_match_path(@match),
-      class: 'btn btn-primary'
-    = link_to 'All matches',
-      admin_matches_path,
-      class: 'btn btn-default'
-%h1= "#{@match.left_team.fifa_country_code} vs #{@match.right_team.fifa_country_code}"
-
-.text-center
-
-  .row.mt-4.font-weight-bold
-    .col Phase
-  .row
-    .col= @match.phase_before_type_cast
+    %h1= "#{@match.left_team.fifa_country_code} vs #{@match.right_team.fifa_country_code}"
+.row.mb-2
+  .col
+    = link_to 'Edit', edit_admin_match_path(@match)
 
 
-  .row.font-weight-bold.mt-4
-    .col-6 Left Team
-    .col-6 Right Team
-  .row
-    .col-6
-      = @match.left_team.name
-      %small.text-muted= @match.left_team.fifa_country_code
-    .col-6
-      = @match.right_team.name
-      %small.text-muted= @match.right_team.fifa_country_code
+= render 'match_card', match: @match
 
-  .row.mt-4.font-weight-bold
-    .col Venue
-    .col Kickoff at
-  .row
-    .col= @match.venue.name
-    .col= @match.kickoff_at
-
-  .row.mt-4
-    .col-12.font-weight-bold Score
-  .row.display-4.mt-2
-    .col-6= @match.left_team_score
-    .col-6= @match.right_team_score
+= link_to 'Set final score',
+  new_admin_match_final_score_path(@match),
+  class: 'btn btn-primary col-12'
 
 
