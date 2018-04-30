@@ -38,10 +38,14 @@ class SquadMember < ApplicationRecord
   end
 
   def accept_invitation!
-    update({
-      invitation_accepted_at: Time.zone.now,
-      invitation_rejected_at: nil
-    })
+    self.transaction do
+      update({
+        invitation_accepted_at: Time.zone.now,
+        invitation_rejected_at: nil
+      })
+      UpdateSquadsPointsService.new.run!
+      UpdateSquadsRankingsService.new.run!
+    end
   end
 
   def reject_invitation!
