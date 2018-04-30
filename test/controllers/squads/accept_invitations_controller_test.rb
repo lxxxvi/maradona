@@ -32,7 +32,7 @@ class Squads::AcceptInvitationsControllerTest < ActionDispatch::IntegrationTest
 
     squad.reload
 
-    assert_equal 28, squad.points_total
-    assert_equal  7, squad.points_average
+    assert_equal  28, squad.points_total
+    assert_equal 700, squad.points_average
   end
 end

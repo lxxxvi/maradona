@@ -14,7 +14,7 @@ class UpdateSquadsPointsServiceTest < ActiveSupport::TestCase
     service.run!
     @squad.reload
 
-    assert_equal 18, @squad.points_total
-    assert_equal  6, @squad.points_average
+    assert_equal  18, @squad.points_total
+    assert_equal 600, @squad.points_average
   end
 end
