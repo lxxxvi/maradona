@@ -20,4 +20,15 @@ class DeactivationsControllerTest < ActionDispatch::IntegrationTest
       get deactivate_url('invalid_token')
     }
   end
+
+  test 'chappi deactivates, squads points of ch_stars changes' do
+    user = users(:chappi)
+    squad = squads(:ch_stars)
+
+    assert_changes 'squad.points_average' do
+      get deactivate_url(user.deactivation_token)
+      assert_response :success
+      squad.reload
+    end
+  end
 end
