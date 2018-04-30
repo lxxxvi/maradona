@@ -13,6 +13,7 @@ class UpdateSquadsPointsService
              , round(avg(u.points_total))     AS average /* ignores NULL values ! */
           FROM squad_members sm
          INNER JOIN users        u  ON u.id   = sm.user_id
+         WHERE sm.invitation_accepted_at IS NOT NULL
          GROUP BY sm.squad_id
       )
       UPDATE squads

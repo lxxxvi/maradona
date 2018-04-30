@@ -81,3 +81,14 @@ prediction_chappi_bra_sui:
   points_overall_outcome: 0
   points_goal_difference: 0
   points_total: 2
+
+prediction_kubi_bra_sui:
+  user: kubi
+  match: match_bra_sui
+  left_team_score: 0
+  right_team_score: 0
+  points_left_team_score: 2
+  points_right_team_score: 2
+  points_overall_outcome: 5
+  points_goal_difference: 1
+  points_total: 10
