@@ -15,28 +15,39 @@
 = render 'unpredicted_matches_box', user: @user
 
 - if @user.ranking_position.present?
-  .ranking
-    .card.text-center.mb-4
-      .card-body
-        .card-subtitle.mb-2.text-muted
-          Global ranking
-        .card-title.display-4
-          = "# #{current_user.ranking_position}"
-        .card-text.small.text-success
-          = "#{current_user.points_total} points"
+  .mt-4
+    %h2 Your stats
+    .ranking
+      .card.text-center
+        .card-body
+          .card-text
+            .row
+              .col-4.ranking-position
+                = "# #{current_user.ranking_position}"
+              .col-4.points-total
+                = "#{current_user.points_total}"
+              .col-4.points-average
+            .row
+              .col-4
+                = "Global ranking"
+              .col-4
+                = "Total points"
+              .col-4
+
 
 - if current_user.squad_invitations.any?
-  %h2.squad_invitations_header
-    You have
-    %span.badge.badge-success= current_user.squad_invitations.count
-    = "invitation".pluralize(current_user.squad_invitations.count)
-  = render 'squad_invitations', squad_invitations: current_user.squad_invitations
+  .mt-4
+    %h2.squad_invitations_header
+      You have
+      = current_user.squad_invitations.count
+      = "invitation".pluralize(current_user.squad_invitations.count)
+    = render 'squad_invitations', squad_invitations: current_user.squad_invitations
 
 - if current_user.squads.any?
   %h2 Your squads
   = render 'squads', squads: current_user.squads
 
-.row.text-center
+.row.text-center.mt-4
   .col
     .btn-tk
       = link_to 'Create new squad',

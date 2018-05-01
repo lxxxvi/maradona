@@ -16,7 +16,7 @@
             %li= full_message
 
 
-= form_for @match, url: admin_match_final_scores_path(@match) do |f|
+= form_for @match, url: admin_match_final_scores_path(@match), method: :post do |f|
   .row
     .col-5= @match.left_team.fifa_country_code
     .col-2

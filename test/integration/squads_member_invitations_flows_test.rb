@@ -39,7 +39,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     sign_in users(:pele)
     get root_path
 
-    assert_select 'nav span.badge.badge-success', '1', 'Pele should see an invitation in the navigation'
+    assert_select 'nav span.invitations-count', '1', 'Pele should see an invitation in the navigation'
 
     assert_invitation_is_shown
 
@@ -81,10 +81,10 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     h2_title = css_select('h2.squad_invitations_header').text.gsub(/\n/, ' ').strip
     assert_equal 'You have 1 invitation', h2_title
     assert_select '.squad_invitations .card'
-    assert_select '.squad_invitations .card .card-title', 'Les Bleues'
+    assert_select '.squad_invitations .squad-name', 'Les Bleues'
     accept_invitation_form_button = css_select('.squad_invitations .accept_invitation').first
     reject_invitation_form_button = css_select('.squad_invitations .reject_invitation').first
-    assert_equal 'Accept', accept_invitation_form_button.attr('value')
+    assert_equal 'Join', accept_invitation_form_button.attr('value')
     assert_equal 'Reject', reject_invitation_form_button.attr('value')
   end
 end
