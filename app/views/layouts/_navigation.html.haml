@@ -11,7 +11,7 @@
           = link_to root_path, class: 'nav-link' do
             Your locker
             - if current_user.squad_invitations.any?
-              %span.font-weight-bold= current_user.squad_invitations.count
+              %span.font-weight-bold.invitations-count= current_user.squad_invitations.count
 
         %li.nav-item
           = link_to "Prediction Center",
