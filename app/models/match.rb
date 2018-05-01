@@ -14,6 +14,10 @@ class Match < ApplicationRecord
   }
 
   scope :ordered, -> { order(kickoff_at: :asc) }
+  scope :finished, -> {
+    where.not(left_team_score: nil)
+      .where.not(right_team_score: nil)
+  }
 
   validates_presence_of :phase, :left_team, :right_team, :venue, :kickoff_at
   validate :right_team_is_not_same_as_left_team

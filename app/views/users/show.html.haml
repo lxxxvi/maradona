@@ -22,21 +22,20 @@
         .card-body
           .card-text
             .row
-              .col-4.ranking-position
-                = "# #{current_user.ranking_position}"
-              .col-4.points-total
+              .col-4.ranking-position.stats
+                = "#{current_user.ranking_position}"
+              .col-4.points-total.stats
                 = "#{current_user.points_total}"
-              .col-4.points-average
-            .row
-              .col-4
-                = "Global ranking"
-              .col-4
-                = "Total points"
-              .col-4
+              .col-4.points-match-average.stats
+                = "#{current_user.points_match_average.to_f / 100}"
+            .row.mt-2
+              .col-4 Global ranking
+              .col-4 Total points
+              .col-4 Match average
 
 
 - if current_user.squad_invitations.any?
-  .mt-4
+  .mt-5
     %h2.squad_invitations_header
       You have
       = current_user.squad_invitations.count
@@ -44,8 +43,9 @@
     = render 'squad_invitations', squad_invitations: current_user.squad_invitations
 
 - if current_user.squads.any?
-  %h2 Your squads
-  = render 'squads', squads: current_user.squads
+  .mt-3
+    %h2 Your squads
+    = render 'squads', squads: current_user.squads
 
 .row.text-center.mt-4
   .col

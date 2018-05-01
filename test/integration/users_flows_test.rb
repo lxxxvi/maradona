@@ -8,10 +8,9 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
 
     get root_path
 
-    assert_select '.ranking .ranking-position', '# 13'
+    assert_select '.ranking .ranking-position', '13'
     assert_select '.ranking .points-total', '20'
-    skip
-    assert_select '.ranking .points-average', 'TODO'
+    assert_select '.ranking .points-match-average', '2.34'
   end
 
   test 'user sees how many predictions are missing' do

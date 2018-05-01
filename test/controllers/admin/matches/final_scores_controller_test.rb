@@ -26,8 +26,9 @@ class Admin::Matches::FinalScoresControllerTest < ActionDispatch::IntegrationTes
     rooney.reload
     prediction.reload
 
-    assert_equal 10, rooney.points_total
-    assert_equal 10, prediction.points_total
+    assert_equal  10, rooney.points_total
+    assert_equal 250, rooney.points_match_average
+    assert_equal  10, prediction.points_total
 
     assert_equal 8, match_rus_ksa.left_team_score
     assert_equal 9, match_rus_ksa.right_team_score
