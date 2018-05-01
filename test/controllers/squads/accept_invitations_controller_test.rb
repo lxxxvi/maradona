@@ -19,4 +19,20 @@ class Squads::AcceptInvitationsControllerTest < ActionDispatch::IntegrationTest
       post squad_accept_invitations_path(foreign_invited_squad_member.squad)
     }
   end
+
+  test 'kubi accepts invitation, squads points changes' do
+    sign_in users(:kubi)
+
+    invited_squad_member = squad_members(:kubi_in_ch_stars_not_accepted)
+    squad = squads(:ch_stars)
+
+    post squad_accept_invitations_path(invited_squad_member.squad)
+    follow_redirect!
+    assert_response :success
+
+    squad.reload
+
+    assert_equal  28, squad.points_total
+    assert_equal 700, squad.points_average
+  end
 end
