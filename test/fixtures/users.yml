@@ -7,6 +7,7 @@ diego:
   player_id: 'diego-maradona-11111'
   points_total: 20
   deactivation_token: 'diego_deactivation_token'
+  points_match_average: 234
 
 zinedine:
   <<: *DEFAULTS
