@@ -4,27 +4,32 @@
 - if policy(@squad).edit?
   = link_to 'Edit', edit_squad_path(@squad)
 
-
-%h2 Ranking
-
 - if @squad.ranking_position.present?
-  .card.text-center.mb-4
+  %h2 Squad stats
+  .card.text-center.mt-4
     .card-body
-      .card-subtitle.mb-2.text-muted
-        Squad global ranking
-      .card-title.display-4
-        = "# #{@squad.ranking_position}"
-      .card-text.small.text-success
-        = "#{@squad.points_total} points"
+      .card-text
+        .row
+          .col-4.ranking-position.stats
+            = "#{@squad.ranking_position}"
+          .col-4.points-total.stats
+            = @squad.points_total
+          .col-4.points-average.stats
+            = @squad.points_average.to_f / 100
+        .row
+          .col Global ranking
+          .col Total points
+          .col Average points
+
 - else
   No ranking yet...
 
 - if policy(@squad).show_members?
-  %h2 Members
-
-  .squad-members-lists
-    .squad-members-list
-      = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
+  .mt-4
+    %h2 Players
+    .squad-members-lists
+      .squad-members-list
+        = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
 
   - if policy(@squad).edit?
     .row.mb-3.mt-3

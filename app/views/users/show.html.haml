@@ -25,9 +25,9 @@
               .col-4.ranking-position.stats
                 = "#{current_user.ranking_position}"
               .col-4.points-total.stats
-                = "#{current_user.points_total}"
+                = current_user.points_total
               .col-4.points-match-average.stats
-                = "#{current_user.points_match_average.to_f / 100}"
+                = current_user.points_match_average.to_f / 100
             .row.mt-2
               .col-4 Global ranking
               .col-4 Total points
