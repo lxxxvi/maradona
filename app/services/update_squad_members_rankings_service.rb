@@ -19,7 +19,7 @@ class UpdateSquadMembersRankingsService
              , sup.user_points_total    AS user_points_total
              , rank() OVER (
                   PARTITION BY squad_id
-                      ORDER BY user_points_total ASC
+                      ORDER BY user_points_total DESC
                )                        AS ranking_position
           FROM (
             SELECT sm.user_id                   AS user_id
@@ -28,6 +28,7 @@ class UpdateSquadMembersRankingsService
               FROM squad_members sm
              INNER JOIN users u     ON u.id = sm.user_id
              WHERE sm.invitation_accepted_at IS NOT NULL
+               AND #{squad_filter_sql}
            ) sup /* squad user points */
       )
       UPDATE squad_members sm2
@@ -38,5 +39,9 @@ class UpdateSquadMembersRankingsService
     SQL
   end
 
-#         /* WHERE sm.squad_id = #{squad.id} */
+  def squad_filter_sql
+    return '0 = 0' unless squad.present?
+
+    "sm.squad_id = #{squad.id}"
+  end
 end
