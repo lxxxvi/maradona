@@ -63,5 +63,3 @@ kubi_in_ch_stars_not_accepted:
   squad: ch_stars
   user: kubi
   invitation_sent_at: <%= 7.days.ago.to_s(:db) %>
-
-
