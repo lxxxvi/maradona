@@ -62,6 +62,7 @@ class SquadMember < ApplicationRecord
   end
 
   def update_squads_points_and_rankings
+    UpdateSquadMembersRankingsService.new(self.squad).run!
     UpdateSquadsPointsService.new(self.squad).run!
     UpdateSquadsRankingsService.new.run!
   end

@@ -6,10 +6,19 @@ class UpdateSquadMembersRankingsService
   end
 
   def run!
+    ActiveRecord::Base.connection.execute(reset_squad_members_rankings_sql)
     ActiveRecord::Base.connection.execute(udpate_squad_members_rankings_sql)
   end
 
-  # private
+  private
+
+  def reset_squad_members_rankings_sql
+    <<-SQL
+      UPDATE squad_members sm
+         SET ranking_position = NULL
+       WHERE #{squad_filter_sql}
+    SQL
+  end
 
   def udpate_squad_members_rankings_sql
     <<-SQL
@@ -28,6 +37,7 @@ class UpdateSquadMembersRankingsService
               FROM squad_members sm
              INNER JOIN users u     ON u.id = sm.user_id
              WHERE sm.invitation_accepted_at IS NOT NULL
+               AND sm.deactivated_at IS NULL
                AND #{squad_filter_sql}
            ) sup /* squad user points */
       )
