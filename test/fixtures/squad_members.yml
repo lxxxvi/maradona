@@ -42,22 +42,24 @@ koebi_in_ch_stars:
   user: koebi
   coach: True
   invitation_accepted_at: <%= 7.days.ago.to_s(:db) %>
+  ranking_position: 3
 
 alain_in_ch_stars:
   <<: *DEFAULTS
   squad: ch_stars
   user: alain
   invitation_accepted_at: <%= 7.days.ago.to_s(:db) %>
+  ranking_position: 2
 
 chappi_in_ch_stars:
   <<: *DEFAULTS
   squad: ch_stars
   user: chappi
   invitation_accepted_at: <%= 7.days.ago.to_s(:db) %>
+  ranking_position: 1
 
 kubi_in_ch_stars_not_accepted:
   <<: *DEFAULTS
   squad: ch_stars
   user: kubi
   invitation_sent_at: <%= 7.days.ago.to_s(:db) %>
-
