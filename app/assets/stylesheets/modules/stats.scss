@@ -6,3 +6,31 @@
 .stats {
   font-size: 2rem;
 }
+
+.points-total-with-sign {
+  font-size: 1.0rem;
+  // &:before {
+  //   content: '';
+  //   font-size: 0.7rem;
+  // }
+
+  &:after {
+    content: ' points';
+    font-size: 0.7rem;
+  }
+}
+
+
+
+.points-average-with-sign {
+  font-size: 1.0rem;
+  &:before {
+    content: '⌀ ';
+    font-size: 0.7rem;
+  }
+
+  &:after {
+    content: ' per match';
+    font-size: 0.7rem;
+  }
+}

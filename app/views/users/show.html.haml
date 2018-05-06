@@ -45,9 +45,9 @@
 - if current_user.squads.any?
   .mt-3
     %h2 Your squads
-    = render 'squads', squads: current_user.squads
+    = render 'squad_members', squad_members: current_user.squad_accepts
 
-.row.text-center.mt-4
+.row.text-center.mt-5
   .col
     .btn-tk
       = link_to 'Create new squad',

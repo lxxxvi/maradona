@@ -31,7 +31,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select '.squad-members-list .card-text', 'pele-nascimento-33333'
+    assert_select '.squad-members .squad-member .ci-player-id', 'pele-nascimento-33333'
   end
 
   test 'pele accepts an invitation' do
@@ -43,15 +43,15 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
 
     assert_invitation_is_shown
 
-    squads_card_count_before = css_select('.squads .card').count
+    squad_members_count_before = css_select('.squad_members .squad_member').count
 
     post squad_accept_invitations_path(squad)
     follow_redirect!
     assert_response :success
 
     assert_select 'h1', 'Your locker'
-    squads_card_count_after = css_select('.squads .card').count
-    assert_equal squads_card_count_before + 1, squads_card_count_after, 'There should be one more (accepted) squads'
+    squad_members_count_after = css_select('.squad_members .squad_member').count
+    assert_equal squad_members_count_before + 1, squad_members_count_after, 'There should be one more (accepted) squads'
     assert_select '.squad_invitations .card', { count: 0 }, 'There should not be any invitions anymore'
   end
 

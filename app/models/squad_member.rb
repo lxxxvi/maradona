@@ -5,7 +5,11 @@ class SquadMember < ApplicationRecord
   scope :active           , -> { where(deactivated_at: nil) }
   scope :inactive         , -> { where.not(deactivated_at: nil) }
   scope :of_user          , -> (user) { active.where(user: user) }
-  scope :ordered          , -> { includes(:user).order('users.player_id ASC') }
+  scope :ordered          , -> {
+    includes(:user)
+      .order('squad_members.ranking_position ASC')
+      .order('users.player_id ASC')
+  }
   scope :coaches          , -> { active.where(coach: true) }
   scope :accepted         , -> { active.where.not(invitation_accepted_at: nil) }
   scope :not_accepted     , -> { active.where(invitation_accepted_at: nil) }
@@ -16,6 +20,8 @@ class SquadMember < ApplicationRecord
   scope :invited          , -> { active.not_accepted.not_rejected.not_canceled }
 
   scope :invited_or_accepted, -> { invited.or(SquadMember.accepted) }
+
+  scope :of_squad, -> (squad) { where(squad: squad) }
 
   def active?
     deactivated_at.nil?
