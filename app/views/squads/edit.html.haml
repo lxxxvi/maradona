@@ -1,3 +1,7 @@
+.row.mt-4
+  .col
+    = link_to 'Back to squad', squad_path(@squad)
+
 %h1= "Edit #{@squad.name}"
 
 = render 'form', squad: @squad
