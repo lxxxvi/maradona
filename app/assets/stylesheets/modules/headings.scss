@@ -1,3 +1,7 @@
 h1 {
   margin-top: 2rem;
+
+  &.inline-block {
+    display: inline-block;
+  }
 }

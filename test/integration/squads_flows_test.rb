@@ -96,6 +96,29 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'FIFA 100'
   end
 
+  test 'koebi sees players ranking of CH Stars' do
+    sign_in users(:koebi)
+
+    squad = squads(:ch_stars)
+
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select 'h2', 'Players rankings'
+
+    squad_member_elements = css_select('.squad-members .squad-member')
+
+    element = squad_member_elements[0]
+    assert_equal '1', element.css('.ci-ranking-position').text.strip
+    assert_equal 'stephane-chapuisat-88882', element.css('.ci-player-id').text.strip
+    assert_equal "2\n|\n0.0", element.css('.ci-player-stats').text.strip
+
+    element = squad_member_elements[3]
+    assert_equal '-', element.css('.ci-ranking-position').text.strip
+    assert_equal 'kubi-tuerkilmaz-88883', element.css('.ci-player-id').text.strip
+    assert_equal "(Invited)", element.css('.ci-player-stats').text.strip
+  end
+
   private
 
   def css_find(selektor)

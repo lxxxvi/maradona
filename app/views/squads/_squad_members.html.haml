@@ -1,9 +1,21 @@
-- squad_members.each do |squad_member|
-  .card
-    .card-body
-      .card-text
-        = squad_member.user.player_id
-      .card-text
-        =  squad_member.user.points_total
-      - if squad_member.invited?
-        %small.card-text.text-muted (Invited)
+.squad-members.mt-4
+  - squad_members.each do |squad_member|
+    - is_ranked = squad_member.ranking_position&.positive?
+    .squad-member.mt-3
+      .row
+        .col-1.ci-ranking-position
+          = squad_member.ranking_position || '-'
+        .col-10
+          .row
+            .col-12.ci-player-id
+              = link_to squad_member.user.player_id, user_path(squad_member.user)
+          .row
+            .col-12.text-muted.ci-player-stats
+              %small
+                - if squad_member.invited?
+                  (Invited)
+                - else
+                  %span.points-total-with-sign= squad_member.user.points_total
+                  |
+                  %span.points-average-with-sign= squad_member.user.points_match_average.to_f / 100
+

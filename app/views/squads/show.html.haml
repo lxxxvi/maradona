@@ -1,41 +1,42 @@
-= link_to 'Back', root_path
 
-%h1= @squad.name
+.row.mt-4
+  .col= link_to 'Back', root_path
+
+.mt-1
+  %h1.inline-block= @squad.name
+  - if policy(@squad).edit?
+    %small.edit= link_to 'Edit', edit_squad_path(@squad)
+
 - if policy(@squad).edit?
-  = link_to 'Edit', edit_squad_path(@squad)
+  .row.mt-4
+    .col.text-center
+      .btn-tk
+        = link_to 'Invite friend to squad',
+          new_squad_member_invitation_path(@squad),
+          class: 'btn btn-primary'
+        .bottom-border
 
-- if @squad.ranking_position.present?
+.mt-4
   %h2 Squad stats
-  .card.text-center.mt-4
-    .card-body
-      .card-text
-        .row
-          .col-4.ranking-position.stats
-            = "#{@squad.ranking_position}"
-          .col-4.points-total.stats
-            = @squad.points_total
-          .col-4.points-average.stats
-            = @squad.points_average.to_f / 100
-        .row
-          .col Global ranking
-          .col Total points
-          .col Average points
-
-- else
-  No ranking yet...
+  - if @squad.ranking_position.present?
+    .card.text-center.mt-4
+      .card-body
+        .card-text
+          .row
+            .col-4.ranking-position.stats
+              = "#{@squad.ranking_position}"
+            .col-4.points-total.stats
+              = @squad.points_total
+            .col-4.points-average.stats
+              = @squad.points_average.to_f / 100
+          .row
+            .col Global ranking
+            .col Total points
+            .col Average points
+  - else
+    %small.text-muted No stats yet
 
 - if policy(@squad).show_members?
   .mt-4
-    %h2 Players
-    .squad-members-lists
-      .squad-members-list
-        = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
-
-  - if policy(@squad).edit?
-    .row.mb-3.mt-3
-      .col.text-right
-        .btn-tk
-          = link_to 'Invite friend to squad',
-            new_squad_member_invitation_path(@squad),
-            class: 'btn btn-primary'
-          .bottom-border
+    %h2 Players rankings
+    = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
