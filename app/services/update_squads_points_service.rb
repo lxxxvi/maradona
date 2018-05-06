@@ -20,6 +20,7 @@ class UpdateSquadsPointsService
           FROM squad_members sm
          INNER JOIN users        u  ON u.id   = sm.user_id
          WHERE sm.invitation_accepted_at IS NOT NULL
+           AND sm.deactivated_at IS NULL
            AND #{squad_filter_sql}
          GROUP BY sm.squad_id
       )
