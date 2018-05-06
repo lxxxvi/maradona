@@ -60,7 +60,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'The Golden Boys'
-    assert_select 'a', 'Back'
+    assert_select 'a', 'Back to your locker'
   end
 
   test 'squad coach edits a squad' do
@@ -79,7 +79,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', 'Edit Fifa 100'
     assert_select 'form #squad_name'
-    assert_select 'a', 'Cancel'
+    assert_select 'a', 'Back to squad'
 
     form_submit_button = css_find('form input[type=submit].btn.btn-primary')
     assert_equal 'Update Squad', form_submit_button.attr('value')
