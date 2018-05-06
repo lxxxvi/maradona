@@ -25,4 +25,16 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
       assert_select '.card-text a.btn.btn-primary', 'Predict them now!'
     end
   end
+
+  test 'koebi sees his ranking in squad overview' do
+    koebi = users(:koebi)
+
+    sign_in koebi
+    get root_path
+
+    assert_select '.squad_members .squad_member' do
+      assert_select '.ci-squad-name', 'CH Stars'
+      assert_select '.ci-squad-ranking', 'You are ranked # 3 out of 3 players'
+    end
+  end
 end

@@ -6,8 +6,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
 
-    squads_cards = css_select '.squads .card'
-    assert_equal 1, squads_cards.size
+    squad_member_elements = css_select '.squad_members .squad_member'
+    assert_equal 1, squad_member_elements.size
   end
 
   test 'zinedine visits root page and sees his squads ' do
@@ -15,8 +15,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
 
-    squads_cards = css_select '.squads .card'
-    assert_equal 2, squads_cards.size
+    squad_member_elements = css_select '.squad_members .squad_member'
+    assert_equal 2, squad_member_elements.size
   end
 
   test 'diego visits squad where zinedine is the coach and he is not member' do

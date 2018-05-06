@@ -17,6 +17,8 @@ class SquadMember < ApplicationRecord
 
   scope :invited_or_accepted, -> { invited.or(SquadMember.accepted) }
 
+  scope :of_squad, -> (squad) { where(squad: squad) }
+
   def active?
     deactivated_at.nil?
   end
