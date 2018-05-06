@@ -35,4 +35,20 @@ class Squads::AcceptInvitationsControllerTest < ActionDispatch::IntegrationTest
     assert_equal  28, squad.points_total
     assert_equal 700, squad.points_average
   end
+
+  test 'kubi accepts invitation, squad members ranking changes' do
+    sign_in users(:kubi)
+
+    kubi_in_ch_stars = squad_members(:kubi_in_ch_stars_not_accepted)
+
+    assert_nil kubi_in_ch_stars.ranking_position
+
+    post squad_accept_invitations_path(kubi_in_ch_stars.squad)
+    follow_redirect!
+    assert_response :success
+
+    kubi_in_ch_stars.reload
+
+    assert_equal 1, kubi_in_ch_stars.ranking_position
+  end
 end
