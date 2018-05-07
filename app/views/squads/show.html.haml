@@ -18,6 +18,7 @@
 
 .mt-4
   %h2 Squad stats
+  .sinuswave-hr
   - if @squad.ranking_position.present?
     .card.text-center.mt-4
       .card-body
@@ -39,4 +40,5 @@
 - if policy(@squad).show_members?
   .mt-4
     %h2 Players rankings
+    .sinuswave-hr
     = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered

@@ -1,8 +1,17 @@
+
+.mt-4
+  = link_to 'Back to your locker', root_path
+
 %h1 Prediction center
 
 %h2 Group stage
-
+.sinuswave-hr
+- not_first = false
 - @matches_with_predictions.each do |match_with_prediction|
+  - if not_first
+    .sinuswave-hr
+  - else
+    - not_first = true
   .card.match-with-prediction{ id: "match_#{match_with_prediction.match.id}"}
     .card-body
       .row

@@ -17,6 +17,7 @@
 - if @user.ranking_position.present?
   .mt-4
     %h2 Your stats
+    .sinuswave-hr
     .ranking
       .card.text-center
         .card-body
@@ -45,6 +46,7 @@
 - if current_user.squads.any?
   .mt-3
     %h2 Your squads
+    .sinuswave-hr
     = render 'squad_members', squad_members: current_user.squad_accepts
 
 .row.text-center.mt-5

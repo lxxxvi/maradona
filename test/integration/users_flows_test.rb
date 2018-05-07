@@ -19,10 +19,10 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     sign_in user
     get root_path
 
-    assert_select '.unpredicted_matches .card' do
-      assert_select '.card-subtitle', 'Hurry!'
-      assert_select '.card-title', 'You have 3 unpredicted matches'
-      assert_select '.card-text a.btn.btn-primary', 'Predict them now!'
+    assert_select '.unpredicted_matches' do
+      assert_select 'h2', 'Hurry!'
+      assert_select '.ci-number-of-unpredicted-matches', 'You have 3 unpredicted matches'
+      assert_select 'a.btn.btn-primary', 'Predict them now!'
     end
   end
 
