@@ -31,4 +31,22 @@ class DeactivationsControllerTest < ActionDispatch::IntegrationTest
       squad.reload
     end
   end
+
+  test 'chappi deactivates, squad member ranking points changes' do
+    user = users(:chappi)
+    chappi_in_ch_stars = squad_members(:chappi_in_ch_stars)
+    koebi_in_ch_stars = squad_members(:koebi_in_ch_stars)
+
+    assert_equal 1, chappi_in_ch_stars.ranking_position, 'Chappi should be 1st before'
+    assert_equal 3, koebi_in_ch_stars.ranking_position, 'Koebi should be 3rd before'
+
+    get deactivate_url(user.deactivation_token)
+    assert_response :success
+
+    chappi_in_ch_stars.reload
+    koebi_in_ch_stars.reload
+
+    assert_nil chappi_in_ch_stars.ranking_position, 'Chappi should not longer have ranking'
+    assert_equal 1, koebi_in_ch_stars.ranking_position, 'Koebi should be 1st after'
+  end
 end

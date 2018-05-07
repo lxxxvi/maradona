@@ -1,9 +1,0 @@
-- if squads.any?
-  .squads
-    - squads.each do |squad|
-      .card.mb-1.mt-1
-        .card-body
-          .card-text
-            = link_to squad.name, squad_path(squad)
-          .card-text
-            = 'Coach' if squad.coach_member.user == current_user

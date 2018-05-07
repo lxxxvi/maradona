@@ -6,8 +6,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
 
-    squads_cards = css_select '.squads .card'
-    assert_equal 1, squads_cards.size
+    squad_member_elements = css_select '.squad_members .squad_member'
+    assert_equal 1, squad_member_elements.size
   end
 
   test 'zinedine visits root page and sees his squads ' do
@@ -15,8 +15,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
 
-    squads_cards = css_select '.squads .card'
-    assert_equal 2, squads_cards.size
+    squad_member_elements = css_select '.squad_members .squad_member'
+    assert_equal 2, squad_member_elements.size
   end
 
   test 'diego visits squad where zinedine is the coach and he is not member' do
@@ -60,7 +60,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'The Golden Boys'
-    assert_select 'a', 'Back'
+    assert_select 'a', 'Back to your locker'
   end
 
   test 'squad coach edits a squad' do
@@ -79,7 +79,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select 'h1', 'Edit Fifa 100'
     assert_select 'form #squad_name'
-    assert_select 'a', 'Cancel'
+    assert_select 'a', 'Back to squad'
 
     form_submit_button = css_find('form input[type=submit].btn.btn-primary')
     assert_equal 'Update Squad', form_submit_button.attr('value')
@@ -94,6 +94,29 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'FIFA 100'
+  end
+
+  test 'koebi sees players ranking of CH Stars' do
+    sign_in users(:koebi)
+
+    squad = squads(:ch_stars)
+
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select 'h2', 'Players rankings'
+
+    squad_member_elements = css_select('.squad-members .squad-member')
+
+    element = squad_member_elements[0]
+    assert_equal '1', element.css('.ci-ranking-position').text.strip
+    assert_equal 'stephane-chapuisat-88882', element.css('.ci-player-id').text.strip
+    assert_equal "2\n|\n0.0", element.css('.ci-player-stats').text.strip
+
+    element = squad_member_elements[3]
+    assert_equal '-', element.css('.ci-ranking-position').text.strip
+    assert_equal 'kubi-tuerkilmaz-88883', element.css('.ci-player-id').text.strip
+    assert_equal "(Invited)", element.css('.ci-player-stats').text.strip
   end
 
   private
