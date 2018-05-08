@@ -10,7 +10,8 @@
       .col
         %small#player-id
           %span.text-muted Copy
-          %strong= @user.player_id
+          %input{ value: @user.player_id }
+
 
 = render 'unpredicted_matches_box', user: @user
 
