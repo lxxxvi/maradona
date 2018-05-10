@@ -23,7 +23,7 @@
           = f.check_box :remember_me
           = f.label :remember_me
 
-  .row.mt-3.mb-3
+  .row.mt-3
     .col.text-right
       .form-group
         .btn-tk
@@ -31,10 +31,10 @@
             class: 'btn btn-primary'
           .bottom-border
 
-  .row
+  .row.mt-4
     .col.text-right
       = link_to 'Forgot password', new_password_path(resource_name)
-  .row
+  .row.mt-4
     .col.text-right
       = link_to 'Create an account', new_registration_path(resource_name)
 
