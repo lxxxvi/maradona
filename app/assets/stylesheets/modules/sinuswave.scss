@@ -9,3 +9,13 @@
   height: 10px;
   position: relative;
 }
+
+.sinuswave-hr-tiny {
+  @include sinuswave($purple-base);
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 15px 20%;
+  height: 30px;
+  width: 90px;
+  display: inline-block;
+}

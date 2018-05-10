@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'global_ranking'      , to: 'ranking#index'     , as: :ranking
   get 'prediction_center'   , to: 'matches#index'     , as: :prediction_center
   get 'deactivate/:token'   , to: 'deactivations#new' , as: :deactivate
+  get 'about'               , to: 'about#show'        , as: :about
 
   namespace :admin do
     resource :sessions

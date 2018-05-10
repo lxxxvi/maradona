@@ -6,3 +6,8 @@ body {
   display: grid;
   grid-template-rows: 1fr auto;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
