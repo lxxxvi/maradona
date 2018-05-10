@@ -1,19 +1,19 @@
-%h1 Your locker
-
-.row
-  .col.text-right
-    .row.text-right
+.row.mt-4.text-right
+  .col
+    .row
       .col
         %small
           Your Player ID
-    .row.mb-3
+    .row
       .col
         %small#player-id
-          %span.text-muted Copy
+          %span.text-muted
           %input{ value: @user.player_id }
 
+%h1 Your locker
 
-= render 'unpredicted_matches_box', user: @user
+.mt-4
+  = render 'unpredicted_matches_box', user: @user
 
 - if @user.ranking_position.present?
   .mt-4

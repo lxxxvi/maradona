@@ -1,19 +1,3 @@
-// const copyContentOfElementToClipboard = function(element) {
-//   if (document.selection) {
-//     var range = document.body.createTextRange();
-//     range.moveToElementText(element);
-//     range.select().createTextRange();
-//     document.execCommand("copy");
-//     document.selection.empty();
-//   } else if (window.getSelection) {
-//     var range = document.createRange();
-//     range.selectNode(element);
-//     window.getSelection().addRange(range);
-//     document.execCommand("copy");
-//     window.getSelection().removeAllRanges();
-//   }
-// }
-
 const clearSelection = function() {
   if (window.getSelection) {
     window.getSelection().removeAllRanges();
@@ -23,23 +7,47 @@ const clearSelection = function() {
   }
 }
 
-if (document.querySelector("#player-id") != null) {
-  var copyDiv       = document.querySelector("#player-id span");
-  var playerIdInput = document.querySelector("#player-id input");
+const copyDiv = function() {
+  return document.querySelector("#player-id span");
+}
 
-  copyDiv.addEventListener('click', function() {
-    playerIdInput.select();
+const playerIdInput = function() {
+  return document.querySelector("#player-id input");
+}
+
+const copyDivExists = function() {
+  return (copyDiv() != null);
+}
+
+const showCopyInitialState = function() {
+  if (copyDivExists()) {
+    element = copyDiv();
+
+    element.classList.remove('copied');
+    element.classList.add('copy');
+  }
+}
+
+const showCopiedState = function() {
+  if (copyDivExists()) {
+    element = copyDiv();
+
+    element.classList.remove('copy');
+    element.classList.add('copied');
+  }
+}
+
+if (copyDivExists()) {
+  showCopyInitialState();
+
+  copyDiv().addEventListener('click', function() {
+    playerIdInput().select();
     document.execCommand("Copy");
     clearSelection();
-
-    this.innerHTML = 'Copied to clipboard!';
-    this.classList.remove('text-muted');
-    this.classList.add('text-success');
+    showCopiedState();
 
     setTimeout(function() {
-      copyDiv.innerHTML = "Copy";
-      copyDiv.classList.remove('text-success');
-      copyDiv.classList.add('text-muted')
+      showCopyInitialState();
     }, 2000);
   });
 }
