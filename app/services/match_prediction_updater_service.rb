@@ -36,7 +36,7 @@ class MatchPredictionUpdaterService
 
   def prediction_valid?
     prediction.valid?
-    if deadline_for_prediction_passed?
+    if deadline_for_prediction_passed? || score_is_set?
       prediction.errors.add(:base, "Oh no, you're too late to predict that game")
     end
     prediction.errors.none?
@@ -44,5 +44,10 @@ class MatchPredictionUpdaterService
 
   def deadline_for_prediction_passed?
     match.kickoff_at <= Time.zone.now
+  end
+
+  def score_is_set?
+    match.left_team_score.present? ||
+    match.right_team_score.present?
   end
 end

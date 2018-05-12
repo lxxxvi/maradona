@@ -1,16 +1,17 @@
 require 'test_helper'
 
 class MatchPredictionUpdaterServiceTest < ActiveSupport::TestCase
-  attr_reader :match_rus_ksa, :user
+  attr_reader :match_rus_ksa, :match_egy_uru, :user
 
   setup do
     @match_rus_ksa = matches(:match_rus_ksa)
+    @match_egy_uru = matches(:match_egy_uru)
     @user  = users(:diego)
   end
 
   test 'updates match without existing prediction' do
     travel_to before_the_world_cup do
-      service = MatchPredictionUpdaterService.new(match_rus_ksa, user)
+      service = MatchPredictionUpdaterService.new(match_egy_uru, user)
       response = service.update(5, 9)
 
       assert_equal :ok, response.status
@@ -22,7 +23,7 @@ class MatchPredictionUpdaterServiceTest < ActiveSupport::TestCase
 
   test 'does not update match with wrong left team score values' do
     travel_to before_the_world_cup do
-      service = MatchPredictionUpdaterService.new(match_rus_ksa, user)
+      service = MatchPredictionUpdaterService.new(match_egy_uru, user)
       response = service.update(-1, 0)
 
       assert_equal :error, response.status
@@ -32,7 +33,7 @@ class MatchPredictionUpdaterServiceTest < ActiveSupport::TestCase
 
   test 'does not update match with wrong right team score values' do
     travel_to before_the_world_cup do
-      service = MatchPredictionUpdaterService.new(match_rus_ksa, user)
+      service = MatchPredictionUpdaterService.new(match_egy_uru, user)
       response = service.update(0, -1)
 
       assert_equal :error, response.status
@@ -41,12 +42,21 @@ class MatchPredictionUpdaterServiceTest < ActiveSupport::TestCase
   end
 
   test 'does not update scores after kickoff' do
-    travel_to match_rus_ksa.kickoff_at do
-      service = MatchPredictionUpdaterService.new(match_rus_ksa, user)
+    travel_to match_egy_uru.kickoff_at do
+      service = MatchPredictionUpdaterService.new(match_egy_uru, user)
       response = service.update(0, 0)
 
       assert_equal :error, response.status
       assert_equal ["Oh no, you're too late to predict that game"], response.messages
+    end
+  end
+
+  test 'does not update score if score is already set' do
+    travel_to before_the_world_cup do
+      service = MatchPredictionUpdaterService.new(match_rus_ksa, user)
+      response = service.update(12, 12)
+
+      assert_equal :error, response.status, 'It should not be possible to predict if score is set (but kickoff time is not reached yet)'
     end
   end
 end
