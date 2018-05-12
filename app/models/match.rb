@@ -23,6 +23,15 @@ class Match < ApplicationRecord
   validate :right_team_is_not_same_as_left_team
   validate :uniqueness_of_match_in_phase
 
+  def predictable?
+    self.kickoff_at.future? && no_scores?
+  end
+
+  def no_scores?
+    self.left_team_score.nil? &&
+    self.right_team_score.nil?
+  end
+
   private
 
   def right_team_is_not_same_as_left_team

@@ -43,6 +43,7 @@ class MatchPredictionCollectionService
                  , p.points_right_team_score          AS prediction_points_right_team_score
                  , p.points_overall_outcome           AS prediction_points_overall_outcome
                  , p.points_goal_difference           AS prediction_points_goal_difference
+                 , p.points_total                     AS prediction_points_total
                  , p.created_at                       AS prediction_created_at
                  , p.updated_at                       AS prediction_updated_at
               FROM matches m
