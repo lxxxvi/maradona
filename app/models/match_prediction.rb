@@ -14,7 +14,7 @@ class MatchPrediction
   end
 
   def predictable?
-    match.kickoff_at > Time.zone.now
+    match.predictable?
   end
 
   private

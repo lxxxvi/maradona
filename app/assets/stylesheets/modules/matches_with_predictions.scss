@@ -1,20 +1,14 @@
-.matches-with-predictions {
-  .match-with-prediction {
-    margin-bottom: 25px;
-    margin-top: 25px;
+.match-with-prediction {
+  .smaller-bold {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
 
-    .actual-result {
-      font-weight: bold;
-      font-size: 1.6rem;
-    }
-    .predicted-result {
-      font-weight: normal;
-      font-size: 0.8rem;
-    }
-    .fifa-country-code {
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
+  .tiny-text {
+    font-size: 0.6rem;
+  }
+  .score-value {
+    font-weight: bold;
   }
 }
 
