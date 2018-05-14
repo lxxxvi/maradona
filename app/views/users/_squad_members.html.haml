@@ -16,6 +16,11 @@
               - ranking = squad_member.ranking_position
               - player_count = SquadMember.accepted.of_squad(squad_member.squad).count
               - if ranking.present?
-                = "You are ranked # #{squad_member.ranking_position} out of #{pluralize(player_count, 'player')}"
+                - if ranking == 1
+                  You are the
+                  %strong FUSSBALLGOTT
+                  in this squad!
+                - else
+                  = "You are ranked # #{squad_member.ranking_position} out of #{pluralize(player_count, 'player')}"
               - else
                 Not ranked (yet)
