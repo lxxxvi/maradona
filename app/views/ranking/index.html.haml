@@ -1,8 +1,8 @@
-%h1 Ranking
+%h1 Global ranking
 
-%h2 Guys who know
+.sinuswave-hr
 
-.row.no-gutters.small.text-muted
+.row.no-gutters.small.text-muted.mt-4
   .col
     \#
   .col-8
@@ -10,10 +10,17 @@
   .col.text-center
     Pts
 - @top_100.each do |user|
-  .row.no-gutters
+  .row.no-gutters.mt-3.mb-3.ci-ranked-user
     .col
       = user.ranking_position
     .col-8
-      = user.player_id
+      .row
+        .col
+          = link_to user.player_id, user_path(user)
+      - if user.ranking_position == 1
+        .row
+          .col
+            %small
+              %strong FUSSBALLÜBERGOTT
     .col.text-center
       = user.points_total || '-'

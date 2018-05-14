@@ -7,7 +7,8 @@ class RankingFlowsTest < ActionDispatch::IntegrationTest
     get ranking_path
     assert_response :success
 
-    assert_select 'h1', 'Ranking'
-    assert_select 'h2', 'Guys who know'
+    assert_select 'h1', 'Global ranking'
+    ranked_user_count = css_select('.ci-ranked-user').count
+    assert ranked_user_count.positive?
   end
 end

@@ -22,6 +22,14 @@
     .ranking
       .card.text-center
         .card-body
+          - if current_user.ranking_position == 1
+            .card-text.text-center.mt-2.mb-3
+              .row
+                .col
+                  %small Wow, you are the global
+              .row
+                .col
+                  %strong FUSSBALLÜBERGOTT
           .card-text
             .row
               .col-4.ranking-position.stats
@@ -44,7 +52,7 @@
       = "invitation".pluralize(current_user.squad_invitations.count)
     = render 'squad_invitations', squad_invitations: current_user.squad_invitations
 
-- if current_user.squads.any?
+- if current_user.squad_accepts.any?
   .mt-3
     %h2 Your squads
     .sinuswave-hr
