@@ -22,3 +22,4 @@ chicago_bulls:
 ch_stars:
   name: 'CH Stars'
   parameterized_name: 'ch-stars'
+  accepted_players_total: 3

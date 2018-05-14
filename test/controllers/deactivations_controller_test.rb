@@ -21,14 +21,16 @@ class DeactivationsControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test 'chappi deactivates, squads points of ch_stars changes' do
+  test 'chappi deactivates, squads stats of ch_stars changes' do
     user = users(:chappi)
     squad = squads(:ch_stars)
 
     assert_changes 'squad.points_average' do
-      get deactivate_url(user.deactivation_token)
-      assert_response :success
-      squad.reload
+      assert_changes 'squad.accepted_players_total' do
+        get deactivate_url(user.deactivation_token)
+        assert_response :success
+        squad.reload
+      end
     end
   end
 

@@ -34,6 +34,7 @@ class Squads::AcceptInvitationsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal  28, squad.points_total
     assert_equal 700, squad.points_average
+    assert_equal   4, squad.accepted_players_total
   end
 
   test 'kubi accepts invitation, squad members ranking changes' do
