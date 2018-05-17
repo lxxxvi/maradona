@@ -4,16 +4,23 @@
 
 %h1 Prediction center
 
+#prediction-center-actions.mt-4
+  .row.no-gutters
+    .col-6
+      %button.btn.btn-primary.col-12.upcoming-matches Upcoming
+    .col-6
+      %button.btn.btn-primary.col-12.finished-matches Finished
+
 .mt-5
   %h2 Group stage
-.sinuswave-hr
-- not_first = false
+  .sinuswave-hr
+
 - @matches_with_predictions.each do |match_with_prediction|
-  - if not_first
-    .sinuswave-hr
-  - else
-    - not_first = true
   - if match_with_prediction.match.predictable?
-    = render 'predictable_match', match_with_prediction: match_with_prediction
+    .future.match-with-prediction{ id: "match_#{match_with_prediction.match.id}"}
+      = render 'predictable_match', match_with_prediction: match_with_prediction
+      .sinuswave-hr
   - else
-    = render 'passed_match', match_with_prediction: match_with_prediction
+    .match-with-prediction.passed.d-none
+      = render 'passed_match', match_with_prediction: match_with_prediction
+      .sinuswave-hr
