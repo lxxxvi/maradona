@@ -4,12 +4,18 @@
 
 %h1 Prediction center
 
-#prediction-center-actions.mt-4
-  .row.no-gutters
-    .col-6
-      %button.btn.btn-primary.col-12.upcoming-matches Upcoming
-    .col-6
-      %button.btn.btn-primary.col-12.finished-matches Finished
+- if Match.finished.any?
+  #prediction-center-actions.mt-4
+    .row.no-gutters
+      .col-6
+        .btn-tk.col-12
+          %button.btn.btn-primary.col-12.upcoming-matches.pushed Upcoming
+          .bottom-border
+      .col-6
+        .btn-tk.col-12
+          %button.btn.btn-primary.col-12.finished-matches Finished
+          .bottom-border
+
 
 .mt-5
   %h2 Group stage
@@ -17,7 +23,7 @@
 
 - @matches_with_predictions.each do |match_with_prediction|
   - if match_with_prediction.match.predictable?
-    .future.match-with-prediction{ id: "match_#{match_with_prediction.match.id}"}
+    .match-with-prediction.future{ id: "match_#{match_with_prediction.match.id}"}
       = render 'predictable_match', match_with_prediction: match_with_prediction
       .sinuswave-hr
   - else
