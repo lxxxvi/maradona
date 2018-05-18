@@ -7,6 +7,8 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
     get prediction_center_path
     assert_response :success
     assert_select '.match-with-prediction', { count: 5 }
+    assert_select '#prediction-center-actions .upcoming-matches.pushed', 'Upcoming'
+    assert_select '#prediction-center-actions .finished-matches', 'Finished'
   end
 
   test 'match cannot be predicted anymore because kickoff is in past' do
