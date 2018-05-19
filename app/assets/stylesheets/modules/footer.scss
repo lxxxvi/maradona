@@ -1,11 +1,20 @@
 .footer {
-  margin: 24px 0;
+  font-size: 0.9rem;
+
+  margin: 0;
+  margin-top: 50px;
+  padding: 50px 0;
+  background-color: $purple-super-light;
 
   grid-row-start: 3;
   grid-row-end: 4;
   text-align: center;
 
-  a {
+  a.sign-out {
+    font-size: 0.6rem;
+  }
+
+  .tiny-text {
     font-size: 0.6rem;
   }
 }
