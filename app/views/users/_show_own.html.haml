@@ -1,0 +1,44 @@
+.row.mt-4.text-right
+  .col
+    .row
+      .col
+        %small
+          Your Player ID
+    .row
+      .col
+        %small#player-id
+          %span.text-muted
+          %input{ value: user.player_id }
+
+%h1 Your locker
+
+.mt-4
+  = render 'unpredicted_matches_box', user: user
+
+.mt-4
+  %h2 Your stats
+  .sinuswave-hr
+= render 'stats', user: user
+
+
+- if user.squad_invitations.any?
+  .mt-5
+    %h2.squad_invitations_header
+      You have
+      = user.squad_invitations.count
+      = "invitation".pluralize(user.squad_invitations.count)
+    = render 'squad_invitations', squad_invitations: user.squad_invitations
+
+- if user.squad_accepts.any?
+  .mt-3
+    %h2 Your squads
+    .sinuswave-hr
+    = render 'squad_members', squad_members: user.squad_accepts
+
+.row.text-center.mt-5
+  .col
+    .btn-tk
+      = link_to 'Create new squad',
+        new_squad_path,
+        class: 'btn btn-primary'
+      .bottom-border

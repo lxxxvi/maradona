@@ -1,0 +1,21 @@
+- if @user.ranking_position.present?
+  .ranking
+    .card.text-center
+      .card-body
+        - if @user.ranking_position == 1
+          .card-text.text-center.mt-2.mb-3
+            .row
+              .col
+                %strong FUSSBALLÜBERGOTT
+        .card-text
+          .row
+            .col-4.ranking-position.stats
+              = "#{current_user.ranking_position}"
+            .col-4.points-total.stats
+              = @user.points_total
+            .col-4.points-match-average.stats
+              = @user.points_match_average.to_f / 100
+          .row.mt-2
+            .col-4 Global ranking
+            .col-4 Total points
+            .col-4 Match average
