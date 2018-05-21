@@ -1,16 +1,43 @@
 require 'test_helper'
 
 class UsersFlowsTest < ActionDispatch::IntegrationTest
-  test 'user sees ranking on show page' do
+  test 'user sees ranking on show page during the world cup' do
     user = users(:diego)
+    other_user = users(:zinedine)
     user.update(ranking_position: 13)
     sign_in user
 
-    get authenticated_root_path
+    your_stats_h2_text = 'Your stats'
+    stats_h2_text = 'Stats'
 
-    assert_select '.ranking .ranking-position', '13'
-    assert_select '.ranking .points-total', '20'
-    assert_select '.ranking .points-match-average', '2.34'
+    travel_to during_the_world_cup do
+      get authenticated_root_path
+      assert_response :success
+      assert_select 'h2', { text: your_stats_h2_text, count: 1 }
+
+      assert_select '.ranking .ranking-position', '13'
+      assert_select '.ranking .points-total', '20'
+      assert_select '.ranking .points-match-average', '2.34'
+
+      get user_path(other_user)
+      assert_response :success
+      assert_select 'h2', { text: stats_h2_text, count: 1 }
+    end
+
+    travel_to before_the_world_cup do
+      # reset match scores to simulate no matches are finished
+      assert Match.update_all(left_team_score: nil, right_team_score: nil).positive?
+
+      get authenticated_root_path
+      assert_response :success
+      assert_select 'h2', { text: your_stats_h2_text, count: 0 },
+        'Stats should not be desplayed for own user before the world cup'
+
+      get user_path(other_user)
+      assert_response :success
+      assert_select 'h2', { text: stats_h2_text, count: 0 },
+        'Stats should not be desplayed for other user before the world cup'
+    end
   end
 
   test 'user sees how many predictions are missing' do
