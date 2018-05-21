@@ -7,13 +7,14 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   %body
+    = render 'layouts/navigation'
+
     .container-fluid{ role: :main }
-      = render 'layouts/navigation'
       .notice= notice
       - if alert.present?
         .alert= alert
       = yield
-    - if user_signed_in?
-      = render 'layouts/footer'
+
+    = render 'layouts/footer'
 
     = javascript_include_tag 'application'

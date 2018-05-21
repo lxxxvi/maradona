@@ -41,15 +41,7 @@
     padding-left: 20px;
     padding-right: 20px;
 
-    &.pushed {
-      top: 5px;
-    }
-
-    &:hover {
-      top: 5px;
-    }
-
-    &:focus {
+    &.pushed, &:focus {
       top: 5px;
     }
   }

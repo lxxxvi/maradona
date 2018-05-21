@@ -23,5 +23,10 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'sessions#new', as: :sign_in
     root to: 'matches#index'
   end
-  root to: 'users#show'
+
+  authenticated :user do
+    root 'users#show', as: :authenticated_root
+  end
+
+  root to: 'landing_page#show', as: :landing_page
 end

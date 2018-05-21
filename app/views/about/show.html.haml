@@ -1,3 +1,5 @@
+.mt-5
+  = link_to 'Back', :back
 
 .mt-5
   %h2 What is TippKick?
@@ -115,9 +117,6 @@
       .col-12
         We do not store your password as plain text. We
         %strong encrypt them
-        (using
-        = succeed ')' do
-          = link_to 'bcrypt', 'https://github.com/codahale/bcrypt-ruby'
         and cannot decrypt them again.
 
     .sinuswave-hr-tiny.mt-3.mb-3
@@ -197,7 +196,9 @@
         (MIT License)
         and available for free on
         = succeed '.' do
-          = link_to 'GitHub', 'https://github.com/lxxxvi/maradona'
+          = link_to 'GitHub',
+            'https://github.com/lxxxvi/maradona',
+            class: 'simple-link'
 
     .sinuswave-hr-tiny.mt-3.mb-3
 
@@ -213,8 +214,9 @@
       .col
         If you have comments, questions or love to share
         please write us an email to
-        = succeed '.' do
-          = mail_to 'tippkick.club@gmail.com'
+    .row.mt-3
+      .col
+        = mail_to 'tippkick.club@gmail.com', nil, class: 'simple-link'
 
 .mt-5
   %h2 Credits

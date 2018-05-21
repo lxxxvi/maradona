@@ -6,7 +6,7 @@ class Matches::PredictionsController < ApplicationController
 
   def create
     if @prediction.update(prediction_params)
-      redirect_to root_path
+      redirect_to authenticated_root_path
     else
       flash[:danger] = 'Wrong input'
       render :new

@@ -1,2 +1,21 @@
 %footer.footer
-  = link_to '[→ Sign out', destroy_user_session_path, method: :delete, lass: 'nav-link'
+  .container-fluid
+    .row
+      .col.tiny-text Contact
+    .row
+      .col= mail_to 'tippkick.club@gmail.com'
+
+    .row.mt-4
+      .col.tiny-text Source code available on
+    .row
+      .col
+        = link_to 'GitHub', 'https://github.com/lxxxvi/maradona'
+
+    .row.mt-4
+      .col.tiny-text Read more on the
+    .row
+      .col= link_to 'about page', about_path
+
+    - if user_signed_in?
+      .row.mt-4.mt-2
+        .col= link_to '[→ Sign out', destroy_user_session_path, method: :delete, class: 'sign-out'

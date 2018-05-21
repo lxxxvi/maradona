@@ -6,7 +6,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user.update(ranking_position: 13)
     sign_in user
 
-    get root_path
+    get authenticated_root_path
 
     assert_select '.ranking .ranking-position', '13'
     assert_select '.ranking .points-total', '20'
@@ -17,7 +17,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user = users(:diego)
 
     sign_in user
-    get root_path
+    get authenticated_root_path
 
     assert_select '.unpredicted_matches' do
       assert_select 'h2', 'Hurry!'
@@ -30,7 +30,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     koebi = users(:koebi)
 
     sign_in koebi
-    get root_path
+    get authenticated_root_path
     assert_response :success
 
     assert_select '.squad_members .squad_member' do
