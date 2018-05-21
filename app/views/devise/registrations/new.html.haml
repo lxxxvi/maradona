@@ -32,8 +32,10 @@
   .row.mt-3.mb-3
     .col.text-right
       .form-group
-        = f.submit 'Sign up',
-          class: 'btn btn-primary tk-btn'
+        .btn-tk
+          = f.submit 'Sign up',
+            class: 'btn btn-primary tk-btn'
+          .bottom-border
 
 .row
   .col.text-right

@@ -1,25 +1,4 @@
 .mt-5
-  %h1 Good you're here!
-
-.row.mt-5
-  .col
-    %strong TippKick
-    is a
-    %strong free
-    and
-    %strong fun
-    betting game for the
-    %strong Soccer World Cup 2018 in Russia!
-
-.row.mt-5.no-gutters.text-center
-  .col
-    .btn-tk
-      = link_to 'Create an account',
-        new_registration_path(resource_name),
-        class: 'btn btn-primary'
-      .bottom-border
-
-.mt-4
   %h2 Sign in
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

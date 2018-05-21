@@ -3,7 +3,7 @@ require 'test_helper'
 class SquadsFlowsTest < ActionDispatch::IntegrationTest
   test 'diego visits root page and sees his squads' do
     sign_in users(:diego)
-    get root_path
+    get authenticated_root_path
     assert_response :success
 
     squad_member_elements = css_select '.squad_members .squad_member'
@@ -12,7 +12,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
   test 'zinedine visits root page and sees his squads ' do
     sign_in users(:zinedine)
-    get root_path
+    get authenticated_root_path
     assert_response :success
 
     squad_member_elements = css_select '.squad_members .squad_member'
@@ -41,7 +41,7 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
 
   test 'diego creates new a squad' do
     sign_in users(:diego)
-    get root_path
+    get authenticated_root_path
     assert_response :success
     assert_select 'a.btn-primary', 'Create new squad'
 

@@ -37,7 +37,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
   test 'pele accepts an invitation' do
     squad = squads(:les_bleues)
     sign_in users(:pele)
-    get root_path
+    get authenticated_root_path
 
     assert_select 'nav span.invitations-count', '1', 'Pele should see an invitation in the navigation'
 
@@ -59,7 +59,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     squad = squads(:les_bleues)
     sign_in users(:pele)
 
-    get root_path
+    get authenticated_root_path
     assert_response :success
 
     assert_invitation_is_shown
