@@ -15,10 +15,11 @@
 .mt-4
   = render 'unpredicted_matches_box', user: user
 
-.mt-4
-  %h2 Your stats
-  .sinuswave-hr
-= render 'stats', user: user
+- if Match.finished.limit(1).any?
+  .mt-4
+    %h2 Your stats
+    .sinuswave-hr
+  = render 'stats', user: user
 
 
 - if user.squad_invitations.any?
