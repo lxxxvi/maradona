@@ -19,10 +19,11 @@
     .col
       Ask your friends for their Player ID in order to send them an invitation to join.
 
-.mt-4
-  %h2 Squad stats
-  .sinuswave-hr
-  - if @squad.ranking_position.present?
+- if Match.finished.limit(1).any?
+  .mt-4
+    %h2 Squad stats
+    .sinuswave-hr
+
     .card.text-center.mt-4
       .card-body
         .card-text
@@ -37,8 +38,6 @@
             .col Global ranking
             .col Total points
             .col Average points
-  - else
-    %small.text-muted No stats yet
 
 - if policy(@squad).show_members?
   .mt-4

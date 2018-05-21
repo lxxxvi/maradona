@@ -119,6 +119,25 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_equal "(Invited)", element.css('.ci-player-stats').text.strip
   end
 
+  test 'squad stats' do
+    sign_in users(:koebi)
+    squad = squads(:ch_stars)
+    squad_stats_h2_text = 'Squad stats'
+
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select 'h2', squad_stats_h2_text
+
+    # simulate unstarted tournament
+    assert Match.update_all(left_team_score: nil, right_team_score: nil).positive?
+
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select 'h2', text: squad_stats_h2_text, count: 0
+  end
+
   private
 
   def css_find(selektor)
