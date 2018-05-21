@@ -30,11 +30,14 @@
       = "invitation".pluralize(user.squad_invitations.count)
     = render 'squad_invitations', squad_invitations: user.squad_invitations
 
-- if user.squad_accepts.any?
-  .mt-3
-    %h2 Your squads
-    .sinuswave-hr
+.mt-3
+  %h2 Your squads
+  .sinuswave-hr
+  - if user.squad_accepts.any?
     = render 'squad_members', squad_members: user.squad_accepts
+  - else
+    .row.mt-3
+      .col You are not in any squads yet.
 
 .row.text-center.mt-5
   .col
@@ -43,3 +46,11 @@
         new_squad_path,
         class: 'btn btn-primary'
       .bottom-border
+
+.row.mt-2
+  .col You can create or own squads and then ask friends to join them.
+.row.mt-2
+  .col
+    Alternatively, you can pass your Player ID
+    %strong= user.player_id
+    to a squad's coach, so they can invite you.
