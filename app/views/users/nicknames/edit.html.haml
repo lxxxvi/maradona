@@ -1,0 +1,15 @@
+%h1 Edit Nickname
+
+.row
+  .col
+    = form_for @user, url: user_nickname_path(@user) do |form|
+      .row.mt-5
+        .col
+          .form-group
+          = form.text_field :nickname, class: 'form-control'
+
+      .row.mt-5
+        .col.text-right
+          .btn-tk
+            = form.submit 'Update Nickname', class: 'btn btn-primary'
+            .bottom-border

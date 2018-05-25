@@ -79,4 +79,54 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h2', 'Squads'
     assert_select 'h2', count: 2
   end
+
+  test 'user changes the nickname' do
+    user = users(:zinedine)
+
+    sign_in user
+    get authenticated_root_path
+    assert_response :success
+
+    assert_select 'h1', 'Hi Zidi!'
+    assert_select 'a[href="/users/zinedine-zidane-22222/nickname/edit"]', 'Edit Nickname'
+
+    get edit_user_nickname_path(user)
+    assert_response :success
+
+    assert_select 'h1', 'Edit Nickname'
+    assert_select 'form input#user_nickname', count: 1
+    submit_button = css_select('form input[type="submit"]').first
+    assert_equal 'Update Nickname', submit_button.attributes['value'].text
+
+    assert_changes 'user.nickname', from: 'Zidi', to: 'Zinedine' do
+      patch user_nickname_path(user), params: {
+        user: {
+          nickname: 'Zinedine'
+        }
+      }
+      follow_redirect!
+      assert_response :success
+      user.reload
+    end
+  end
+
+  test 'user cannot change nickname of other' do
+    user = users(:zinedine)
+    other_user = users(:diego)
+
+    sign_in user
+    get edit_user_nickname_path(other_user)
+    assert_response :success
+
+    assert_select 'h1', 'Fooo'
+
+    patch user_nickname_path(other_user), params: {
+      user: {
+        nickname: 'Hijack!'
+      }
+    }
+    follow_redirect!
+
+    assert false
+  end
 end

@@ -19,6 +19,8 @@ class User < ApplicationRecord
   before_create :assign_random_player_id
   before_create :assign_new_deactivation_token
 
+  validates_uniqueness_of :nickname
+
   def collect_points!
     evaluate_predictions!
     update(points_total: predictions.sum(:points_total))
