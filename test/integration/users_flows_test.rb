@@ -87,7 +87,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     get authenticated_root_path
     assert_response :success
 
-    assert_select 'h1', 'Hi Zidi!'
+    assert_select 'h1', 'Your locker'
     assert_select 'a[href="/users/zinedine-zidane-22222/nickname/edit"]', 'Edit Nickname'
 
     get edit_user_nickname_path(user)
@@ -108,25 +108,5 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
       assert_response :success
       user.reload
     end
-  end
-
-  test 'user cannot change nickname of other' do
-    user = users(:zinedine)
-    other_user = users(:diego)
-
-    sign_in user
-    get edit_user_nickname_path(other_user)
-    assert_response :success
-
-    assert_select 'h1', 'Fooo'
-
-    patch user_nickname_path(other_user), params: {
-      user: {
-        nickname: 'Hijack!'
-      }
-    }
-    follow_redirect!
-
-    assert false
   end
 end

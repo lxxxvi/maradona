@@ -1,11 +1,12 @@
 class Users::NicknamesController < ApplicationController
+  before_action :set_user, only: [:edit, :update]
+
   def edit
-    @user = current_user
     authorize @user, :edit?
   end
 
   def update
-    @user = current_user
+    authorize @user, :update?
 
     if @user.update(user_params)
       redirect_to authenticated_root_path, notice: 'Nickname updated'
@@ -15,6 +16,10 @@ class Users::NicknamesController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find_by(player_id: params[:user_player_id])
+  end
 
   def user_params
     params.require(:user).permit(:nickname)

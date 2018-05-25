@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   before_create :assign_random_player_id
   before_create :assign_new_deactivation_token
+  before_create :initialize_nickname
 
   validates_uniqueness_of :nickname
 
@@ -59,5 +60,9 @@ class User < ApplicationRecord
 
   def assign_new_deactivation_token
     self.deactivation_token = SecureRandom.alphanumeric(64)
+  end
+
+  def initialize_nickname
+    self.nickname ||= self.player_id
   end
 end
