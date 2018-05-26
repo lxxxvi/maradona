@@ -58,14 +58,11 @@ const playerIdWithNicknameToLi = function(playerIdWithNickname) {
   html += '  <div class="row">';
   html += '    <div class="col">' + nickname + '</div>';
   html += '  </div>';
-
-  if(nickname != playerId) {
-    html += '  <div class="row">';
-    html += '    <div class="col">';
-    html += '      <small class="text-muted">' + playerId + '</small>';
-    html += '    </div>';
-    html += '  </div>';
-  }
+  html += '  <div class="row">';
+  html += '    <div class="col">';
+  html += '      <small class="text-muted player-id">' + playerId + '</small>';
+  html += '    </div>';
+  html += '  </div>';
 
   html += '</li>';
 
@@ -87,7 +84,7 @@ const resetSelectionInSearchResult = function() {
 const setSelectionTo = function(element) {
   element.classList.add('selected')
   formSubmitInput().classList.remove('d-none');
-  squadMemberInvitationPlayerIdInput().value = element.innerText;
+  squadMemberInvitationPlayerIdInput().value = element.querySelector('.player-id').innerText;
 }
 
 const searchResultLiClicked = function() {

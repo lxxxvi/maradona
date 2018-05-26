@@ -8,7 +8,7 @@ class Squad::MemberInvitationForm
 
   def initialize(squad, params = {})
     @squad = squad
-    @player_id = params.values_at(:player_id)
+    @player_id = params[:player_id]&.chomp
   end
 
   def squad_member

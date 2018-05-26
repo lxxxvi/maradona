@@ -2,25 +2,25 @@
 .row.mt-4
   .col= link_to 'Back to your locker', authenticated_root_path
 
-.mt-1
+.mt-4
   %h1.inline-block= @squad.name
   - if policy(@squad).edit?
     %small.edit= link_to 'Edit', edit_squad_path(@squad)
 
 - if policy(@squad).edit?
-  .row.mt-4
+  .row.mt-5
     .col.text-center
       .btn-tk
         = link_to 'Invite friend to squad',
           new_squad_member_invitation_path(@squad),
           class: 'btn btn-primary'
         .bottom-border
-  .row.mt-2
+  .row.mt-4
     .col
-      Ask your friends for their Player ID in order to send them an invitation to join.
+      %small Ask your friends for their Nickname in order to send them an invitation to join.
 
 - if Match.finished.limit(1).any?
-  .mt-4
+  .mt-5
     %h2 Squad stats
     .sinuswave-hr
 
@@ -40,7 +40,7 @@
             .col Average points
 
 - if policy(@squad).show_members?
-  .mt-4
+  .mt-5
     %h2 Players rankings
     .sinuswave-hr
     = render 'squad_members', squad_members: @squad.squad_members.invited_or_accepted.ordered
