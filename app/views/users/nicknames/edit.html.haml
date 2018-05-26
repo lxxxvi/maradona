@@ -1,0 +1,20 @@
+%h1 Name yourself
+
+.row
+  .col
+    = form_for @user, url: user_nickname_path(@user) do |form|
+      .row.mt-5
+        .col
+          .form-group
+          = form.text_field :nickname,
+            class: "form-control #{bs_invalid_class(form.object)}"
+          - if form.object.errors.has_key?(:nickname)
+            - form.object.errors.full_messages_for(:nickname).each do |full_message|
+              .text-danger
+                = full_message
+
+      .row.mt-5
+        .col.text-right
+          .btn-tk
+            = form.submit 'Change Nickname', class: 'btn btn-primary'
+            .bottom-border

@@ -16,7 +16,7 @@
     .col-8
       .row
         .col
-          = link_to user.player_id, user_path(user)
+          = link_to user.nickname, user_path(user)
       - if user.ranking_position == 1
         .row
           .col

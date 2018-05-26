@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
     user.save!
 
     assert_match /[a-z]+/, user.player_id
+    assert_equal user.player_id, user.nickname, 'nickname should be same as player_id'
     assert_match /[[:alnum:]]{64}/, user.deactivation_token
   end
 end

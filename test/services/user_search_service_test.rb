@@ -7,6 +7,12 @@ class UserSearchServiceTest < ActiveSupport::TestCase
     assert_equal 1, search_result.count
   end
 
+  test 'returns uninvited by nickname' do
+    service = UserSearchService.new('Michl', 'les-bleues')
+    search_result = service.find_player_ids
+    assert_equal 1, search_result.count
+  end
+
   test 'does not return accepted' do
     service = UserSearchService.new('zine', 'les-bleues')
     search_result = service.find_player_ids
@@ -35,6 +41,7 @@ class UserSearchServiceTest < ActiveSupport::TestCase
     service = UserSearchService.new('mi ba', 'les-bleues')
     search_result = service.find_player_ids
     assert_equal 1, search_result.count
-    assert_equal 'michael-ballack-66666', search_result.first
+    assert_equal 'michael-ballack-66666', search_result.first['player_id']
+    assert_equal 'Michl Ballack', search_result.first['nickname']
   end
 end

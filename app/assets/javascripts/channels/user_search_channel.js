@@ -49,8 +49,27 @@ const performSearch = function() {
   }
 }
 
-const playerIdToLi = function(playerId) {
-  return "<li>" + playerId + "</li>";
+const playerIdWithNicknameToLi = function(playerIdWithNickname) {
+  var nickname = playerIdWithNickname.nickname;
+  var playerId = playerIdWithNickname.player_id;
+  var html = "";
+
+  html += '<li>';
+  html += '  <div class="row">';
+  html += '    <div class="col">' + nickname + '</div>';
+  html += '  </div>';
+
+  if(nickname != playerId) {
+    html += '  <div class="row">';
+    html += '    <div class="col">';
+    html += '      <small class="text-muted">' + playerId + '</small>';
+    html += '    </div>';
+    html += '  </div>';
+  }
+
+  html += '</li>';
+
+  return html;
 };
 
 const resetSearchResultList = function() {
@@ -87,18 +106,18 @@ const addClickEventsToLisInSearchResult = function() {
   });
 };
 
-const buildSearchResultList = function(playerIds) {
+const buildSearchResultList = function(playerIdsWithNicknames) {
   var innerHTML = "No player found";
 
-  if (playerIds.length > 0) {
-    var lis = playerIds.map(playerIdToLi).join("\n");
+  if (playerIdsWithNicknames.length > 0) {
+    var lis = playerIdsWithNicknames.map(playerIdWithNicknameToLi).join("\n");
     innerHTML = "<div class='row'><div class='col text-center'><small class='text-muted'>Select player...</small></div></div>"
     innerHTML += "<ul>" + lis + "</ul>";
   }
 
   searchResultList().innerHTML = innerHTML;
 
-  if (playerIds.length > 0) {
+  if (playerIdsWithNicknames.length > 0) {
     addClickEventsToLisInSearchResult();
   } else {
     resetSelectionInSearchResult();
@@ -106,7 +125,7 @@ const buildSearchResultList = function(playerIds) {
 };
 
 const processSearchResponse = function(response) {
-  buildSearchResultList(response.playerIds);
+  buildSearchResultList(response.playerIdsWithNicknames);
 };
 
 if (searchInput() != null) {
