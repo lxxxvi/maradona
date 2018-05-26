@@ -10,7 +10,7 @@
     .d-flex.flex-column.h-100
       = render 'layouts/navigation'
 
-      %main.container.d-flex.flex-column.h-100{ role: :main }
+      %main.container.d-flex.flex-column{ role: :main }
         .notice= notice
         - if alert.present?
           .alert= alert
