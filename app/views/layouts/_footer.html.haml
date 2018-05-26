@@ -19,3 +19,5 @@
     - if user_signed_in?
       .row.mt-4.mt-2
         .col= link_to '[→ Sign out', destroy_user_session_path, method: :delete, class: 'sign-out'
+    .mt-5.mb-3.text-center
+      %img{ src: '/assets/logo.svg', width: '25%' }

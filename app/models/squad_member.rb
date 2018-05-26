@@ -8,7 +8,7 @@ class SquadMember < ApplicationRecord
   scope :ordered          , -> {
     includes(:user)
       .order('squad_members.ranking_position ASC')
-      .order('users.player_id ASC')
+      .order('users.nickname ASC')
   }
   scope :coaches          , -> { active.where(coach: true) }
   scope :accepted         , -> { active.where.not(invitation_accepted_at: nil) }

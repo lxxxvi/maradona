@@ -1,20 +1,15 @@
-.row.mb-3.mt-3
-  .col
-    = link_to 'Cancel',
-      squad_path(member_invitation_form.squad)
-
-.row
+.row.mt-4
   .col
     .form-group
       = text_field_tag :squad_member_search_input,
         nil,
-        placeholder: 'Search player ID',
+        placeholder: 'Search by nickname or player ID',
         class: 'form-control'
 
 #search_result
 
 = form_for member_invitation_form do |f|
-  .row.mt-5
+  .row.mt-3
     .col.text-right
       = f.hidden_field :player_id
       = hidden_field_tag :squad_parameterized_name, f.object.squad.parameterized_name
