@@ -8,11 +8,11 @@ const clearSelection = function() {
 }
 
 const copyDiv = function() {
-  return document.querySelector("#player-id span");
+  return document.querySelector("#nickname span");
 }
 
 const playerIdInput = function() {
-  return document.querySelector("#player-id input");
+  return document.querySelector("#nickname input");
 }
 
 const copyDivExists = function() {

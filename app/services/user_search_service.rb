@@ -1,8 +1,8 @@
 class UserSearchService
-  attr_reader :player_id_likes, :squad
+  attr_reader :search_terms, :squad
 
-  def initialize(player_id_likes, squad_parameterized_name)
-    @player_id_likes = player_id_likes
+  def initialize(search_terms, squad_parameterized_name)
+    @search_terms = search_terms
     @squad = Squad.find_by(parameterized_name: squad_parameterized_name)
   end
 
@@ -10,15 +10,27 @@ class UserSearchService
     return if @squad.blank?
     query = active_users_not_in_squad
 
-    player_id_likes.split(' ').map do |player_id_like|
-      query = query.where("player_id LIKE ?", "%#{player_id_like.downcase}%")
+    search_terms.split(' ').map do |search_term|
+      query = query.where("
+          lower(player_id) LIKE :term
+       OR lower(nickname)  LIKE :term", term: "%#{search_term.downcase}%")
     end
 
-    query.ordered.pluck(:player_id)
+    player_ids_with_nicknames(query)
   end
+
+  private
 
   def active_users_not_in_squad
     user_ids_in_squad = SquadMember.where(squad: squad).pluck(:user_id)
     User.active.where.not(id: user_ids_in_squad)
+  end
+
+  def player_ids_with_nicknames(query)
+    query
+      .ordered
+      .select(:player_id, :nickname).map do |user|
+        user.attributes.slice("player_id", "nickname")
+    end
   end
 end

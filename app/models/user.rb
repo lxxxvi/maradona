@@ -11,16 +11,17 @@ class User < ApplicationRecord
   has_many :squad_invitations , -> { invited } , class_name: 'SquadMember'
   has_many :squads, through: :squad_accepts
 
-  scope :ordered, -> { order(player_id: :asc) }
+  scope :ordered, -> { order(nickname: :asc) }
   scope :ordered_by_ranking, -> { order(ranking_position: :asc) }
   scope :active, -> { where(deactivated_at: nil) }
   scope :inactive, -> { where.not(deactivated_at: nil) }
 
-  before_create :assign_random_player_id
+  before_validation :assign_random_player_id
+  before_validation :initialize_nickname
   before_create :assign_new_deactivation_token
-  before_create :initialize_nickname
 
-  validates_uniqueness_of :nickname
+  validates_presence_of   :player_id, :nickname
+  validates_uniqueness_of :player_id, :nickname
 
   def collect_points!
     evaluate_predictions!

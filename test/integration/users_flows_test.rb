@@ -74,7 +74,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     get user_path(other_user)
     assert_response :success
 
-    assert_select 'h1', 'diego-maradona-11111'
+    assert_select 'h1', 'Diego Maradona'
     assert_select 'h2', 'Stats'
     assert_select 'h2', 'Squads'
     assert_select 'h2', count: 2
@@ -88,15 +88,15 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h1', 'Your locker'
-    assert_select 'a[href="/users/zinedine-zidane-22222/nickname/edit"]', 'Edit Nickname'
+    assert_select 'a[href="/users/zinedine-zidane-22222/nickname/edit"]', 'Change'
 
     get edit_user_nickname_path(user)
     assert_response :success
 
-    assert_select 'h1', 'Edit Nickname'
+    assert_select 'h1', 'Name yourself'
     assert_select 'form input#user_nickname', count: 1
     submit_button = css_select('form input[type="submit"]').first
-    assert_equal 'Update Nickname', submit_button.attributes['value'].text
+    assert_equal 'Change Nickname', submit_button.attributes['value'].text
 
     assert_changes 'user.nickname', from: 'Zidi', to: 'Zinedine' do
       patch user_nickname_path(user), params: {

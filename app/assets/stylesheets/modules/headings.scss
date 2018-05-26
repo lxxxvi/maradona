@@ -4,4 +4,9 @@ h1 {
   &.inline-block {
     display: inline-block;
   }
+
+  &.smaller {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+  }
 }
