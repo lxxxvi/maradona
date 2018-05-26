@@ -1,7 +1,8 @@
-.row.mt-3
-  .col
-    = link_to 'Back to squad',
-      squad_path(@member_invitation_form.squad)
+.mt-4
+  .row
+    .col
+      = link_to 'Back to squad',
+        squad_path(@member_invitation_form.squad)
 
 %h1.smaller= "Invite friend to #{@squad.name}"
 
