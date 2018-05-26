@@ -5,6 +5,7 @@ diego:
   <<: *DEFAULTS
   email: 'diego@dev.tippkick.club'
   player_id: 'diego-maradona-11111'
+  nickname: 'Diego Maradona'
   points_total: 20
   deactivation_token: 'diego_deactivation_token'
   points_match_average: 234
@@ -13,42 +14,49 @@ zinedine:
   <<: *DEFAULTS
   email: 'zinedine@dev.tippkick.club'
   player_id: 'zinedine-zidane-22222'
+  nickname: 'Zidi'
   deactivation_token: 'zinedine_deactivation_token'
 
 pele:
   <<: *DEFAULTS
   email: 'pele@dev.tippkick.club'
   player_id: 'pele-nascimento-33333'
+  nickname: 'Pele'
   deactivation_token: 'pele_deactivation_token'
 
 juergen:
   <<: *DEFAULTS
   email: 'juergen@dev.tippkick.club'
   player_id: 'juergen-klinsmann-44444'
+  nickname: 'Klinsi'
   deactivation_token: 'juergen_deactivation_token'
 
 jordan:
   <<: *DEFAULTS
   email: 'jordan@dev.tippkick.club'
   player_id: 'michael-jordan-55555'
+  nickname: 'Michi Jordan'
   deactivation_token: 'jordan_deactivation_token'
 
 ballack:
   <<: *DEFAULTS
   email: 'ballack@dev.tippkick.club'
   player_id: 'michael-ballack-66666'
+  nickname: 'Michl Ballack'
   deactivation_token: 'ballack_deactivation_token'
 
 rooney:
   <<: *DEFAULTS
   email: 'rooney@dev.tippkick.club'
   player_id: 'wayne-rooney-77777'
+  nickname: 'Rooney'
   deactivation_token: 'rooney_deactivation_token'
 
 koebi:
   <<: *DEFAULTS
   email: 'koebi@dev.tippkick.club'
   player_id: 'koebi-kuhn-88880'
+  nickname: 'Koebi National'
   deactivation_token: 'koebi_deactivation_token'
   points_total: 10
 
@@ -56,6 +64,7 @@ alain:
   <<: *DEFAULTS
   email: 'alain@dev.tippkick.club'
   player_id: 'alain-suter-88881'
+  nickname: 'Alain Super Susi Suter'
   deactivation_token: 'alain_deactivation_token'
   points_total: 6
 
@@ -63,6 +72,7 @@ chappi:
   <<: *DEFAULTS
   email: 'chappi@dev.tippkick.club'
   player_id: 'stephane-chapuisat-88882'
+  nickname: 'Chappi'
   deactivation_token: 'chappi_deactivation_token'
   points_total: 2
 
@@ -70,5 +80,6 @@ kubi:
   <<: *DEFAULTS
   email: 'kubi@dev.tippkick.club'
   player_id: 'kubi-tuerkilmaz-88883'
+  nickname: 'Kubi'
   deactivation_token: 'kubi_deactivation_token'
   points_total: 10

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_14_040832) do
+ActiveRecord::Schema.define(version: 2018_05_24_170404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,8 +108,10 @@ ActiveRecord::Schema.define(version: 2018_05_14_040832) do
     t.string "deactivation_token", null: false
     t.datetime "deactivated_at"
     t.integer "points_match_average"
+    t.string "nickname", null: false
     t.index ["deactivation_token"], name: "uk_users_deactivation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "ak_users_nickname", unique: true
     t.index ["player_id"], name: "index_users_on_player_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
