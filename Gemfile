@@ -19,7 +19,6 @@ gem 'jquery-rails'
 gem 'pundit'
 gem 'bugsnag', '~> 6.6'
 gem 'bootsnap'
-gem 'inline_svg'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'jbuilder', '~> 2.5'
