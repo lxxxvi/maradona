@@ -109,14 +109,14 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     squad_member_elements = css_select('.squad-members .squad-member')
 
     element = squad_member_elements[0]
-    assert_equal '1', element.css('.ci-ranking-position').text.strip
-    assert_equal 'stephane-chapuisat-88882', element.css('.ci-player-id').text.strip
-    assert_equal "2\n|\n0.0", element.css('.ci-player-stats').text.strip
+    assert_equal '1', element.css('.ci-user-ranking-position').text.strip
+    assert_equal 'Chappi', element.css('.ci-user-nickname').text.strip
+    assert_equal "2\n|\n0.0", element.css('.ci-user-stats').text.strip
 
     element = squad_member_elements[3]
-    assert_equal '-', element.css('.ci-ranking-position').text.strip
-    assert_equal 'kubi-tuerkilmaz-88883', element.css('.ci-player-id').text.strip
-    assert_equal "(Invited)", element.css('.ci-player-stats').text.strip
+    assert_equal '-', element.css('.ci-user-ranking-position').text.strip
+    assert_equal 'Kubi', element.css('.ci-user-nickname').text.strip
+    assert_equal "(Invited)", element.css('.ci-user-stats').text.strip
   end
 
   test 'squad stats' do

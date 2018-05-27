@@ -12,6 +12,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'a.btn-primary', 'Invite friend to squad'
+    assert_equal 2, squad_member_elements.count, 'There should be 2 squad members before the invitation'
 
     get new_squad_member_invitation_path(squad)
     form_submit_button = css_select('form input[type=submit].btn-primary').first
@@ -31,7 +32,8 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select '.squad-members .squad-member .ci-player-id', 'pele-nascimento-33333'
+    assert_select '.squad-members .squad-member .ci-user-nickname', 'Pele'
+    assert_equal 3, squad_member_elements.count, 'There should be 3 squad members after the invitation'
   end
 
   test 'pele accepts an invitation' do
@@ -86,5 +88,9 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     reject_invitation_form_button = css_select('.squad_invitations .reject_invitation').first
     assert_equal 'Join', accept_invitation_form_button.attr('value')
     assert_equal 'Reject', reject_invitation_form_button.attr('value')
+  end
+
+  def squad_member_elements
+    css_select('.squad-members .squad-member')
   end
 end

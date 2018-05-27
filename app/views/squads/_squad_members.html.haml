@@ -3,14 +3,14 @@
     - is_ranked = squad_member.ranking_position&.positive?
     .squad-member.mt-3.mb-3
       .row
-        .col-1.ci-ranking-position
+        .col-1.ci-user-ranking-position
           = squad_member.ranking_position || '-'
         .col-10
           .row
-            .col-12.ci-player-id
-              = link_to squad_member.user.player_id, user_path(squad_member.user)
+            .col-12.ci-user-nickname
+              = link_to squad_member.user.nickname, user_path(squad_member.user)
           .row
-            .col-12.text-muted.ci-player-stats
+            .col-12.text-muted.ci-user-stats
               %small
                 - if squad_member.invited?
                   (Invited)
