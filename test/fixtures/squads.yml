@@ -4,6 +4,7 @@ fifa_100:
   ranking_position: 5
   points_total: 20
   points_average: 15
+  invitation_key: "fifa-100-invitation-key"
 
 les_bleues:
   name: 'Les Bleues'
@@ -11,6 +12,7 @@ les_bleues:
   ranking_position: 2
   points_total: 300
   points_average: 20
+  invitation_key: "les-bleues-invitation-key"
 
 chicago_bulls:
   name: 'Chicago Bulls'
@@ -18,8 +20,10 @@ chicago_bulls:
   ranking_position: 9
   points_total: 3
   points_average: 15
+  invitation_key: "chicago-bulls-invitation-key"
 
 ch_stars:
   name: 'CH Stars'
   parameterized_name: 'ch-stars'
   accepted_players_total: 3
+  invitation_key: "ch-stars-invitation-key"

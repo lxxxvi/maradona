@@ -11,7 +11,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     get squad_path(squad)
     assert_response :success
 
-    assert_select 'a.btn-primary', 'Invite friend to squad'
+    assert_select 'a.btn-primary', 'Search and invite friend'
     assert_equal 2, squad_member_elements.count, 'There should be 2 squad members before the invitation'
 
     get new_squad_member_invitation_path(squad)
@@ -51,7 +51,13 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
 
-    assert_select 'h1', 'Your locker'
+    assert_select 'h1', 'Les Bleues'
+    squad_members_nicknames = css_select('.ci-user-nickname').map(&:text).map(&:strip)
+    assert_includes squad_members_nicknames, 'Pele'
+
+    get authenticated_root_path
+    assert_response :success
+
     squad_members_count_after = css_select('.squad_members .squad_member').count
     assert_equal squad_members_count_before + 1, squad_members_count_after, 'There should be one more (accepted) squads'
     assert_select '.squad_invitations .card', { count: 0 }, 'There should not be any invitions anymore'

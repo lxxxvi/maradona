@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_170404) do
+ActiveRecord::Schema.define(version: 2018_05_31_162330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_170404) do
     t.datetime "updated_at", null: false
     t.integer "points_average", default: 0
     t.integer "accepted_players_total", default: 1, null: false
+    t.string "invitation_key", null: false
+    t.index ["invitation_key"], name: "ak_squads_invitation_key", unique: true
     t.index ["name"], name: "uk_squads_name", unique: true
     t.index ["parameterized_name"], name: "uk_squads_parameterized_name", unique: true
   end

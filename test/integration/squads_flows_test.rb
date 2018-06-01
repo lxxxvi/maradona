@@ -138,6 +138,18 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_select 'h2', text: squad_stats_h2_text, count: 0
   end
 
+  test 'koebi sees shareable link' do
+    sign_in users(:koebi)
+    squad = squads(:ch_stars)
+
+    get squad_path(squad)
+    assert_response :success
+
+    assert_select 'h3', 'Invitation link'
+    invitation_link = css_find('a.invitation-link')
+    assert_match 'ch-stars-invitation-key', invitation_link.text
+  end
+
   private
 
   def css_find(selektor)

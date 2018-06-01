@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'prediction_center'   , to: 'matches#index'     , as: :prediction_center
   get 'deactivate/:token'   , to: 'deactivations#new' , as: :deactivate
   get 'about'               , to: 'about#show'        , as: :about
+  get 'join/:invitation_key', to: 'join_by_keys#new'  , as: :join_by_key
 
   namespace :admin do
     resource :sessions
