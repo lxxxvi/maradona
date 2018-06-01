@@ -10,6 +10,6 @@ class SquadHelperTest < ActionView::TestCase
   private
 
   def expected_ch_stars_invitation_link
-    'http://test.host/squads/ch-stars/join_by_key/ch-stars-invitation-key'
+    'http://test.host/join/ch-stars-invitation-key'
   end
 end

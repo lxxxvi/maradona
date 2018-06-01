@@ -10,13 +10,13 @@ Rails.application.routes.draw do
     resources :member_invitations, only: [:new, :create], module: :squads
     resources :accept_invitations, only: [:create]      , module: :squads
     resources :reject_invitations, only: [:create]      , module: :squads
-    get 'join_by_key/:invitation_key', to: 'squads/join_by_keys#new', module: :squads, as: 'join_by_key'
   end
 
   get 'global_ranking'      , to: 'ranking#index'     , as: :ranking
   get 'prediction_center'   , to: 'matches#index'     , as: :prediction_center
   get 'deactivate/:token'   , to: 'deactivations#new' , as: :deactivate
   get 'about'               , to: 'about#show'        , as: :about
+  get 'join/:invitation_key', to: 'join_by_keys#new'  , as: :join_by_key
 
   namespace :admin do
     resource :sessions

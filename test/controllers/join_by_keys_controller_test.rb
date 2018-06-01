@@ -32,7 +32,7 @@ class JoinByKeysControllerTest < ActionDispatch::IntegrationTest
     assert :success
 
     assert_not accepted_user_in_squad?(user, squad), 'Kubi SHOULD still NOT be in squad after'
-    assert_equal 'Not possible to join CH Stars, did you use the right link?', flash[:notice]
+    assert_equal 'Not possible to join squad, did you use the right link?', flash[:notice]
   end
 
   private

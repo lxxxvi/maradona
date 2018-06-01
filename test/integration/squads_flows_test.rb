@@ -146,8 +146,8 @@ class SquadsFlowsTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select 'h3', 'Invitation link'
-    invitation_link_input = css_find('input.invitation-link')
-    assert_match 'ch-stars-invitation-key', invitation_link_input.attributes['value'].value
+    invitation_link = css_find('a.invitation-link')
+    assert_match 'ch-stars-invitation-key', invitation_link.text
   end
 
   private

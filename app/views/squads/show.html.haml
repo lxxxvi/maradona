@@ -22,12 +22,15 @@
       .col.small
         Ask your friends for their Nickname in order to send them an invitation to join.
 
-  .mt-4
+  .mt-5
     %h3 Invitation link
+
+  .mt-3
     .row
       .col.text-center
-        %input.invitation-link{ value: squad_invitation_link(@squad) }
-    .row.mt-3
+        = link_to squad_invitation_link(@squad), nil, class: 'simple-link invitation-link'
+  .mt-4
+    .row
       .col.small
         Send this link to your friends, they will automatically be added to the squad when they open it.
 

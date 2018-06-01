@@ -20,6 +20,6 @@ class Squad < ApplicationRecord
   end
 
   def set_invitation_key
-    self.invitation_key ||= SecureRandom.alphanumeric(32)
+    self.invitation_key ||= SecureRandom.alphanumeric(8)
   end
 end
