@@ -35,6 +35,14 @@
 
   .row.mt-2
     .col.text-right
+      .btn-tk
+        = link_to 'Create account',
+          new_registration_path(User.new),
+          class: 'btn btn-primary'
+        .bottom-border
+
+  .row.mt-2
+    .col.text-right
       = link_to 'Forgot password', new_password_path(resource_name)
 
 
