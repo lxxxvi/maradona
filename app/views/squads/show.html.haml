@@ -28,7 +28,9 @@
   .mt-3
     .row
       .col.text-center
-        = link_to squad_invitation_link(@squad), nil, class: 'simple-link invitation-link'
+        = link_to squad_invitation_link(@squad),
+          squad_invitation_link(@squad),
+          class: 'simple-link invitation-link'
   .mt-4
     .row
       .col.small
