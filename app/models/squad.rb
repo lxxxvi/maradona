@@ -4,9 +4,10 @@ class Squad < ApplicationRecord
   scope :ordered, -> { order(:name) }
 
   before_validation :set_parameterized_name
+  before_validation :set_invitation_key
 
-  validates_presence_of   :name, :parameterized_name
-  validates_uniqueness_of :name, :parameterized_name
+  validates_presence_of   :name, :parameterized_name, :invitation_key
+  validates_uniqueness_of :name, :parameterized_name, :invitation_key
 
   def to_param
     self.parameterized_name
@@ -16,5 +17,9 @@ class Squad < ApplicationRecord
 
   def set_parameterized_name
     self.parameterized_name = self.name.parameterize
+  end
+
+  def set_invitation_key
+    self.invitation_key ||= SecureRandom.alphanumeric(32)
   end
 end
