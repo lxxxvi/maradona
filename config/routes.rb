@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :member_invitations, only: [:new, :create], module: :squads
     resources :accept_invitations, only: [:create]      , module: :squads
     resources :reject_invitations, only: [:create]      , module: :squads
-    get 'join_by_key/:invitation_key', to: 'join_by_keys#new' , module: :squads, as: 'join_by_key'
+    get 'join_by_key/:invitation_key', to: 'squads/join_by_keys#new', module: :squads, as: 'join_by_key'
   end
 
   get 'global_ranking'      , to: 'ranking#index'     , as: :ranking
