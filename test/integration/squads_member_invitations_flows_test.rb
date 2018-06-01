@@ -11,7 +11,7 @@ class SquadsMemberInvitationsFlowsTest < ActionDispatch::IntegrationTest
     get squad_path(squad)
     assert_response :success
 
-    assert_select 'a.btn-primary', 'Invite friend to squad'
+    assert_select 'a.btn-primary', 'Search and invite friend'
     assert_equal 2, squad_member_elements.count, 'There should be 2 squad members before the invitation'
 
     get new_squad_member_invitation_path(squad)

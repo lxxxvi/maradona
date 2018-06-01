@@ -7,17 +7,30 @@
   - if policy(@squad).edit?
     %small.edit= link_to 'Edit', edit_squad_path(@squad)
 
+
 - if policy(@squad).edit?
-  .row.mt-5
-    .col.text-center
-      .btn-tk
-        = link_to 'Invite friend to squad',
-          new_squad_member_invitation_path(@squad),
-          class: 'btn btn-primary'
-        .bottom-border
-  .row.mt-4
-    .col
-      %small Ask your friends for their Nickname in order to send them an invitation to join.
+  .mt-5
+    %h3 Invite by searching
+    .row.mt-5
+      .col.text-center
+        .btn-tk
+          = link_to 'Search and invite friend',
+            new_squad_member_invitation_path(@squad),
+            class: 'btn btn-primary'
+          .bottom-border
+    .row.mt-3
+      .col.small
+        Ask your friends for their Nickname in order to send them an invitation to join.
+
+  .mt-4
+    %h3 Invitation link
+    .row
+      .col.text-center
+        %input.invitation-link{ value: squad_invitation_link(@squad) }
+    .row.mt-3
+      .col.small
+        Send this link to your friends, they will automatically be added to the squad when they open it.
+
 
 - if Match.finished.limit(1).any?
   .mt-5
