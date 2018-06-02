@@ -26,4 +26,5 @@ ch_stars:
   name: 'CH Stars'
   parameterized_name: 'ch-stars'
   accepted_players_total: 3
+  points_average: 0
   invitation_key: "ch-stars-invitation-key"
