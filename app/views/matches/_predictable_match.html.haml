@@ -1,6 +1,12 @@
 .mt-4.text-center
   .row
     .col
+      .ci-kickoff-time
+        %small Kickoff in
+        %br
+        = distance_of_time_in_words(Time.zone.now, match_with_prediction.match.kickoff_at)
+  .row
+    .col
       = match_with_prediction.left_team.fifa_country_code
     .col
     .col
