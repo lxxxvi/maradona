@@ -10,7 +10,7 @@ Work in Progress: [https://tippkick.club](https://tippkick.club)
 
 ## Setup
 
-Project requires Postgres to be running. Then do:
+Project requires Postgres and Redis to be running. Then do:
 
 ```
 bin/setup
