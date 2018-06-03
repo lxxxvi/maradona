@@ -1,7 +1,13 @@
 class MatchPrediction
   attr_reader :data
 
-  TARGET_METHODS = { match: Match,left_team: Team, right_team: Team, prediction: Prediction}
+  TARGET_METHODS = {
+    match: Match,
+    left_team: Team,
+    right_team: Team,
+    prediction: Prediction,
+    venue: Venue
+  }
 
   def initialize(data = {})
     @data = data
