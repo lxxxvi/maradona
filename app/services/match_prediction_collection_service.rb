@@ -46,9 +46,14 @@ class MatchPredictionCollectionService
                  , p.points_total                     AS prediction_points_total
                  , p.created_at                       AS prediction_created_at
                  , p.updated_at                       AS prediction_updated_at
+                 , v.name                             AS venue_name
+                 , v.city                             AS venue_city
+                 , v.what3words                       AS venue_what3words
+                 , v.timezone                         AS venue_timezone
               FROM matches m
         INNER JOIN teams lt           ON lt.id      = m.left_team_id
         INNER JOIN teams rt           ON rt.id      = m.right_team_id
+        INNER JOIN venues v           ON v.id       = m.venue_id
    LEFT OUTER JOIN predictions p      ON m.id       = p.match_id
                                      AND p.user_id  = #{user.id}
           ORDER BY m.kickoff_at

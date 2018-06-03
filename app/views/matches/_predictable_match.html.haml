@@ -17,6 +17,13 @@
       = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg",
         class: 'country-flag'
     .col
+      .row
+        .col.ci-stadium
+          = match_with_prediction.venue.name
+      .row
+        .col.small.ci-city
+          = match_with_prediction.venue.city
+
     .col
       = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg",
         class: 'country-flag'
