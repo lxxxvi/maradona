@@ -10,7 +10,7 @@ Work in Progress: [https://tippkick.club](https://tippkick.club)
 
 ## Setup
 
-Project requires Postgres to be running. Then do:
+Project requires **Postgres** and **Redis** to be running. Then do:
 
 ```
 bin/setup
@@ -43,13 +43,18 @@ It contains data for
 
 ### Names
 
-During registration every user will be given a random name that contains of a `first_name`, `last_name` and a random number between 10000 and 99999, for example `lionel-zidane-22358`.
+During registration every user will be given a random name that contains of a `first_name`, `last_name` and a random number between 10000 and 99999, for example `lionel-zidane-22358`. This will be used as `player_id`.
 
 You can load a set of first and last names by running this rake task:
 
 ```shell
 rake import:names
 ```
+
+Also during creation, the user gets a `nickname` which will be initialized with the same value as the `player_id`.
+
+A `nickname` can be changed by the users, whereas the `player_id` cannot be edited. `player_id` is also used in the URL to identify a user, like so `http://localhost:3000/users/lionel-zidane-22358`.
+
 
 ## License
 
