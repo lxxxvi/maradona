@@ -42,4 +42,9 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
       assert_equal 'Samara', first_game_city.text.strip
     end
   end
+
+  test 'live match' do
+    # todo
+    assert false
+  end
 end
