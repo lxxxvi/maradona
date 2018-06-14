@@ -1,10 +1,16 @@
+
+- kickoff_in_future = match_with_prediction.match.kickoff_at > Time.zone.now
 .mt-4.text-center
   .row
     .col
       .ci-kickoff-time
-        %small Kickoff in
-        %br
-        = distance_of_time_in_words(Time.zone.now, match_with_prediction.match.kickoff_at)
+        - if kickoff_in_future
+          %small Kickoff in
+          %br
+          = distance_of_time_in_words(Time.zone.now, match_with_prediction.match.kickoff_at)
+        - else
+          .text-success.ci-live
+            Live
   .row
     .col
       = match_with_prediction.left_team.fifa_country_code
@@ -34,10 +40,13 @@
     .col
       = match_with_prediction.right_team.name
 
-- if match_with_prediction.match.kickoff_at > Time.zone.now
+- if kickoff_in_future
   .mt-4
     .score-controls
-      .row
+      .row.no-gutters
+        .col.text-center
+          .tiny-text.text-muted Your prediction
+      .row.no-gutters
         .col.text-center
           .btn-tk
             .btn-group-vertical.btn-group-lg{ role: :group }
@@ -58,5 +67,18 @@
               %button.btn.btn-primary{ onclick: "updateScore('right', 'plus', #{match_with_prediction.match.id} );" } +
               %button.btn.btn-primary{ onclick: "updateScore('right', 'minus', #{match_with_prediction.match.id});" } -
             .bottom-border
+- else
+  .mt-4
+    .score-controls
+      .row.no-gutters
+        .col.text-center
+          .tiny-text.text-muted Your prediction
+      .row.no-gutters
+        .col.text-center
+          %span.predicted-score.left-team-score
+            = match_with_prediction.prediction.left_team_score
+          \:
+          %span.predicted-score.right-team-score
+            = match_with_prediction.prediction.right_team_score
 
 .mt-4

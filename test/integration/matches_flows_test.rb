@@ -42,4 +42,16 @@ class MatchesFlowsTest < ActionDispatch::IntegrationTest
       assert_equal 'Samara', first_game_city.text.strip
     end
   end
+
+  test 'live match' do
+    sign_in users(:diego)
+    match = matches(:match_egy_uru)
+
+    travel_to match.kickoff_at + 15.minutes do
+      get prediction_center_path
+      assert_response :success
+
+      assert_select '.ci-live', count: 1
+    end
+  end
 end

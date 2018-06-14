@@ -22,7 +22,7 @@
   .sinuswave-hr
 
 - @matches_with_predictions.each do |match_with_prediction|
-  - if match_with_prediction.match.predictable?
+  - if match_with_prediction.match.no_scores?
     .match-with-prediction.future{ id: "match_#{match_with_prediction.match.id}"}
       = render 'predictable_match', match_with_prediction: match_with_prediction
       .sinuswave-hr
