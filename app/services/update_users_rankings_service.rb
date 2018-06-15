@@ -7,8 +7,8 @@ class UpdateUsersRankingsService
     def rank_users_sql
       <<-SQL
         WITH ranked_users AS (
-            SELECT id                                                    AS id
-                 , rank() OVER (ORDER BY COALESCE(points_total, 0) DESC) AS ranking_position
+            SELECT id                                                     AS id
+                 , rank() OVER (ORDER BY COALESCE(points_total, -1) DESC) AS ranking_position
               FROM users
         )
         UPDATE users
