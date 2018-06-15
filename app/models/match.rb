@@ -18,6 +18,7 @@ class Match < ApplicationRecord
     where.not(left_team_score: nil)
       .where.not(right_team_score: nil)
   }
+  scope :upcoming, -> { where('kickoff_at > ?', Time.zone.now) }
 
   validates_presence_of :phase, :left_team, :right_team, :venue, :kickoff_at
   validate :right_team_is_not_same_as_left_team

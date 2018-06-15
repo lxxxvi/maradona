@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def unpredicted_matches
-    Match.where.not(id: self.predictions.pluck(:match_id))
+    Match.upcoming.where.not(id: self.predictions.pluck(:match_id))
   end
 
   def deactivate!
