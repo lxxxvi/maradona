@@ -5,7 +5,7 @@ class UpdateUsersRankingsServiceTest < ActiveSupport::TestCase
     service = UpdateUsersRankingsService.new
     user = users(:diego)
 
-    assert_changes 'user.ranking_position', from: 0, to: 1 do
+    assert_changes 'user.ranking_position', from: nil, to: 1 do
       service.run!
       user.reload
     end
