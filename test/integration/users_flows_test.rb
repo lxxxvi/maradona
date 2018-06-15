@@ -80,7 +80,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select '.squad_members .squad_member' do
       assert_select '.ci-squad-name', 'CH Stars'
-      assert_select '.ci-squad-ranking', 'You are ranked # 3 out of 3 players'
+      assert_select '.ci-squad-ranking', 'Ranked # 3 out of 3 players'
     end
   end
 
@@ -88,12 +88,22 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user = users(:zinedine)
     other_user = users(:diego)
 
+    other_user.update(
+      ranking_position: 98,
+      points_total: 97,
+      points_match_average: 990
+    )
+
     sign_in user
     get user_path(other_user)
     assert_response :success
 
     assert_select 'h1', 'Diego Maradona'
     assert_select 'h2', 'Stats'
+    assert_select '.ranking-position.stats', text: '98'
+    assert_select '.points-total.stats', text: '97'
+    assert_select '.points-match-average.stats', text: '9.9'
+
     assert_select 'h2', 'Squads'
     assert_select 'h2', count: 2
   end

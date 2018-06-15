@@ -10,7 +10,7 @@
         .card-text
           .row
             .col-4.ranking-position.stats
-              = "#{current_user.ranking_position}"
+              = "#{@user.ranking_position}"
             .col-4.points-total.stats
               = @user.points_total
             .col-4.points-match-average.stats
