@@ -83,3 +83,10 @@ kubi:
   nickname: 'Kubi'
   deactivation_token: 'kubi_deactivation_token'
   points_total: 10
+
+roberto:
+  <<: *DEFAULTS
+  email: 'roberto@dev.tippkick.club'
+  player_id: 'roberto-baggio-90001'
+  nickname: 'Roberto'
+  deactivation_token: 'roberto_deactivation_token'

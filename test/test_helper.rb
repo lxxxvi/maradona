@@ -14,6 +14,10 @@ class ActiveSupport::TestCase
   def during_the_world_cup
     Time.new(2018, 6, 30, 0, 0, 0, 0)
   end
+
+  def after_the_world_cup
+    Time.new(2019, 1, 1, 0, 0, 0, 0)
+  end
 end
 
 class ActionDispatch::IntegrationTest

@@ -53,6 +53,24 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'user sees no missing predictions after world cup' do
+    user = users(:roberto)
+
+    assert_equal 0, user.predictions.count, 'Roberto should not have any predicions at all for this test'
+
+    sign_in user
+
+    travel_to before_the_world_cup do
+      get authenticated_root_path
+      assert_select '.unpredicted_matches', { count: 1 }, 'Should see unpredicted matches before the world cup'
+    end
+
+    travel_to after_the_world_cup do
+      get authenticated_root_path
+      assert_select '.unpredicted_matches', { count: 0 }, 'Should NOT see unpredicted matches after the world cup'
+    end
+  end
+
   test 'koebi sees his ranking in squad overview' do
     koebi = users(:koebi)
 
