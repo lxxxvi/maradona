@@ -3,11 +3,6 @@
     - squad_members.each do |squad_member|
       - this_squad = squad_member.squad
       .squad_member.mt-4
-        - coach_user = this_squad.coach_member.user
-        - if coach_user == current_user
-          .row
-            .col-12.ci-coach-name
-              %small.text-muted You are the coach
         .row
           .col-12.ci-squad-name.squad-name
             = link_to this_squad.name, squad_path(this_squad)
