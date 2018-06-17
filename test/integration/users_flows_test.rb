@@ -44,7 +44,9 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user = users(:diego)
 
     sign_in user
-    get authenticated_root_path
+    travel_to before_the_world_cup do
+      get authenticated_root_path
+    end
 
     assert_select '.unpredicted_matches' do
       assert_select 'h2', 'Hurry!'
