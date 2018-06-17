@@ -2,6 +2,7 @@ class Squad < ApplicationRecord
   has_many :squad_members
   has_one  :coach_member          , -> { coaches } , class_name: 'SquadMember'
   scope :ordered, -> { order(:name) }
+  scope :ordered_by_ranking, -> { order(:ranking_position) }
 
   before_validation :set_parameterized_name
   before_validation :set_invitation_key
