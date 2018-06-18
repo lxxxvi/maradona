@@ -9,7 +9,7 @@ class UpdateSquadsRankingsService
     <<-SQL
       WITH ranked_squads AS (
           SELECT id                                                    AS id
-               , rank() OVER (ORDER BY COALESCE(points_average, 0) DESC) AS ranking_position
+               , rank() OVER (ORDER BY COALESCE(points_average, -1) DESC) AS ranking_position
             FROM squads
       )
       UPDATE squads

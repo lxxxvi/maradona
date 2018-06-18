@@ -44,12 +44,32 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user = users(:diego)
 
     sign_in user
-    get authenticated_root_path
+    travel_to before_the_world_cup do
+      get authenticated_root_path
+    end
 
     assert_select '.unpredicted_matches' do
       assert_select 'h2', 'Hurry!'
       assert_select '.ci-number-of-unpredicted-matches', 'You have 3 unpredicted matches'
       assert_select 'a.btn.btn-primary', 'Predict them now!'
+    end
+  end
+
+  test 'user sees no missing predictions after world cup' do
+    user = users(:roberto)
+
+    assert_equal 0, user.predictions.count, 'Roberto should not have any predicions at all for this test'
+
+    sign_in user
+
+    travel_to before_the_world_cup do
+      get authenticated_root_path
+      assert_select '.unpredicted_matches', { count: 1 }, 'Should see unpredicted matches before the world cup'
+    end
+
+    travel_to after_the_world_cup do
+      get authenticated_root_path
+      assert_select '.unpredicted_matches', { count: 0 }, 'Should NOT see unpredicted matches after the world cup'
     end
   end
 
@@ -62,7 +82,7 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
 
     assert_select '.squad_members .squad_member' do
       assert_select '.ci-squad-name', 'CH Stars'
-      assert_select '.ci-squad-ranking', 'You are ranked # 3 out of 3 players'
+      assert_select '.ci-squad-ranking', 'Ranked # 3 out of 3 players'
     end
   end
 
@@ -70,12 +90,22 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     user = users(:zinedine)
     other_user = users(:diego)
 
+    other_user.update(
+      ranking_position: 98,
+      points_total: 97,
+      points_match_average: 990
+    )
+
     sign_in user
     get user_path(other_user)
     assert_response :success
 
     assert_select 'h1', 'Diego Maradona'
     assert_select 'h2', 'Stats'
+    assert_select '.ranking-position.stats', text: '98'
+    assert_select '.points-total.stats', text: '97'
+    assert_select '.points-match-average.stats', text: '9.9'
+
     assert_select 'h2', 'Squads'
     assert_select 'h2', count: 2
   end
