@@ -83,7 +83,7 @@ SELECT venue.id                   AS venue_id
   UNION SELECT 'humidity.recoup.cookery'::text                      AS venue
              , 'TUN'::text                                          AS left_team_code
              , 'ENG'::text                                          AS right_team_code
-             ,  TIMESTAMP WITH TIME ZONE '2018-06-18 20:00:00+00'   AS kickoff_at
+             ,  TIMESTAMP WITH TIME ZONE '2018-06-18 18:00:00+00'   AS kickoff_at
 
   UNION SELECT 'blinks.corn.commands'::text                         AS venue
              , 'COL'::text                                          AS left_team_code
