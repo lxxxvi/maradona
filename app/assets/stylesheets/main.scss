@@ -6,6 +6,9 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-rows: 1fr auto;
+  overflow-x: hidden;
+  width: 100%;
+  word-break: break-all;
 }
 
 ul {
