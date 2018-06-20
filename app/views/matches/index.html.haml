@@ -4,7 +4,7 @@
 
 %h1 Prediction center
 
-- if Match.finished.any?
+- if @finished_matches.any?
   #prediction-center-actions.mt-4
     .row.no-gutters
       .col-6
@@ -21,12 +21,13 @@
   %h2 Group stage
   .sinuswave-hr
 
-- @matches_with_predictions.each do |match_with_prediction|
-  - if match_with_prediction.match.no_scores?
-    .match-with-prediction.future{ id: "match_#{match_with_prediction.match.id}"}
-      = render 'predictable_match', match_with_prediction: match_with_prediction
-      .sinuswave-hr
-  - else
-    .match-with-prediction.passed.d-none
-      = render 'passed_match', match_with_prediction: match_with_prediction
-      .sinuswave-hr
+- @finished_matches.each do |match_with_prediction|
+  .match-with-prediction.passed.d-none
+    = render 'passed_match', match_with_prediction: match_with_prediction
+    .sinuswave-hr
+
+- @upcoming_matches.each do |match_with_prediction|
+  .match-with-prediction.future{ id: "match_#{match_with_prediction.match.id}"}
+    = render 'predictable_match', match_with_prediction: match_with_prediction
+    .sinuswave-hr
+

@@ -1,6 +1,15 @@
 class MatchesController < ApplicationController
   def index
-    @matches_with_predictions = find_matches_with_predictions
+    @upcoming_matches = []
+    @finished_matches = []
+
+    find_matches_with_predictions.each do |match_with_prediction|
+      if match_with_prediction.match.no_scores?
+        @upcoming_matches << match_with_prediction
+      else
+        @finished_matches.prepend(match_with_prediction)
+      end
+    end
   end
 
   private
