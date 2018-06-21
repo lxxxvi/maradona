@@ -7,7 +7,7 @@
           = squad_member.ranking_position || '-'
         .col-10
           .row
-            .col-12.ci-user-nickname
+            .col-12.ci-user-nickname.text-break-all
               = link_to squad_member.user.nickname, user_path(squad_member.user)
           .row
             .col-12.text-muted.ci-user-stats
