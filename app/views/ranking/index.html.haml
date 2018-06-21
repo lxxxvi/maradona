@@ -19,7 +19,7 @@
       = user.ranking_position || '-'
     .col-8
       .row
-        .col
+        .col.text-break-all
           = link_to user.nickname, user_path(user)
       - if user.points_match_average.present?
         .row
@@ -48,7 +48,7 @@
   .row.no-gutters.mt-3.mb-3.ci-ranked-squad
     .col= squad.ranking_position
     .col-8
-      .row
+      .row.text-break-all
         .col= link_to squad.name, squad_path(squad)
       .row
         .col.small.text-muted
