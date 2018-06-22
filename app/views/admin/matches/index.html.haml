@@ -6,10 +6,15 @@
       new_admin_match_path,
       class: 'btn btn-primary'
 
+.mt-5
+.btn.btn-secondary.toggle-finished-matches
+  Toggle finished
+
+.mt-5
 .row
   - @matches.each do |match|
     .col-lg-3.col-md-4.col-12.mb-3
-      - finished_class = match.no_scores? ? '' : 'finished-match'
+      - finished_class = match.no_scores? ? '' : 'finished-match d-none'
       .card{ data: { href: admin_match_path(match) }, class: "#{finished_class}" }
         .card-body
           .card-title
