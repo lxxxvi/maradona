@@ -8,22 +8,22 @@ document.querySelectorAll("div[data-href]").forEach(function(element) {
   element.addEventListener("click", function() {
     window.location = this.dataset.href;
   });
+});
 
-  const finishedMatchesCards = function() {
-    return document.querySelectorAll('.match.finished');
-  };
+const finishedMatchesCards = function() {
+  return document.querySelectorAll('.match.finished');
+};
 
-  const toggleFinishedMatchesButton = function() {
-    return document.querySelector('.btn.toggle-finished-matches');
-  };
+const toggleFinishedMatchesButton = function() {
+  return document.querySelector('.btn.toggle-finished-matches');
+};
 
-  toggleFinishedMatchesButton().addEventListener('click', function() {
-    finishedMatchesCards().forEach(function(element) {
-      if(element.classList.contains('d-none')) {
-        element.classList.remove('d-none');
-      } else {
-        element.classList.add('d-none');
-      }
-    });
+toggleFinishedMatchesButton().addEventListener('click', function() {
+  finishedMatchesCards().forEach(function(element) {
+    if(element.classList.contains('d-none')) {
+      element.classList.remove('d-none');
+    } else {
+      element.classList.add('d-none');
+    }
   });
 });
