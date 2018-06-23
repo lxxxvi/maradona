@@ -13,9 +13,9 @@
 .mt-5
 .row
   - @matches.each do |match|
-    .col-lg-3.col-md-4.col-12.mb-3
-      - finished_class = match.no_scores? ? '' : 'finished-match d-none'
-      .card{ data: { href: admin_match_path(match) }, class: "#{finished_class}" }
+    - finished_class = match.no_scores? ? '' : 'finished d-none'
+    .col-lg-3.col-md-4.col-12.mb-3.match{ class: "#{finished_class}" }
+      .card{ data: { href: admin_match_path(match) } }
         .card-body
           .card-title
             .row

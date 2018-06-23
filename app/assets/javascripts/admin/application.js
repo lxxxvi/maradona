@@ -10,7 +10,7 @@ document.querySelectorAll("div[data-href]").forEach(function(element) {
   });
 
   const finishedMatchesCards = function() {
-    return document.querySelectorAll('.card.finished-match');
+    return document.querySelectorAll('.match.finished');
   };
 
   const toggleFinishedMatchesButton = function() {
