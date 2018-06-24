@@ -1,0 +1,31 @@
+- if next_match_with_prediction.present?
+  %h2 Next match
+  .sinuswave-hr
+  .ci-next-match.mt-5
+    .row.text-center
+      .col.ci-kickoff-at
+        %small Kickoff in
+        = distance_of_time_in_words(Time.zone.now, next_match_with_prediction.match.kickoff_at)
+
+    .row.no-gutters.text-center.mt-3
+      .col-4.ci-left-team
+        = render 'matches/country_flag', team: next_match_with_prediction.left_team
+      .col-4.ci-prediction
+        .row
+          .col.tiny-text Prediction
+        .row
+          .col.ci-score-value.very-large-text
+            = next_match_with_prediction.prediction.left_team_score
+            \:
+            = next_match_with_prediction.prediction.right_team_score
+      .col-4.ci-right-team
+        = render 'matches/country_flag', team: next_match_with_prediction.right_team
+
+    .row.mt-4
+      .col.text-center
+        .btn-tk
+          = link_to 'Change prediction',
+            prediction_center_path,
+            class: 'btn btn-primary'
+          .bottom-border
+
