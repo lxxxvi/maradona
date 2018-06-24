@@ -1,8 +1,9 @@
 class MatchPredictionCollectionService
-  attr_reader :user
+  attr_reader :user, :scope
 
-  def initialize(user)
+  def initialize(user, scope = :all)
     @user = user
+    @scope = scope
   end
 
   def matches_with_predictions
@@ -56,7 +57,22 @@ class MatchPredictionCollectionService
         INNER JOIN venues v           ON v.id       = m.venue_id
    LEFT OUTER JOIN predictions p      ON m.id       = p.match_id
                                      AND p.user_id  = #{user.id}
+             WHERE 0=0
+                   #{scope_filter_sql}
           ORDER BY m.kickoff_at
+                   #{scope_limit_sql}
     EOF
+  end
+
+  def scope_filter_sql
+    "AND #{kickoff_at_filter_sql}" if scope == :next_upcoming
+  end
+
+  def kickoff_at_filter_sql
+    Match.where('m.kickoff_at >= ?', Time.zone.now).where_clause.ast.to_sql
+  end
+
+  def scope_limit_sql
+    'LIMIT 1' if scope == :next_upcoming
   end
 end

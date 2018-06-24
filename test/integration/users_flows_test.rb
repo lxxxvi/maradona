@@ -40,6 +40,25 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'user sees next match' do
+    user = users(:diego)
+    match = matches(:match_egy_uru)
+    sign_in user
+
+    travel_to match.kickoff_at - 1.minute do
+      get authenticated_root_path
+      assert_select 'h2', { text: 'Next match' }
+      assert_select '.ci-next-match' do
+        assert_select '.ci-left-team', count: 1
+        assert_select '.ci-right-team', count: 1
+        assert_select '.ci-prediction', count: 1
+        assert_select '.ci-score-value', count: 1, text: "0\n:\n1"
+        assert_select '.ci-kickoff-at', count: 1, text: "Kickoff in\n1 minute"
+        assert_select 'a[href="/prediction_center"]', count: 1
+      end
+    end
+  end
+
   test 'user sees how many predictions are missing' do
     user = users(:diego)
 

@@ -1,0 +1,11 @@
+- if team.present?
+  .row
+    .col
+      = team.fifa_country_code
+  .row
+    .col
+      = inline_svg "flags/#{team.fifa_country_code.downcase}.svg",
+        class: 'country-flag'
+  .row
+    .col.small
+      = team.name
