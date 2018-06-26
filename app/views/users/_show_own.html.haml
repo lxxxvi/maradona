@@ -14,10 +14,6 @@
 .mt-5
   = render 'unpredicted_matches_box', user: user
 
-.mt-5
-  = render 'next_match_with_prediction',
-    next_match_with_prediction: MatchPredictionCollectionService.new(user, :next_upcoming).matches_with_predictions&.first
-
 - if Match.finished.limit(1).any?
   .mt-4
     %h2 Your stats

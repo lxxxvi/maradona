@@ -5,7 +5,12 @@
 
   .row.text-center.mt-3
     .col-4
-      = render 'country_flag', team: match_with_prediction.left_team
+      .row
+        .col
+          = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+      .row
+        .col.smaller-bold
+          = match_with_prediction.left_team.fifa_country_code
 
     .col-4.actual-vs-predicted-score
       .row
@@ -28,7 +33,12 @@
               = match_with_prediction.prediction.right_team_score
 
     .col-4
-      = render 'country_flag', team: match_with_prediction.right_team
+      .row
+        .col
+          = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg", size: '50px*50px'
+      .row
+        .col.smaller-bold
+          = match_with_prediction.right_team.fifa_country_code
 
   .row.mt-4.text-center
     .col-2
