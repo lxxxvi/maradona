@@ -11,6 +11,11 @@
         - else
           .text-success.ci-live
             Live
+
+  .row.mt-3
+    .col.text-center.tiny-text
+      = Match.phases[match_with_prediction.match.phase]
+
   .row
     .col
       = match_with_prediction.left_team.fifa_country_code
