@@ -139,4 +139,13 @@ class UsersFlowsTest < ActionDispatch::IntegrationTest
       user.reload
     end
   end
+
+  test 'user sees information about knockout phase' do
+    user = users(:zinedine)
+    sign_in user
+
+    get authenticated_root_path
+
+    assert_select 'h2', 'Rules For The Knockout Phase'
+  end
 end

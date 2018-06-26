@@ -1,0 +1,36 @@
+.row
+  .col
+    %h2 Rules For The Knockout Phase
+    .sinuswave-hr
+.row.mt-3
+  .col
+    Hey
+    = succeed '!' do
+      %strong= current_user.nickname
+.row
+  .col.mt-3
+    Thank you for using TippKick, we hope you are enjoying our game and the world cup!
+.row
+  .col.mt-3
+    As you might have noticed, the first games for the knockout phase have been added!
+    = succeed ',' do
+      %strong Head over to the Prediction Center to predict these games
+    else you might miss important points!
+.row
+  .col.mt-3
+    Be informed that for the knockout phase, the
+    = succeed '!' do
+      %strong score after 90 resp. 120 minutes counts
+.row
+  .col.mt-3
+    We do not count the goals from the penalty shootout into the score.
+    %br
+    We do not add 1 goal for the winner after a penalty shootout either.
+.row
+  .col.mt-3
+    This means that score
+    %strong before
+    a penalty shootout counts, thus it is valid to predict a tie (i.e. 1:1) in the knockout phase!
+.row
+  .col.mt-3
+    Happy predicting!

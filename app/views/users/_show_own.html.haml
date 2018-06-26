@@ -12,14 +12,16 @@
           class: 'simple-link'
 
 .mt-5
+  = render 'predictions_for_knockout_phase'
+
+.mt-4
   = render 'unpredicted_matches_box', user: user
 
 - if Match.finished.limit(1).any?
-  .mt-4
+  .mt-5
     %h2 Your stats
     .sinuswave-hr
   = render 'stats', user: user
-
 
 - if user.squad_invitations.any?
   .mt-5
