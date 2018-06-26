@@ -1,6 +1,9 @@
 .mt-5.mb-5
-  .row.text-center
+  .row
+    .col.text-center.tiny-text
+      = Match.phases[match_with_prediction.match.phase]
 
+  .row.text-center.mt-3
     .col-4
       = render 'country_flag', team: match_with_prediction.left_team
 
