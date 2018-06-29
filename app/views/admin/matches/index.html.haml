@@ -17,7 +17,11 @@
     .col-lg-3.col-md-4.col-12.mb-3.match{ class: "#{finished_class}" }
       .card{ data: { href: admin_match_path(match) } }
         .card-body
-          .card-title
+          .card-text
+            .row.text-muted.text-center
+              .col
+                = match.phase_before_type_cast
+          .card-title.mt-3
             .row
               .col-5.col-lg-4.font-weight-bold
                 = match.left_team.fifa_country_code
@@ -25,6 +29,14 @@
                 vs
               .col-5.col-lg-4.text-right.font-weight-bold
                 = match.right_team.fifa_country_code
+          .card-text.mt-3.text-center
+            .row
+              .col
+                = match.kickoff_at&.strftime('%Y-%m-%d %H:%M')
+                UTC
+            .row.text-muted.tiny-text
+              .col
+                = match.venue.name
           .card-text.mb-3
             .row.display-4
               .col-5.col-lg-4
@@ -33,5 +45,4 @@
                 \:
               .col-5.col-lg-4.text-right
                 = match.right_team_score
-          .card-text.text-muted
-            = match.phase_before_type_cast
+
