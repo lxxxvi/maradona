@@ -72,6 +72,14 @@
               %button.btn.btn-primary{ onclick: "updateScore('right', 'plus', #{match_with_prediction.match.id} );" } +
               %button.btn.btn-primary{ onclick: "updateScore('right', 'minus', #{match_with_prediction.match.id});" } -
             .bottom-border
+  - unless match_with_prediction.match.group_stage?
+    .mt-3
+      .row.no-gutters.text-center
+        .col.tiny-text
+          The score
+          %strong before
+          the penalty shootout counts. It can be a tie (i.e. 1:1).
+
 - else
   .mt-4
     .score-controls
