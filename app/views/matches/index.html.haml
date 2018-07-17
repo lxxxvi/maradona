@@ -4,7 +4,7 @@
 
 %h1 Prediction center
 
-- if @finished_matches.any?
+- if @finished_matches.any? && @upcoming_matches.any?
   #prediction-center-actions.mt-4
     .row.no-gutters
       .col-6
@@ -16,12 +16,12 @@
           %button.btn.btn-primary.col-12.finished-matches Finished
           .bottom-border
 
-
 .mt-5
 .sinuswave-hr
 
 - @finished_matches.each do |match_with_prediction|
-  .match-with-prediction.passed.d-none
+  - display_none = 'd-none' if @upcoming_matches.any?
+  .match-with-prediction.passed{ class: "#{display_none}" }
     = render 'passed_match', match_with_prediction: match_with_prediction
     .sinuswave-hr
 
