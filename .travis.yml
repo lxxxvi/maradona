@@ -4,7 +4,7 @@ env:
 language: ruby
 cache: bundler
 rvm:
-  - 2.5.1
+  - 2.6.0
 services:
   - postgresql
 before_install:
