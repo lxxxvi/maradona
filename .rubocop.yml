@@ -1,0 +1,21 @@
+require: rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'db/schema.rb'
+
+Metrics/LineLength:
+  Max: 120
+
+Rails:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

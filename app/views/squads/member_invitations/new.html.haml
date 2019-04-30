@@ -1,9 +1,0 @@
-.mt-4
-  .row
-    .col
-      = link_to 'Back to squad',
-        squad_path(@member_invitation_form.squad)
-
-%h1.smaller= "Invite friend to #{@squad.name}"
-
-= render 'form', member_invitation_form: @member_invitation_form
