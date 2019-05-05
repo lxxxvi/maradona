@@ -10,5 +10,6 @@ def system!(*args)
 end
 
 FileUtils.chdir APP_ROOT do
+  system!('bin/rails test')
   system!('bundle exec rubocop')
 end

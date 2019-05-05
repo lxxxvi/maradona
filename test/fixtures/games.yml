@@ -1,0 +1,15 @@
+game_1:
+  tournament_stage: 'Group A'
+  kickoff_at: 2020-06-12 18:00:00
+  left_team: 'POR'
+  right_team: 'ITA'
+  left_team_score:
+  right_team_score:
+
+game_2:
+  tournament_stage: 'Group B'
+  kickoff_at: 2020-06-13 12:00:00
+  left_team: 'SWE'
+  right_team: 'NED'
+  left_team_score:
+  right_team_score:

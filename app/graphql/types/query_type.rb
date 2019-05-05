@@ -1,13 +1,20 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :game, GameType, null: true do
+      description 'Find a game by ID'
+      argument :id, ID, required: true
+    end
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :games, [GameType], null: true do
+      description 'All games in tournament'
+    end
+
+    def game(id:)
+      Game.joins(:left_team, :right_team).find(id)
+    end
+
+    def games
+      Game.ordered_by_kickoff
     end
   end
 end
