@@ -16,11 +16,11 @@ class GameTest < ActiveSupport::TestCase
     game.left_team_score = 'INVALID'
     game.right_team_score = 'INVALID'
     game.validate
-    assert_equal [:left_team_score, :right_team_score], game.errors.keys.sort
+    assert_equal %i[left_team_score right_team_score], game.errors.keys.sort
 
     game.left_team_score = 1
     game.validate
-    assert_equal [:right_team_score], game.errors.keys.sort
+    assert_equal %i[right_team_score], game.errors.keys.sort
 
     game.right_team_score = 0
     assert game.valid?, 'Should be valid after'

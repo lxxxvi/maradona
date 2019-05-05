@@ -3,13 +3,14 @@ class Game < ApplicationRecord
 
   validates :tournament_stage, :kickoff_at,
             :left_team, :right_team, presence: true
-  validates :left_team_score, numericality: { greater_than_or_equal_to: 0 },
+  validates :left_team_score,
+            numericality: { greater_than_or_equal_to: 0 },
             if: :score_present?
-  validates :right_team_score, numericality: { greater_than_or_equal_to: 0 },
+  validates :right_team_score,
+            numericality: { greater_than_or_equal_to: 0 },
             if: :score_present?
 
   def score_present?
-    left_team_score.present? ||
-    right_team_score.present?
+    left_team_score.present? || right_team_score.present?
   end
 end
