@@ -8,6 +8,7 @@ gem 'graphql'
 gem 'haml-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
+gem 'rack-cors'
 gem 'rails', '~> 6.0.0.rc1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -18,7 +19,6 @@ gem 'rails', '~> 6.0.0.rc1'
 # gem 'image_processing', '~> 1.2'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug'
