@@ -15,26 +15,20 @@ class GraphqlController < ApplicationController
     handle_error_in_development e
   end
 
-  private
+  # private
 
-  # rubocop:disable Metrics/MethodLength
   def ensure_hash(ambiguous_param)
+    return {} if ambiguous_param.blank?
+
     case ambiguous_param
     when String
-      if ambiguous_param.present?
-        ensure_hash(JSON.parse(ambiguous_param))
-      else
-        {}
-      end
+      JSON.parse(ambiguous_param)
     when Hash, ActionController::Parameters
       ambiguous_param
-    when nil
-      {}
     else
       raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   def handle_error_in_development(error)
     logger.error error.message
