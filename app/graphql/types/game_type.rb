@@ -7,4 +7,5 @@ class Types::GameType < Types::BaseObject
   field :right_team, String, null: false
   field :left_team_score, Int, null: true
   field :right_team_score, Int, null: true
+  field :user_prediction, Types::PredictionType, null: false
 end

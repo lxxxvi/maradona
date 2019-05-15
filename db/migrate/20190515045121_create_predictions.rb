@@ -4,6 +4,8 @@ class CreatePredictions < ActiveRecord::Migration[6.0]
       t.references :game, null: false
       t.integer :left_team_score
       t.integer :right_team_score
+
+      t.timestamps
     end
   end
 end
