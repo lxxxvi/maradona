@@ -25,4 +25,6 @@ class GameTest < ActiveSupport::TestCase
     game.right_team_score = 0
     assert game.valid?, 'Should be valid after'
   end
+
+  test 'predictions'
 end
