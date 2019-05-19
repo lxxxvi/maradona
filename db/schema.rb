@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2019_05_15_045121) do
     t.bigint "game_id", null: false
     t.integer "left_team_score"
     t.integer "right_team_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_predictions_on_game_id"
   end
 
