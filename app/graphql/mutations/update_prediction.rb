@@ -1,6 +1,4 @@
 class Mutations::UpdatePrediction < Mutations::BaseMutation
-  # null true
-
   argument :game_id, ID, required: true
   argument :left_team_score, Int, required: true
   argument :right_team_score, Int, required: true
@@ -14,16 +12,24 @@ class Mutations::UpdatePrediction < Mutations::BaseMutation
     prediction.left_team_score = left_team_score
     prediction.right_team_score = right_team_score
 
-    if prediction.save!
-      {
-        prediction: prediction,
-        errors: []
-      }
-    else
-      {
-        prediction: nil,
-        errors: prediction.errors.full_messages
-      }
-    end
+    return handle_success(prediction) if prediction.save!
+
+    handle_error(prediction)
+  end
+
+  private
+
+  def handle_success(prediction)
+    {
+      prediction: prediction,
+      errors: []
+    }
+  end
+
+  def handle_error(prediction)
+    {
+      prediction: nil,
+      errors: prediction.errors.full_messages
+    }
   end
 end

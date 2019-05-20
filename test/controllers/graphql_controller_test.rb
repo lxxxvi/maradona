@@ -3,17 +3,21 @@ require 'test_helper'
 class GraphqlControllerTest < ActionDispatch::IntegrationTest
   test '/grapql games' do
     post '/graphql', params: { query: '{ games { id } }' }
-    assert_operator parsed_response['data']['games'].count, :>, 1
+    assert parsed_response['data']['games'].any?
   end
 
   test '/graphql updatePrediction' do
     game = games(:game_1)
 
-    # post '/graphql', params: { query: mutation_query, variables: mutation_variables(game, 7, 6) }
-    post '/graphql', params: { query: mutation_query2(game) }
+    assert_changes 'game.predictions.first.left_team_score', to: 7 do
+      post '/graphql', params: { query: mutation_query(game) }
+    end
 
-    raise 'TODO: make me nice!'
-    assert false
+    prediction = parsed_response['data']['updatePrediction']['prediction']
+
+    assert_equal game.id.to_s, prediction['game']['id']
+    assert_equal 7, prediction['leftTeamScore']
+    assert_equal 6, prediction['rightTeamScore']
   end
 
   private
@@ -22,7 +26,7 @@ class GraphqlControllerTest < ActionDispatch::IntegrationTest
     JSON.parse(response.body)
   end
 
-  def mutation_query2(game)
+  def mutation_query(game)
     <<~GQL
       mutation {
         updatePrediction(
@@ -41,34 +45,4 @@ class GraphqlControllerTest < ActionDispatch::IntegrationTest
       }
     GQL
   end
-
-  # def mutation_query
-  #   <<~GQL
-  #     mutation updatePredictionMutation($gameId: ID!, $leftTeamScore: Int!, $rightTeamScore: Int!) {
-  #       updatePrediction(
-  #         gameId: $gameId,
-  #         leftTeamScore: $leftTeamScore,
-  #         rightTeamScore: $rightTeamScore
-  #       ) {
-  #         prediction {
-  #           game {
-  #             id
-  #           }
-  #           leftTeamScore
-  #           rightTeamScore
-  #         }
-  #       }
-  #     }
-  #   GQL
-  # end
-
-  # def mutation_variables(game, left_team_score, right_team_score)
-  #   <<~GQL
-  #     {
-  #       "gameId": #{game.id},
-  #       "leftTeamScore": #{left_team_score},
-  #       "rightTeamScore": #{right_team_score}
-  #     }
-  #   GQL
-  # end
 end
