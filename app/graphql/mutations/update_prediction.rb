@@ -1,5 +1,5 @@
 class Mutations::UpdatePrediction < Mutations::BaseMutation
-  null true
+  # null true
 
   argument :game_id, ID, required: true
   argument :left_team_score, Int, required: true
