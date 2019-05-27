@@ -15,4 +15,14 @@ class PredictionTest < ActiveSupport::TestCase
 
     assert prediction.valid?
   end
+
+  test 'cannot update after kickoff' do
+    prediction = predictions(:prediction_game_1)
+
+    travel_to prediction.game.kickoff_at do
+      assert_not prediction.update(left_team_score: prediction.left_team_score + 1)
+      assert prediction.errors.key?(:base)
+      assert_equal ["The games' kickoff must be in the future"], prediction.errors.full_messages
+    end
+  end
 end
