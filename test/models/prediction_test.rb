@@ -25,4 +25,20 @@ class PredictionTest < ActiveSupport::TestCase
       assert_equal ["The games' kickoff must be in the future"], prediction.errors.full_messages
     end
   end
+
+  test 'previous_score_changes' do
+    prediction = predictions(:prediction_game_1)
+
+    prediction.update!(left_team_score: 2, right_team_score: 1)
+
+    score_change = prediction.previous_score_changes.first
+    assert_equal 'left_team_score', score_change[:score]
+    assert_equal 1, score_change[:from]
+    assert_equal 2, score_change[:to]
+
+    score_change = prediction.previous_score_changes.last
+    assert_equal 'right_team_score', score_change[:score]
+    assert_equal 0, score_change[:from]
+    assert_equal 1, score_change[:to]
+  end
 end
