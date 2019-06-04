@@ -1,0 +1,8 @@
+DEFAULTS: &DEFAULTS
+  encrypted_password: '$2a$11$o1uN7zBavVJ6M27j.F5uue7uHzMVRuuF04t33ise6JRpuF2zYEx3K' # abc
+
+laura:
+  username: 'LAURA'
+  slug: 'zidane-maradona-22333'
+  email: 'laura@tippkick.dev'
+  <<: *DEFAULTS
