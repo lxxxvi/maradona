@@ -10,7 +10,7 @@ class Prediction < ApplicationRecord
   def previous_score_changes
     previous_changes.slice('left_team_score', 'right_team_score').map do |score, from_to|
       {
-        score: score,
+        score: score.camelcase(:lower),
         from: from_to.first,
         to: from_to.last
       }
