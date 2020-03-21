@@ -1,4 +1,4 @@
-ruby '2.6.3'
+ruby '2.6.5'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -6,32 +6,26 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.12'
-gem 'haml-rails'
-gem 'bootstrap', '>= 4.3.1'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'inline_svg'
-gem 'devise'
-gem 'jquery-rails'
-gem 'pundit'
-gem 'bugsnag', '~> 6.6'
 gem 'bootsnap'
-
-# gem 'therubyracer', platforms: :ruby
-# gem 'jbuilder', '~> 2.5'
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap'
+gem 'bugsnag'
+gem 'devise'
+gem 'haml-rails'
+gem 'inline_svg'
+gem 'jquery-rails'
+gem 'pg'
+gem 'puma'
+gem 'pundit'
+gem 'rails', '~> 5.2'
+gem 'sass-rails'
+gem 'uglifier'
 
 group :production do
-  gem 'redis', '~> 3.0'
+  gem 'redis'
 end
 
 group :development, :test do
   gem 'byebug'
-  # gem 'capybara', '~> 2.13'
-  # gem 'selenium-webdriver'
 end
 
 group :test do
@@ -41,6 +35,5 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console'
 end
