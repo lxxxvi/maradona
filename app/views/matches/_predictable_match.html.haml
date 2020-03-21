@@ -25,7 +25,7 @@
 
   .row.mt-2
     .col
-      = inline_svg "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg",
+      = inline_svg_tag "flags/#{match_with_prediction.left_team.fifa_country_code.downcase}.svg",
         class: 'country-flag'
     .col
       .row
@@ -36,7 +36,7 @@
           = match_with_prediction.venue.city
 
     .col
-      = inline_svg "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg",
+      = inline_svg_tag "flags/#{match_with_prediction.right_team.fifa_country_code.downcase}.svg",
         class: 'country-flag'
   .row.small
     .col
